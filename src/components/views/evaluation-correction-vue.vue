@@ -1,0 +1,700 @@
+<template>
+  <div class="container">
+    <!-- Loading State -->
+    <div v-if="loading" class="loading">
+      Chargement de la correction...
+    </div>
+
+    <!-- Error State -->
+    <div v-if="error" class="error">
+      <strong>Erreur :</strong> {{ error }}
+    </div>
+
+    <!-- Main Content -->
+    <div v-if="!loading && !error && correctionData">
+      <!-- Header avec infos candidat -->
+      <div class="header">
+        <div class="candidate-info">
+          <div class="candidate-photo">
+            <img 
+              v-if="correctionData.seminariste_info.photo" 
+              :src="correctionData.seminariste_info.photo" 
+              alt="Photo"
+            />
+            <span v-else>👤</span>
+          </div>
+          <div class="candidate-details">
+            <h2>{{ correctionData.seminariste_info.nom }} {{ correctionData.seminariste_info.prenom }}</h2>
+            <p>{{ correctionData.seminariste_info.matricule_seminaire }}</p>
+          </div>
+        </div>
+        <h1>Correction : {{ correctionData.evaluation.titre }}</h1>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value correct">{{ stats.correct }}</div>
+            <div class="stat-label">Correctes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value incorrect">{{ stats.incorrect }}</div>
+            <div class="stat-label">Incorrectes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value unanswered">{{ stats.unanswered }}</div>
+            <div class="stat-label">Non répondues</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">{{ correctionData.session_data.score_pourcentage }}%</div>
+            <div class="stat-label">Score</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation rapide -->
+      <div class="navigation">
+        <div>
+          <strong>Navigation rapide :</strong>
+        </div>
+        <div class="quick-nav">
+          <button 
+            v-for="(question, index) in correctionData.questions" 
+            :key="index"
+            :class="getNavButtonClass(index)"
+            @click="goToQuestion(index)"
+          >
+            {{ index + 1 }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Question actuelle -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="question-number">Question {{ currentQuestionIndex + 1 }}</div>
+          <div :class="getQuestionStatusClass()">{{ getQuestionStatus() }}</div>
+        </div>
+        
+        <div class="question-text">{{ currentQuestion.question }}</div>
+        
+        <div class="options-list">
+          <div 
+            v-for="option in ['A', 'B', 'C', 'D']" 
+            :key="option"
+            :class="getOptionClass(option)"
+            v-if="currentQuestion[`reponse_${option}`]"
+          >
+            <div class="option-letter">{{ option }}</div>
+            <div class="option-text">
+              {{ currentQuestion[`reponse_${option}`] }}
+              <div v-if="getOptionLabel(option)" class="option-label">
+                {{ getOptionLabel(option) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contrôles -->
+      <div class="controls">
+        <button 
+          class="btn btn-secondary" 
+          @click="previousQuestion"
+          :disabled="currentQuestionIndex === 0"
+        >
+          ← Précédent
+        </button>
+        <div>
+          <span>Question {{ currentQuestionIndex + 1 }} / {{ correctionData.questions.length }}</span>
+        </div>
+        <button 
+          class="btn btn-secondary" 
+          @click="nextQuestion"
+          :disabled="currentQuestionIndex === correctionData.questions.length - 1"
+        >
+          Suivant →
+        </button>
+      </div>
+
+      <!-- Bouton retour -->
+      <div class="back-section">
+        <button 
+          class="btn btn-primary" 
+          @click="goBackToQuestionnaire"
+        >
+          ← Retour au questionnaire
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'EvaluationCorrection',
+  props: {
+    evaluationId: {
+      type: [String, Number],
+      required: true
+    },
+    matricule: {
+      type: String,
+      required: true
+    },
+    sessionId: {
+      type: [String, Number],
+      default: null
+    }
+  },
+  data() {
+    return {
+      loading: true,
+      error: null,
+      correctionData: null,
+      currentQuestionIndex: 0
+    }
+  },
+  computed: {
+    currentQuestion() {
+      return this.correctionData?.questions[this.currentQuestionIndex] || {};
+    },
+    currentUserAnswer() {
+      return this.correctionData?.user_answers[this.currentQuestionIndex] || '';
+    },
+    currentCorrectAnswer() {
+      return this.currentQuestion.bonne_reponse || '';
+    },
+    stats() {
+      if (!this.correctionData) return { correct: 0, incorrect: 0, unanswered: 0 };
+      
+      const questions = this.correctionData.questions;
+      const userAnswers = this.correctionData.user_answers;
+      
+      let correct = 0;
+      let incorrect = 0;
+      let unanswered = 0;
+      
+      for (let i = 0; i < questions.length; i++) {
+        const userAnswer = userAnswers[i];
+        const correctAnswer = questions[i].bonne_reponse;
+        
+        if (!userAnswer || userAnswer === '') {
+          unanswered++;
+        } else if (userAnswer === correctAnswer) {
+          correct++;
+        } else {
+          incorrect++;
+        }
+      }
+      
+      return { correct, incorrect, unanswered };
+    }
+  },
+  mounted() {
+    this.loadCorrection();
+  },
+  methods: {
+    async loadCorrection() {
+      try {
+        console.log('🔍 Chargement correction avec params:', {
+          evaluation_id: this.evaluationId,
+          matricule: this.matricule,
+          session_id: this.sessionId
+        });
+
+        const response = await fetch('https://sogetrag.com/api/evaluations-api.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'get_correction',
+            evaluation_id: parseInt(this.evaluationId),
+            matricule: this.matricule,
+            session_id: this.sessionId
+          })
+        });
+
+        const data = await response.json();
+        console.log('📋 Correction response:', data);
+        
+        if (!data.success) {
+          throw new Error(data.error || 'Erreur lors du chargement');
+        }
+
+        this.correctionData = data;
+        this.loading = false;
+        
+      } catch (error) {
+        console.error('❌ Erreur correction:', error);
+        this.error = error.message;
+        this.loading = false;
+      }
+    },
+    
+    getNavButtonClass(index) {
+      const classes = ['nav-btn'];
+      
+      if (index === this.currentQuestionIndex) {
+        classes.push('active');
+      }
+      
+      const userAnswer = this.correctionData.user_answers[index];
+      const correctAnswer = this.correctionData.questions[index].bonne_reponse;
+      
+      if (!userAnswer || userAnswer === '') {
+        classes.push('unanswered');
+      } else if (userAnswer === correctAnswer) {
+        classes.push('correct');
+      } else {
+        classes.push('incorrect');
+      }
+      
+      return classes;
+    },
+    
+    getQuestionStatus() {
+      if (!this.currentUserAnswer || this.currentUserAnswer === '') {
+        return 'Non répondue';
+      } else if (this.currentUserAnswer === this.currentCorrectAnswer) {
+        return 'Correcte';
+      } else {
+        return 'Incorrecte';
+      }
+    },
+    
+    getQuestionStatusClass() {
+      const baseClass = 'question-status';
+      
+      if (!this.currentUserAnswer || this.currentUserAnswer === '') {
+        return `${baseClass} unanswered`;
+      } else if (this.currentUserAnswer === this.currentCorrectAnswer) {
+        return `${baseClass} correct`;
+      } else {
+        return `${baseClass} incorrect`;
+      }
+    },
+    
+    getOptionClass(option) {
+      const classes = ['option'];
+      
+      if (option === this.currentCorrectAnswer) {
+        classes.push('correct-answer');
+      }
+      
+      if (option === this.currentUserAnswer) {
+        classes.push('user-choice');
+        if (option !== this.currentCorrectAnswer) {
+          classes.push('incorrect');
+        }
+      }
+      
+      return classes;
+    },
+    
+    getOptionLabel(option) {
+      if (option === this.currentCorrectAnswer && option === this.currentUserAnswer) {
+        return 'Votre choix (correct)';
+      } else if (option === this.currentCorrectAnswer) {
+        return 'Bonne réponse';
+      } else if (option === this.currentUserAnswer) {
+        return 'Votre choix';
+      }
+      return '';
+    },
+    
+    goToQuestion(index) {
+      if (index >= 0 && index < this.correctionData.questions.length) {
+        this.currentQuestionIndex = index;
+      }
+    },
+    
+    previousQuestion() {
+      if (this.currentQuestionIndex > 0) {
+        this.currentQuestionIndex--;
+      }
+    },
+    
+    nextQuestion() {
+      if (this.currentQuestionIndex < this.correctionData.questions.length - 1) {
+        this.currentQuestionIndex++;
+      }
+    },
+
+    goBackToQuestionnaire() {
+      // Retour à la page précédente ou à l'accueil
+      this.$router.go(-1);
+    }
+  }
+}
+</script>
+
+<style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f8f9fa;
+  color: #2c3e50;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.header {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.candidate-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.candidate-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #3498db;
+  background: #ecf0f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #7f8c8d;
+}
+
+.candidate-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.candidate-details h2 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.candidate-details p {
+  color: #7f8c8d;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.stat-item {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+}
+
+.correct { color: #27ae60; }
+.incorrect { color: #e74c3c; }
+.unanswered { color: #f39c12; }
+
+.navigation {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.quick-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ecf0f1;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.nav-btn.correct {
+  border-color: #27ae60;
+  background: #27ae60;
+  color: white;
+}
+
+.nav-btn.incorrect {
+  border-color: #e74c3c;
+  background: #e74c3c;
+  color: white;
+}
+
+.nav-btn.unanswered {
+  border-color: #f39c12;
+  background: #f39c12;
+  color: white;
+}
+
+.nav-btn.active {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.question-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.question-number {
+  background: #3498db;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.question-status {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.question-text {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.option.correct-answer {
+  border-color: #27ae60;
+  background: #d4edda;
+}
+
+.option.user-choice {
+  border-color: #3498db;
+  background: #e3f2fd;
+}
+
+.option.user-choice.incorrect {
+  border-color: #e74c3c;
+  background: #ffebee;
+}
+
+.option-letter {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ecf0f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.option.correct-answer .option-letter {
+  background: #27ae60;
+  color: white;
+}
+
+.option.user-choice .option-letter {
+  background: #3498db;
+  color: white;
+}
+
+.option.user-choice.incorrect .option-letter {
+  background: #e74c3c;
+  color: white;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.option-label {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+.option.correct-answer .option-label {
+  color: #27ae60;
+}
+
+.option.user-choice .option-label {
+  color: #3498db;
+}
+
+.option.user-choice.incorrect .option-label {
+  color: #e74c3c;
+}
+
+.controls {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.back-section {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: #3498db;
+  color: white;
+}
+
+.btn-secondary {
+  background: #95a5a6;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px;
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+.error {
+  background: #ffebee;
+  border: 1px solid #ffcdd2;
+  color: #c62828;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .candidate-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .navigation {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .quick-nav {
+    justify-content: center;
+  }
+  
+  .question-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+</style>
