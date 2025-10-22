@@ -57,8 +57,20 @@
             </button>
           </div>
   
+          <!-- Loading state -->
+          <div v-if="loading" class="loading-state">
+            <div class="loading-spinner"></div>
+            <p>Chargement de l'article...</p>
+          </div>
+          
+          <!-- Error state -->
+          <div v-else-if="error" class="error-state">
+            <p>❌ {{ error }}</p>
+            <button @click="loadArticle" class="btn btn-sm">Réessayer</button>
+          </div>
+          
           <!-- Article principal -->
-          <article class="article-detail animate-slide-up">
+          <article v-else class="article-detail animate-slide-up">
             <!-- En-tête de l'article -->
             <header class="article-header">
               <h1 class="article-title">{{ article.title }}</h1>
@@ -75,9 +87,13 @@
                   <span class="icon-category">🏷️</span>
                   <span>{{ article.category }}</span>
                 </div>
+                <div class="meta-item" v-if="article.location">
+                  <span class="icon-location">📍</span>
+                  <span>{{ article.location }}</span>
+                </div>
               </div>
             </header>
-  
+
             <!-- Image principale -->
             <div class="article-image" v-if="article.image">
               <img :src="article.image" :alt="article.title" class="img-responsive" />
@@ -85,39 +101,30 @@
                 {{ article.imageCaption }}
               </div>
             </div>
-  
+
             <!-- Détails de l'événement -->
-            <div class="event-details" v-if="article.eventDetails">
+            <div class="event-details" v-if="article.location || article.type">
               <h3>Détails de l'événement</h3>
               <div class="details-grid">
-                <div class="detail-item" v-if="article.eventDetails.date">
-                  <strong>Date :</strong> {{ article.eventDetails.date }}
+                <div class="detail-item" v-if="article.date">
+                  <strong>Date :</strong> {{ article.date }}
                 </div>
-                <div class="detail-item" v-if="article.eventDetails.time">
-                  <strong>Heure :</strong> {{ article.eventDetails.time }}
+                <div class="detail-item" v-if="article.location">
+                  <strong>Lieu :</strong> {{ article.location }}
                 </div>
-                <div class="detail-item" v-if="article.eventDetails.location">
-                  <strong>Lieu :</strong> {{ article.eventDetails.location }}
+                <div class="detail-item" v-if="article.type">
+                  <strong>Type :</strong> {{ article.type }}
                 </div>
-                <div class="detail-item" v-if="article.eventDetails.organizer">
-                  <strong>Organisateur :</strong> {{ article.eventDetails.organizer }}
-                </div>
-                <div class="detail-item" v-if="article.eventDetails.participants">
-                  <strong>Participants :</strong> {{ article.eventDetails.participants }}
-                </div>
-                <div class="detail-item" v-if="article.eventDetails.contact">
-                  <strong>Contact :</strong> {{ article.eventDetails.contact }}
+                <div class="detail-item" v-if="article.author">
+                  <strong>Publié par :</strong> {{ article.author }}
                 </div>
               </div>
             </div>
-  
+
             <!-- Contenu de l'article -->
-            <div class="article-content">
-              <div class="content-section" v-for="(section, index) in article.content" :key="index">
-                <h3 v-if="section.subtitle">{{ section.subtitle }}</h3>
-                <p v-for="(paragraph, pIndex) in section.paragraphs" :key="pIndex">
-                  {{ paragraph }}
-                </p>
+            <div class="article-content" v-if="article.content">
+              <div class="content-section">
+                <div v-html="article.content"></div>
               </div>
             </div>
   
@@ -188,7 +195,7 @@
                 v-for="relatedArticle in relatedArticles" 
                 :key="relatedArticle.id" 
                 class="related-item"
-                @click="loadArticle(relatedArticle.id)"
+                @click="loadArticleById(relatedArticle.id)"
               >
                 <div class="related-image">
                   <img :src="relatedArticle.image" :alt="relatedArticle.title" />
@@ -223,111 +230,96 @@
   </template>
   
   <script>
-  // Import des images depuis le dossier assets
-  import actualite1 from '../../assets/actualite1.jpg'
-  import actualite10 from '../../assets/actualite10.jpg'
-  import actualite11 from '../../assets/actualite11.jpg'
-  import actualite12 from '../../assets/actualite12.jpg'
-  
   import { ref, computed, onMounted } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { actualitesApi, actualiteUtils } from '@/services/actualitesApi.js'
   
   export default {
     name: 'ActualiteDetail',
     setup() {
+      const route = useRoute()
+      
       // État pour la lightbox
       const lightboxOpen = ref(false)
       const currentGalleryIndex = ref(0)
-  
-      // Données de l'article (normalement récupérées via une API)
+      
+      // États de chargement
+      const loading = ref(true)
+      const error = ref(null)
+      
+      // Données de l'article
       const article = ref({
-        id: 1,
-        title: "L'Amir de l'AEEMCI à la Journée de l'Environnement et de la Citoyenneté",
-        date: "25 Juin 2024",
-        author: "AEEMCI Communication",
-        category: "Événement",
-        image: actualite1,
-        imageCaption: "M. Youssouf BAMBA, Amir de l'AEEMCI, lors de la Journée de l'Environnement et de la Citoyenneté",
-        eventDetails: {
-          date: "25 Juin 2024",
-          time: "Journée complète",
-          location: "Université Félix Houphouët-Boigny, Cocody",
-          organizer: "Sous-Comité Universitaire Félix Houphouët-Boigny",
-          participants: "Étudiants et personnalités",
-          contact: "contact@aeemci.org"
-        },
-        content: [
-          {
-            subtitle: "Participation de l'Amir à l'événement",
-            paragraphs: [
-              "Ce mercredi 25 juin, M. Youssouf BAMBA, Amir de l'AEEMCI, a pris part à la Journée de l'Environnement et de la Citoyenneté organisée par le Sous-Comité Universitaire Félix Houphouët-Boigny de Cocody.",
-              "Placée sous le signe de la responsabilité écologique et sociale, cette journée avait pour objectif de sensibiliser les étudiants à l'urgence environnementale et de les encourager à devenir des éco-citoyens engagés, conscients de leur rôle dans la préservation de notre cadre de vie."
-            ]
-          },
-          {
-            subtitle: "Allocution de l'Amir",
-            paragraphs: [
-              "Dans son allocution, l'Amir a salué avec enthousiasme cette initiative du Sous-Comité, qui fait de la protection de l'environnement une priorité au service du bien-être des populations.",
-              "Il a exhorté l'ensemble des militants et militantes de l'AEEMCI à s'approprier de telles actions porteuses de sens, en vue de bâtir une nation durable, solidaire et respectueuse des valeurs islamiques."
-            ]
-          },
-          {
-            subtitle: "Engagement de l'AEEMCI",
-            paragraphs: [
-              "Cette participation s'inscrit dans la vision de l'AEEMCI de promouvoir des valeurs islamiques en harmonie avec les enjeux contemporains, notamment la protection de l'environnement qui est un devoir religieux et citoyen.",
-              "L'association réaffirme ainsi son engagement pour une identité islamique forte et responsable, contribuant activement au développement durable de notre société."
-            ]
-          }
-        ],
-        gallery: [
-          {
-            url: actualite1,
-            thumbnail: actualite1,
-            caption: "M. Youssouf BAMBA lors de son allocution"
-          },
-          {
-            url: actualite10,
-            thumbnail: actualite10,
-            caption: "Vue d'ensemble de l'événement"
-          },
-          {
-            url: actualite11,
-            thumbnail: actualite11,
-            caption: "Participants à la journée"
-          },
-          {
-            url: actualite12,
-            thumbnail: actualite12,
-            caption: "Moment d'échange avec les étudiants"
-          }
-        ],
-        tags: ["Environnement", "Citoyenneté", "AEEMCI", "Université", "Développement durable", "Valeurs islamiques"],
-        conclusion: "AEEMCI, pour une identité islamique !"
+        id: null,
+        title: '',
+        date: '',
+        author: '',
+        category: '',
+        image: '',
+        imageCaption: '',
+        content: '',
+        excerpt: '',
+        location: '',
+        type: ''
       })
   
       // Articles similaires
-      const relatedArticles = ref([
-        {
-          id: 2,
-          title: 'SPECIAL EDITION TALKS',
-          date: '05/07/2024',
-          excerpt: 'Conférence spéciale sur les défis de la jeunesse musulmane.',
-          image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-        },
-        {
-          id: 3,
-          title: 'Journée de solidarité',
-          date: '01/07/2024',
-          excerpt: 'Distribution de kits scolaires et alimentaires aux familles.',
-          image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-        },
-        {
-          id: 4,
-          title: 'Concours de récitation du Coran',
-          date: '28/06/2024',
-          excerpt: 'Grand concours national de récitation du Saint Coran.',
-          image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+      const relatedArticles = ref([])
+      
+      // Charger l'article depuis l'API
+      const loadArticle = async () => {
+        try {
+          loading.value = true
+          error.value = null
+          
+          const articleId = route.query.id || route.params.id
+          console.log('🔄 Chargement de l\'article ID:', articleId)
+          
+          if (!articleId) {
+            throw new Error('ID de l\'article non fourni')
+          }
+          
+          // Charger tous les articles et trouver celui qui correspond à l'ID
+          const allArticles = await actualitesApi.getLatestActualites()
+          console.log('✅ Articles chargés:', allArticles.length)
+          
+          const articleData = allArticles.find(a => a.id == articleId)
+          
+          if (!articleData) {
+            throw new Error('Article non trouvé')
+          }
+          
+          console.log('✅ Article trouvé:', articleData)
+          
+          // Formater les données de l'article
+          article.value = {
+            id: articleData.id,
+            title: articleData.titre || articleData.title,
+            date: actualiteUtils.formatDate(articleData.date_specifique || articleData.date_debut || articleData.date),
+            author: articleData.author || 'AEEMCI Communication',
+            category: articleData.type || articleData.category || 'Actualité',
+            image: articleData.image || '',
+            imageCaption: articleData.titre || articleData.title,
+            content: articleData.texte_detaille || articleData.content || '',
+            excerpt: articleData.texte_affichage || articleData.excerpt || '',
+            location: articleData.lieu || articleData.location || '',
+            type: articleData.type || 'Actualité',
+            date_start: articleData.date_debut,
+            date_end: articleData.date_fin
+          }
+          
+          // Utiliser les autres articles comme articles similaires
+          relatedArticles.value = allArticles
+            .filter(a => a.id != articleId)
+            .slice(0, 3)
+            .map(a => actualiteUtils.formatActualite(a))
+          
+        } catch (err) {
+          console.error('❌ Erreur lors du chargement de l\'article:', err)
+          error.value = err.message || 'Erreur lors du chargement de l\'article'
+        } finally {
+          loading.value = false
         }
-      ])
+      }
   
       // Image actuelle de la galerie
       const currentGalleryImage = computed(() => {
@@ -360,9 +352,9 @@
         window.history.back()
       }
   
-      const loadArticle = (articleId) => {
-        // Ici vous chargeriez l'article avec l'ID spécifié
-        console.log('Charger article:', articleId)
+      const loadArticleById = (articleId) => {
+        // Navigation vers l'article avec l'ID spécifié
+        window.location.href = `/detail_actualite?id=${articleId}`
       }
   
       // Fonctions de partage
@@ -394,6 +386,9 @@
   
       // Initialisation
       onMounted(() => {
+        // Charger l'article au montage du composant
+        loadArticle()
+        
         // Écouter les touches du clavier pour la galerie
         document.addEventListener('keydown', (e) => {
           if (lightboxOpen.value) {
@@ -414,12 +409,14 @@
         article,
         relatedArticles,
         currentGalleryImage,
+        loading,
+        error,
         openLightbox,
         closeLightbox,
         nextGalleryImage,
         prevGalleryImage,
         goBack,
-        loadArticle,
+        loadArticleById,
         shareOnFacebook,
         shareOnTwitter,
         shareOnWhatsApp,
@@ -1147,6 +1144,35 @@
   
   .lightbox-nav.next {
     right: 20px;
+  }
+  
+  /* Loading and Error States */
+  .loading-state, .error-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--primary-lighter);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .error-state p {
+    color: var(--danger);
+    margin-bottom: 1rem;
   }
   
   /* Animations */

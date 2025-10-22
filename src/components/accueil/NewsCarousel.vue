@@ -13,7 +13,7 @@
                 <span>{{ article.date }}</span>
               </div>
               <p>{{ article.excerpt }}</p>
-              <a href="#" class="read-more">Lire plus →</a>
+              <a :href="`/detail_actualite?id=${article.id}`" class="read-more">Lire plus →</a>
             </div>
           </div>
         </div>
