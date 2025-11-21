@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // Configuration de base pour l'API des actualités
-const API_BASE_URL = "http://sogetrag.com/apistage"
+const API_BASE_URL = "https://sogetrag.com/apistage"
 const API_TIMEOUT = 20000 // 20 secondes
 
 // Configuration de la base de données
