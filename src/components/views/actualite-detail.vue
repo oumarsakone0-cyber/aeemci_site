@@ -63,14 +63,8 @@
             <p>Chargement de l'article...</p>
           </div>
           
-          <!-- Error state -->
-          <div v-else-if="error" class="error-state">
-            <p>❌ {{ error }}</p>
-            <button @click="loadArticle" class="btn btn-sm">Réessayer</button>
-          </div>
-          
-          <!-- Article principal -->
-          <article v-else class="article-detail animate-slide-up">
+          <!-- Article principal - affiché seulement s'il y a un titre -->
+          <article v-else-if="article.title" class="article-detail animate-slide-up">
             <!-- En-tête de l'article -->
             <header class="article-header">
               <h1 class="article-title">{{ article.title }}</h1>
@@ -315,7 +309,21 @@
           
         } catch (err) {
           console.error('❌ Erreur lors du chargement de l\'article:', err)
-          error.value = err.message || 'Erreur lors du chargement de l\'article'
+          // Ne pas afficher l'erreur à l'utilisateur, juste laisser la page vide
+          error.value = null
+          article.value = {
+            id: null,
+            title: '',
+            date: '',
+            author: '',
+            category: '',
+            image: '',
+            imageCaption: '',
+            content: '',
+            excerpt: '',
+            location: '',
+            type: ''
+          }
         } finally {
           loading.value = false
         }
