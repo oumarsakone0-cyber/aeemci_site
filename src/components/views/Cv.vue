@@ -345,7 +345,7 @@ const cloudinaryConfig = {
   uploadUrl: 'https://api.cloudinary.com/v1_1/r-sidence-meubl-e/upload'
 }
 
-const API_BASE_URL = 'https://sogetrag.com/api' // Ajustez selon votre configuration
+const API_BASE_URL = 'https://api.aeemci-ce.ci' // Ajustez selon votre configuration
 
 // Références
 const cvInput = ref(null)
@@ -606,14 +606,14 @@ const resetForm = () => {
 .militant-fields {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #f8fafc;
-  border-radius: 8px;
+  background-color: var(--surface);
+  border-radius: 0;
   border-left: 4px solid #3b82f6;
 }
 
 .cv-upload {
   border: 2px dashed #d1d5db;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 2rem;
   text-align: center;
   transition: all 0.3s ease;
@@ -621,7 +621,7 @@ const resetForm = () => {
 
 .cv-upload:hover {
   border-color: #3b82f6;
-  background-color: #f8fafc;
+  background-color: var(--surface);
 }
 
 .cv-input {
@@ -630,7 +630,7 @@ const resetForm = () => {
 
 .cv-placeholder {
   cursor: pointer;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .cv-placeholder:hover {
@@ -643,7 +643,7 @@ const resetForm = () => {
   justify-content: space-between;
   padding: 1rem;
   background-color: #f0f9ff;
-  border-radius: 6px;
+  border-radius: 0;
   border: 1px solid #0ea5e9;
 }
 
@@ -659,7 +659,7 @@ const resetForm = () => {
   background: #ef4444;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 0;
   padding: 0.5rem;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -674,7 +674,7 @@ const resetForm = () => {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .upload-progress-container {
@@ -702,7 +702,7 @@ const resetForm = () => {
   transform: translate(-50%, -50%);
   font-size: 0.875rem;
   font-weight: 600;
-  color: #16a34a;
+  color: var(--green);
 }
 
 .upload-error {
@@ -717,10 +717,10 @@ const resetForm = () => {
 }
 
 .submit-button {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  background: linear-gradient(135deg, var(--green) 0%, var(--green) 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 1rem 2rem;
   font-size: 1.1rem;
   font-weight: 600;
@@ -731,7 +731,7 @@ const resetForm = () => {
 
 .submit-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+  box-shadow: var(--shadow);
 }
 
 .submit-button:disabled {
@@ -755,11 +755,11 @@ const resetForm = () => {
 
 .modal-content {
   background: white;
-  border-radius: 12px;
+  border-radius: 0;
   padding: 2rem;
   max-width: 400px;
   width: 90%;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow);
 }
 
 .modal-header {
@@ -770,7 +770,7 @@ const resetForm = () => {
 }
 
 .modal-header h3 {
-  color: #16a34a;
+  color: var(--green);
   margin: 0;
 }
 
@@ -778,26 +778,26 @@ const resetForm = () => {
   background: none;
   border: none;
   cursor: pointer;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .modal-body p {
-  color: #6b7280;
+  color: var(--muted);
   line-height: 1.6;
   margin: 0;
 }
 
 .candidature-info {
   background-color: #dcfce775;
-  border: 1px solid #16a34a;
-  border-radius: 8px;
+  border: 1px solid var(--green);
+  border-radius: 0;
   padding: 1rem;
   margin: 1rem 0;
   text-align: center;
 }
 
 .candidature-info strong {
-  color: #16a34a;
+  color: var(--green);
   font-size: 1.1rem;
   display: block;
   margin-bottom: 0.5rem;
@@ -805,7 +805,7 @@ const resetForm = () => {
 
 .candidature-note {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--muted);
   margin: 0.5rem 0 0 0;
 }
 
@@ -815,24 +815,24 @@ const resetForm = () => {
 }
 
 .modal-button {
-  background: #15803d;
+  background: var(--green);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 0;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   font-weight: 500;
 }
 
 .modal-button:hover {
-  background: #15803d;
+  background: var(--green);
 }
 
 /* Styles existants du formulaire original (adaptés) */
 .app-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #dcfce7 0%, #f9fafb 100%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--green-mist) 0%, var(--surface) 100%);
+  font-family: var(--display);
 }
 
 .app-header {
@@ -861,11 +861,11 @@ const resetForm = () => {
 }
 
 .logo-icon {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  background: linear-gradient(135deg, var(--green) 0%, var(--green) 100%);
   color: white;
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -875,13 +875,13 @@ const resetForm = () => {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--ink);
 }
 
 .logo-text p {
   margin: 0;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .header-right {
@@ -892,15 +892,15 @@ const resetForm = () => {
 
 .step-info {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--muted);
   margin: 0;
 }
 
 .progress-bar {
   width: 200px;
   height: 6px;
-  background: #e5e7eb;
-  border-radius: 3px;
+  background: var(--line);
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -918,8 +918,8 @@ const resetForm = () => {
 
 .form-container {
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
@@ -933,7 +933,7 @@ const resetForm = () => {
   gap: 0.75rem;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--ink);
   margin-bottom: 2rem;
 }
 
@@ -959,7 +959,7 @@ const resetForm = () => {
 .form-label {
   display: block;
   font-weight: 500;
-  color: #374151;
+  color: var(--ink-soft);
   margin-bottom: 0.5rem;
 }
 
@@ -974,8 +974,8 @@ const resetForm = () => {
 .form-input {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
+  border: 2px solid var(--line);
+  border-radius: 0;
   font-size: 1rem;
   transition: all 0.3s ease;
   background: white;
@@ -1005,7 +1005,7 @@ const resetForm = () => {
 
 .radio-item-compact {
   padding: 0.5rem;
-  border-radius: 6px;
+  border-radius: 0;
   transition: background-color 0.2s;
 }
 
@@ -1045,7 +1045,7 @@ const resetForm = () => {
 
 .radio-label {
   font-weight: 500;
-  color: #374151;
+  color: var(--ink-soft);
 }
 
 @media (max-width: 768px) {

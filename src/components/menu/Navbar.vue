@@ -422,19 +422,19 @@ onUnmounted(() => {
 
 <style scoped>
 .bg-cream {
-  background-color: #EFEDE7;
+  background-color: var(--surface);
 }
 
 .bg-orange {
-  background-color: #F65A11;
+  background-color: var(--gold);
 }
 
 .text-orange {
-  color: #F65A11;
+  color: var(--gold);
 }
 
 .hover\:text-orange-600:hover {
-  color: #e54a0a;
+  color: var(--gold);
 }
 
 .focus\:ring-orange:focus {
@@ -442,7 +442,7 @@ onUnmounted(() => {
 }
 
 .focus\:border-orange:focus {
-  border-color: #F65A11;
+  border-color: var(--gold);
 }
 
 /* Animation pour les dropdowns */
@@ -462,6 +462,6 @@ onUnmounted(() => {
 }
 
 .shadow-sm {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 </style>

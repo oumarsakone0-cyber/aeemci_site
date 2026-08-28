@@ -151,7 +151,7 @@
     error.value = ''
   
     try {
-      const response = await fetch('https://sogetrag.com/api/get_resultat_final.php', {
+      const response = await fetch('https://api.aeemci-ce.ci/get_resultat_final.php', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -430,7 +430,7 @@
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, #4CAF50 0%, #FF9800 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--display);
   }
   
   .animated-background {
@@ -525,9 +525,9 @@
   .results-card {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    border-radius: 20px;
+    border-radius: 0;
     padding: 40px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     border: 1px solid rgba(255, 255, 255, 0.2);
     max-width: 600px;
     width: 100%;
@@ -541,14 +541,14 @@
   .main-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #2d3748;
+    color: var(--ink);
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .subtitle {
     font-size: 1.1rem;
-    color: #4a5568;
+    color: var(--ink-soft);
     margin: 0;
   }
   
@@ -564,7 +564,7 @@
   .form-label {
     display: block;
     font-weight: 600;
-    color: #2d3748;
+    color: var(--ink);
     margin-bottom: 8px;
     font-size: 1rem;
   }
@@ -572,11 +572,11 @@
   .form-input {
     width: 100%;
     padding: 15px;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
+    border: 2px solid var(--line);
+    border-radius: 0;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background: #f7fafc;
+    background: var(--surface);
     text-transform: uppercase;
   }
   
@@ -598,7 +598,7 @@
     background: linear-gradient(135deg, #4CAF50 0%, #FF9800 100%);
     color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 0;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
@@ -611,7 +611,7 @@
   
   .submit-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+    box-shadow: var(--shadow);
   }
   
   .submit-btn:disabled {
@@ -639,7 +639,7 @@
     padding: 15px;
     background: #fed7d7;
     border: 1px solid #feb2b2;
-    border-radius: 12px;
+    border-radius: 0;
     text-align: center;
   }
   
@@ -653,9 +653,9 @@
     text-align: left;
     margin-top: 30px;
     padding: 25px;
-    background: #f1f5f9;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
+    background: var(--surface);
+    border-radius: 0;
+    border: 1px solid var(--line);
   }
   
   .result-header {
@@ -664,7 +664,7 @@
     gap: 20px;
     margin-bottom: 25px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 2px solid var(--line);
   }
   
   .student-photo {
@@ -677,7 +677,7 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #4CAF50;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .student-info h2 {
@@ -689,7 +689,7 @@
   
   .matricule-display {
     margin: 0;
-    color: #64748b;
+    color: var(--muted);
     font-size: 1rem;
     font-weight: 500;
   }
@@ -703,7 +703,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--line);
     font-size: 1rem;
   }
   
@@ -712,7 +712,7 @@
   }
   
   .detail-row strong {
-    color: #334155;
+    color: var(--ink-soft);
     font-weight: 600;
   }
   
@@ -725,12 +725,12 @@
   .status-row {
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 2px solid #e2e8f0;
+    border-top: 2px solid var(--line);
   }
   
   .status-badge {
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: 0;
     font-size: 0.9rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -738,9 +738,9 @@
   }
   
   .status-badge.admis {
-    background: #dcfce7;
-    color: #166534;
-    border: 1px solid #4ade80;
+    background: var(--green-mist);
+    color: var(--green);
+    border: 1px solid var(--green-2);
   }
   
   .status-badge.recale {
@@ -756,7 +756,7 @@
     background: #4CAF50;
     color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 0;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -770,7 +770,7 @@
   .print-btn:hover:not(:disabled) {
     background: #388E3C;
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    box-shadow: var(--shadow);
   }
   
   .print-btn:disabled {
@@ -786,11 +786,11 @@
   .help-section {
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--line);
   }
   
   .help-text {
-    color: #4a5568;
+    color: var(--ink-soft);
     margin-bottom: 10px;
     font-size: 0.95rem;
   }

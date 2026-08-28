@@ -217,11 +217,9 @@
                   <option value="SOUS_COMITE">Membre du bureau (Sous-comité)</option>
                   <option value="BUREAU_SECTION">Membre du bureau (Section)</option>
                   <option value="MEMBRE_SIMPLE">Membre simple</option>
-                  <option value="IMAM_REGIONAL">Imam Régional</option>
-                  <option value="IMAM_SOUS_COMITE">Imam de Sous-comité</option>
-                  <option value="IMAM_SECTION">Imam de Section</option>
-                  <option value="FORMATEUR_SOUS_COMITE">Formateur de Sous-comité</option>
-                  <option value="FORMATEUR_SECTION">Formateur de section</option>
+                  <option value="IF">Imam et Formateur</option>
+                  <option value="cellule">Cellules Spécialisées</option>
+                  <option value="CRP_CNP">Membre CNP et CRP</option>
                 </select>
               </div>
               
@@ -263,7 +261,7 @@
         <!-- Tableau des membres -->
         <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden" style="padding: 10px; margin-top: 10px">
           <div class="px-4 lg:px-6 py-4 border-b border-gray-200 flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-2 lg:space-y-0">
-            <h3 class="text-lg font-semibold text-gray-800">Liste des Membres</h3>
+            <h3 class="text-lg font-semibold text-gray-800">Liste des Membresj</h3>
             <div class="text-sm text-gray-500">
               Affichage {{ pagination.from || 0 }} à {{ pagination.to || 0 }} sur {{ pagination.total || 0 }} membres
             </div>
@@ -940,7 +938,7 @@
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
   
   // Données réactives
-  const API_BASE_URL = 'https://sogetrag.com/api/membres.php'
+  const API_BASE_URL = 'https://api.aeemci-ce.ci/membres.php'
   const membres = ref([])
   const secretariats = ref([
     'ABIDJAN NORD', 'ABIDJAN SUD', 'ABIDJAN EST', 'ABIDJAN OUEST',
@@ -1163,7 +1161,7 @@
           printed_at: membre.printed_at || (membre.card_status === 'printed' || membre.card_status === 'retrieved' ? new Date().toISOString() : null),
           retrieved_at: membre.retrieved_at || (membre.card_status === 'retrieved' ? new Date().toISOString() : null),
           retrieved_by: membre.retrieved_by || (membre.card_status === 'retrieved' ? 'John Doe' : null),
-          statut_paiement: membre.statut_paiement || (Math.random() > 0.8 ? 'PAYE' : Math.random() > 0.5 ? 'EN_ATTENTE' : 'NON_PAYE')
+          statut_paiement: membre.statut_paiement || (Math.random() > 0.8 ? 'paye' : Math.random() > 0.5 ? 'en_attente' : 'non_paye')
         }))
         
         if (data.pagination) {
@@ -1314,7 +1312,7 @@
       doc.setTextColor(40, 40, 40)
       doc.text(`Total des membres: ${totalMembers}`, 20, 60)
       doc.text(`Secrétariats représentés: ${secretariatsUniques.length}`, 20, 68)
-      doc.text(`Cartes payées: ${data.filter(m => m.statut_paiement === 'PAYE').length}`, 20, 76)
+      doc.text(`Cartes payées: ${data.filter(m => m.statut_paiement === 'paye').length}`, 20, 76)
       
       // Tableau des données
       const tableData = data.map(membre => [
@@ -1561,7 +1559,7 @@
     const doc = new jsPDF('p', 'mm', 'a4')
     const today = new Date()
     const receiptNumber = Math.floor(Math.random() * 99999).toString().padStart(5, '0')
-    const qrText = `https://aeemci.sastock.com/membre/${membre.matricule}`
+    const qrText = `https://www.aeemci-ce.ci/membre/${membre.matricule}`
     
     const qrDataURL = await QRCode.toDataURL(qrText, {
       width: 120,
@@ -1844,7 +1842,7 @@
   
   const getPaymentStatusLabel = (status) => {
     const labels = {
-      'PAYE': 'Payé',
+      'paye': 'Payé',
       'EN_ATTENTE': 'Échec',
       'NON_PAYE': 'Non payé'
     }
@@ -1938,12 +1936,12 @@
   
   .overflow-y-auto::-webkit-scrollbar-track {
     background: #f1f1f1;
-    border-radius: 3px;
+    border-radius: 0;
   }
   
   .overflow-y-auto::-webkit-scrollbar-thumb {
     background: #c1c1c1;
-    border-radius: 3px;
+    border-radius: 0;
   }
   
   .overflow-y-auto::-webkit-scrollbar-thumb:hover {

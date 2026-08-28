@@ -567,7 +567,7 @@ const secretariats = ref([])
 const sousComites = ref([])
 const sections = ref([])
 
-const API_BASE_URL = 'https://sogetrag.com/api/organes-api.php'
+const API_BASE_URL = 'https://api.aeemci-ce.ci/organes-api.php'
 
 const isMobile = ref(false)
 const showTypeOrganeModal = ref(false)
@@ -1257,8 +1257,8 @@ onBeforeUnmount(() => {
 /* Styles de base */
 .app-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #018404, #d8d4dd);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--green), #d8d4dd);
+  font-family: var(--display);
 }
 
 .app-header {
@@ -1286,8 +1286,8 @@ onBeforeUnmount(() => {
 .logo-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #018404, #d8d4dd);
-  border-radius: 12px;
+  background: linear-gradient(135deg, var(--green), #d8d4dd);
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1298,13 +1298,13 @@ onBeforeUnmount(() => {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--ink);
 }
 
 .logo-text p {
   margin: 0;
   font-size: 0.875rem;
-  color: #718096;
+  color: var(--muted);
 }
 
 .main-content {
@@ -1317,8 +1317,8 @@ onBeforeUnmount(() => {
 
 .form-container {
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   padding: 2rem;
   width: 100%;
   max-width: 600px;
@@ -1332,12 +1332,12 @@ onBeforeUnmount(() => {
 .welcome-header h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--ink);
   margin-bottom: 0.5rem;
 }
 
 .welcome-header p {
-  color: #718096;
+  color: var(--muted);
   font-size: 1.125rem;
   margin-bottom: 3rem;
 }
@@ -1351,7 +1351,7 @@ onBeforeUnmount(() => {
 .btn {
   padding: 1rem 2rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -1369,36 +1369,36 @@ onBeforeUnmount(() => {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #018404, #d8d4dd);
+  background: linear-gradient(135deg, var(--green), #d8d4dd);
   color: white;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow);
 }
 
 .btn-secondary {
-  background: #f7fafc;
-  color: #4a5568;
-  border: 2px solid #e2e8f0;
+  background: var(--surface);
+  color: var(--ink-soft);
+  border: 2px solid var(--line);
 }
 
 .btn-secondary:hover {
-  background: #edf2f7;
+  background: var(--line);
   transform: translateY(-2px);
 }
 
 .btn-verify {
-  background: #48bb78;
+  background: var(--green-2);
   color: white;
-  border: 2px solid #48bb78;
+  border: 2px solid var(--green-2);
   margin-left: 1rem;
 }
 
 .btn-verify:hover {
-  background: #38a169;
-  border-color: #38a169;
+  background: var(--green);
+  border-color: var(--green);
 }
 
 /* Formulaire */
@@ -1414,21 +1414,21 @@ onBeforeUnmount(() => {
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: 8px;
-  color: #718096;
+  border-radius: 0;
+  color: var(--muted);
   transition: all 0.2s;
 }
 
 .back-btn:hover {
-  background: #f7fafc;
-  color: #4a5568;
+  background: var(--surface);
+  color: var(--ink-soft);
 }
 
 .form-header h2 {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--ink);
 }
 
 .step-content {
@@ -1438,7 +1438,7 @@ onBeforeUnmount(() => {
 .step-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--ink);
   margin-bottom: 1.5rem;
 }
 
@@ -1449,7 +1449,7 @@ onBeforeUnmount(() => {
 .form-label {
   display: block;
   font-weight: 600;
-  color: #4a5568;
+  color: var(--ink-soft);
   margin-bottom: 0.5rem;
 }
 
@@ -1461,8 +1461,8 @@ onBeforeUnmount(() => {
 .form-input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  border: 2px solid var(--line);
+  border-radius: 0;
   font-size: 1rem;
   transition: border-color 0.2s;
 }
@@ -1479,11 +1479,11 @@ onBeforeUnmount(() => {
 }
 
 .input-success {
-  border-color: #38a169 !important;
+  border-color: var(--green) !important;
 }
 
 .form-help {
-  color: #718096;
+  color: var(--muted);
   font-size: 0.875rem;
   margin-top: 0.25rem;
 }
@@ -1516,12 +1516,12 @@ onBeforeUnmount(() => {
   gap: 0.75rem;
   cursor: pointer;
   padding: 0.75rem;
-  border-radius: 8px;
+  border-radius: 0;
   transition: background-color 0.2s;
 }
 
 .radio-item:hover {
-  background: #f7fafc;
+  background: var(--surface);
 }
 
 .radio-input {
@@ -1531,7 +1531,7 @@ onBeforeUnmount(() => {
 .radio-custom {
   width: 20px;
   height: 20px;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--line);
   border-radius: 50%;
   position: relative;
   transition: all 0.2s;
@@ -1556,14 +1556,14 @@ onBeforeUnmount(() => {
 
 .radio-label {
   font-weight: 500;
-  color: #4a5568;
+  color: var(--ink-soft);
 }
 
 /* Boîtes d'information */
 .info-box {
   background: #ebf8ff;
   border: 1px solid #bee3f8;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 1rem;
   display: flex;
   gap: 0.75rem;
@@ -1590,7 +1590,7 @@ onBeforeUnmount(() => {
 .error-box {
   background: #fed7d7;
   border: 1px solid #feb2b2;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 1rem;
   margin-top: 1rem;
 }
@@ -1603,9 +1603,9 @@ onBeforeUnmount(() => {
 
 /* Carte utilisateur */
 .user-info-card {
-  background: #f0fff4;
+  background: var(--green-mist);
   border: 2px solid #9ae6b4;
-  border-radius: 12px;
+  border-radius: 0;
   padding: 1.5rem;
   display: flex;
   gap: 1rem;
@@ -1626,24 +1626,24 @@ onBeforeUnmount(() => {
 .photo-placeholder {
   width: 80px;
   height: 80px;
-  background: #e2e8f0;
+  background: var(--line);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #a0aec0;
+  color: var(--muted);
 }
 
 .user-details h4 {
   margin: 0 0 0.5rem 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #22543d;
+  color: var(--green);
 }
 
 .user-details p {
   margin: 0.25rem 0;
-  color: #2f855a;
+  color: var(--green);
 }
 
 /* Navigation */
@@ -1669,7 +1669,7 @@ onBeforeUnmount(() => {
 
 .modal-content {
   background: white;
-  border-radius: 16px;
+  border-radius: 0;
   padding: 2rem;
   max-width: 400px;
   width: 90%;
@@ -1688,12 +1688,12 @@ onBeforeUnmount(() => {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--ink);
 }
 
 .modal-header p {
   margin: 0.5rem 0;
-  color: #718096;
+  color: var(--muted);
 }
 
 /* Spinner de chargement */
@@ -1720,8 +1720,8 @@ onBeforeUnmount(() => {
 .autocomplete-input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  border: 2px solid var(--line);
+  border-radius: 0;
   font-size: 1rem;
   transition: border-color 0.2s;
 }
@@ -1738,24 +1738,24 @@ onBeforeUnmount(() => {
   left: 0;
   right: 0;
   background: white;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--line);
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0;
   max-height: 200px;
   overflow-y: auto;
   z-index: 1000;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .autocomplete-item {
   padding: 0.75rem 1rem;
   cursor: pointer;
   transition: background-color 0.2s;
-  border-bottom: 1px solid #f7fafc;
+  border-bottom: 1px solid var(--surface);
 }
 
 .autocomplete-item:hover {
-  background-color: #f7fafc;
+  background-color: var(--surface);
 }
 
 .autocomplete-item:last-child {
@@ -1775,7 +1775,7 @@ onBeforeUnmount(() => {
 }
 
 .summary-header h2 {
-  color: #16a34a;
+  color: var(--green);
   margin-bottom: 0.5rem;
 }
 
@@ -1788,14 +1788,14 @@ onBeforeUnmount(() => {
 
 .summary-card {
   background: white;
-  border-radius: 12px;
+  border-radius: 0;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
 }
 
 .summary-card h3 {
-  color: #1f2937;
+  color: var(--ink);
   margin-bottom: 1rem;
   font-size: 1.1rem;
   font-weight: 600;
@@ -1812,14 +1812,14 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  background: var(--surface);
+  border-radius: 0;
+  border: 1px solid var(--line);
 }
 
 .credential-item label {
   font-weight: 500;
-  color: #64748b;
+  color: var(--muted);
 }
 
 .credential-value {
@@ -1832,7 +1832,7 @@ onBeforeUnmount(() => {
   background: #fee2e2;
   color: #dc2626;
   padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 1.1rem;
 }
 
@@ -1851,7 +1851,7 @@ onBeforeUnmount(() => {
 .info-item label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--muted);
 }
 
 .info-item span {
@@ -1860,7 +1860,7 @@ onBeforeUnmount(() => {
 }
 
 .status-active {
-  color: #16a34a !important;
+  color: var(--green) !important;
   text-transform: capitalize;
 }
 
@@ -1922,7 +1922,7 @@ onBeforeUnmount(() => {
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #9ca3af;
+  color: var(--muted);
   pointer-events: none;
 }
 
@@ -1947,13 +1947,13 @@ onBeforeUnmount(() => {
 
 .mobile-modal {
   background: #ffffff;
-  border-radius: 1rem 1rem 0 0;
+  border-radius: 0;
   width: 100%;
   max-width: 500px;
   max-height: 80vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow);
   animation: slideUp 0.3s ease-out;
 }
 
@@ -1974,24 +1974,24 @@ onBeforeUnmount(() => {
   align-items: center;
   padding: 1.5rem 1.5rem 1rem 1.5rem;
   border-bottom: 2px solid #f3f4f6;
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  border-radius: 1rem 1rem 0 0;
+  background: linear-gradient(135deg, var(--green-mist) 0%, var(--green-mist) 100%);
+  border-radius: 0;
 }
 
 .mobile-modal-header h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #16a34a;
+  color: var(--green);
   margin: 0;
 }
 
 .modal-close-btn {
   background: none;
   border: none;
-  color: #6b7280;
+  color: var(--muted);
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -2000,28 +2000,28 @@ onBeforeUnmount(() => {
 
 .modal-close-btn:hover {
   background: #f3f4f6;
-  color: #374151;
+  color: var(--ink-soft);
 }
 
 .mobile-modal-search {
   padding: 1rem 1.5rem;
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--line);
 }
 
 .modal-search-input {
   width: 100%;
   padding: 1rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 0.75rem;
+  border: 2px solid var(--line);
+  border-radius: 0;
   font-size: 1rem;
-  background: #f9fafb;
+  background: var(--surface);
   transition: all 0.2s ease;
 }
 
 .modal-search-input:focus {
   outline: none;
-  border-color: #16a34a;
+  border-color: var(--green);
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }
@@ -2039,7 +2039,7 @@ onBeforeUnmount(() => {
   padding: 1rem 1.5rem;
   cursor: pointer;
   font-size: 1rem;
-  color: #374151;
+  color: var(--ink-soft);
   border-bottom: 1px solid #f3f4f6;
   transition: all 0.2s ease;
   display: flex;
@@ -2050,12 +2050,12 @@ onBeforeUnmount(() => {
 }
 
 .modal-list-item:hover {
-  background: #f0fdf4;
-  color: #16a34a;
+  background: var(--green-mist);
+  color: var(--green);
 }
 
 .modal-list-item:active {
-  background: #dcfce7;
+  background: var(--green-mist);
   transform: scale(0.98);
 }
 
@@ -2066,7 +2066,7 @@ onBeforeUnmount(() => {
 .modal-no-results {
   padding: 2rem 1.5rem;
   text-align: center;
-  color: #9ca3af;
+  color: var(--muted);
   font-style: italic;
 }
 </style>

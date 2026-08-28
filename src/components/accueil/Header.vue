@@ -50,7 +50,7 @@
   
   <style scoped>
   .announcement-banner {
-    background: linear-gradient(135deg, #16a085, #27ae60);
+    background: linear-gradient(135deg, var(--green), var(--green));
     color: white;
     padding: 8px 0;
     text-align: center;
@@ -76,7 +76,7 @@
   
   .main-nav {
     background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -92,13 +92,13 @@
   }
   
   .logo h2 {
-    color: #16a085;
+    color: var(--green);
     font-size: 24px;
     font-weight: bold;
   }
   
   .logo span {
-    color: #666;
+    color: var(--muted);
     font-size: 12px;
     display: block;
   }
@@ -111,27 +111,27 @@
   
   .nav-menu a {
     text-decoration: none;
-    color: #333;
+    color: var(--ink);
     font-weight: 500;
     transition: color 0.3s;
   }
   
   .nav-menu a:hover {
-    color: #16a085;
+    color: var(--green);
   }
   
   .donate-btn {
-    background: #e67e22;
+    background: var(--gold);
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 0;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
   }
   
   .donate-btn:hover {
-    background: #d35400;
+    background: var(--gold);
   }
   </style>

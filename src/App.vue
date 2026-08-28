@@ -1,40 +1,37 @@
 <template>
-  <div class="bg-cream">
-    <AppHeader :isMenuOpen="isMenuOpen" @toggle-menu="toggleMenu" @close-menu="closeMenu" />
-    <div >  
+  <div class="app-shell">
+    <!-- Certaines pages (poste de scan, plein écran) se passent du cadre du site -->
+    <AppHeader v-if="!sansCadre" />
+    <main :class="{ 'has-frame': !sansCadre }">
       <router-view />
-    </div>
-    <Footer />
+    </main>
+    <AppFooter v-if="!sansCadre" />
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import Sidebar from './components/menu/Sidebar.vue'
-import Navbar from './components/menu/Navbar.vue'
 import AppHeader from './components/components/NavbarComponent.vue'
-import Footer from './components/components/FooterComponent.vue'
+import AppFooter from './components/components/FooterComponent.vue'
 
 const route = useRoute()
-const sidebarOpen = ref(false)
 
-// Computed pour vérifier si on est sur une page d'authentification
-const isAuthPage = computed(() => {
-  return route.name === 'login' || route.name === 'register'
-})
-
-const handleToggleSidebar = () => {
-  sidebarOpen.value = !sidebarOpen.value
-}
-
-onMounted(() => {
-  console.log('Referer:', document.referrer)
-})
+// Pages qui s'affichent seules, sans en-tête ni pied de page
+const sansCadre = computed(() => Boolean(route.meta?.sansCadre))
 </script>
 
 <style scoped>
-.bg_cream {
-  background-color: #EFEDE7;
+.app-shell{ background:var(--white); min-height:100vh; }
+
+/*
+  L'en-tête est fixe : les pages sans héros plein écran doivent compenser sa hauteur.
+  Le héros, lui, passe volontairement dessous (il porte la classe .hero).
+*/
+main.has-frame{ padding-top:130px; }
+main.has-frame:has(.hero--home){ padding-top:0; }
+
+@media (max-width:900px){
+  main.has-frame{ padding-top:108px; }
 }
 </style>

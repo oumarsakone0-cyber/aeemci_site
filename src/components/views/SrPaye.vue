@@ -302,7 +302,7 @@ const validateAndLoadSRData = async () => {
     errorMessage.value = ''
 
     // Appel à l'API SR qui met à jour le statut ET récupère les données
-    const response = await axios.post('https://sogetrag.com/api/seminaire_sr_paye.php', {
+    const response = await axios.post('https://api.aeemci-ce.ci/seminaire_sr_paye.php', {
       matricule: matricule
     })
     
@@ -386,7 +386,7 @@ const generatePDF = async () => {
     const doc = new jsPDF('p', 'mm', 'a4');
     const today = new Date();
     const receiptNumber = Math.floor(Math.random() * 99999).toString().padStart(5, '0');
-    const qrText = `https://aeemci.sastock.com/seminaire_sr_paye/${participantSR.value.matricule_seminaire}`;
+    const qrText = `https://www.aeemci-ce.ci/seminaire_sr_paye/${participantSR.value.matricule_seminaire}`;
     const qrDataURL = await QRCode.toDataURL(qrText, {
       width: 120,
       margin: 1,
@@ -675,11 +675,11 @@ const contactSupport = () => {
 }
 
 const viewSeminaireInfo = () => {
-  window.open('https://aeemci.sastock.com/seminaire-sr-info', '_blank')
+  window.open('https://www.aeemci-ce.ci/seminaire-sr-info', '_blank')
 }
 
 const nouvelleInscription = () => {
-  window.location.href = 'https://aeemci.sastock.com/seminaire-sr'
+  window.location.href = 'https://www.aeemci-ce.ci/seminaire-sr'
 }
 
 const retryValidation = () => {
@@ -702,15 +702,15 @@ onMounted(() => {
 
 .app-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #dcfce7 0%, #f9fafb 100%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--green-mist) 0%, var(--surface) 100%);
+  font-family: var(--display);
 }
 
 /* Header */
 .app-header {
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow);
 }
 
 .header-content {
@@ -736,7 +736,7 @@ onMounted(() => {
 .logo-icon {
   width: 2.5rem;
   height: 2.5rem;
-  background: #16a34a;
+  background: var(--green);
   color: #ffffff;
   border-radius: 50%;
   display: flex;
@@ -749,13 +749,13 @@ onMounted(() => {
 .logo-text h1 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #16a34a;
+  color: var(--green);
   margin: 0;
 }
 
 .logo-text p {
   font-size: 0.875rem;
-  color: #4b5563;
+  color: var(--ink-soft);
   margin: 0;
 }
 
@@ -776,8 +776,8 @@ onMounted(() => {
 .loading-spinner {
   width: 3rem;
   height: 3rem;
-  border: 4px solid #e5e7eb;
-  border-top: 4px solid #16a34a;
+  border: 4px solid var(--line);
+  border-top: 4px solid var(--green);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 1.5rem;
@@ -785,12 +785,12 @@ onMounted(() => {
 
 .loading-content h2 {
   font-size: 1.5rem;
-  color: #1f2937;
+  color: var(--ink);
   margin-bottom: 0.5rem;
 }
 
 .loading-content p {
-  color: #6b7280;
+  color: var(--muted);
 }
 
 /* Error State */
@@ -807,8 +807,8 @@ onMounted(() => {
   max-width: 500px;
   background: #ffffff;
   padding: 3rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  border-radius: 0;
+  box-shadow: var(--shadow);
 }
 
 .error-icon {
@@ -825,12 +825,12 @@ onMounted(() => {
 
 .error-content h2 {
   font-size: 1.5rem;
-  color: #1f2937;
+  color: var(--ink);
   margin-bottom: 0.5rem;
 }
 
 .error-content p {
-  color: #6b7280;
+  color: var(--muted);
   margin-bottom: 2rem;
 }
 
@@ -853,14 +853,14 @@ onMounted(() => {
 
 .success-card {
   background: #ffffff;
-  border-radius: 1rem;
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
 /* Success Header */
 .success-header {
-  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  background: linear-gradient(135deg, var(--green-mist) 0%, var(--green-mist) 100%);
   padding: 3rem 2rem;
   text-align: center;
 }
@@ -868,55 +868,55 @@ onMounted(() => {
 .success-icon {
   width: 5rem;
   height: 5rem;
-  background: #16a34a;
+  background: var(--green);
   color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.5rem;
-  box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.3);
+  box-shadow: var(--shadow);
 }
 
 .success-header h1 {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--ink);
   margin-bottom: 1rem;
 }
 
 .success-message {
   font-size: 1.25rem;
-  color: #4b5563;
+  color: var(--ink-soft);
   margin-bottom: 2rem;
 }
 
 .payment-confirmation {
   background: #ffffff;
-  border-radius: 0.75rem;
+  border-radius: 0;
   padding: 1.5rem;
-  border: 2px solid #bbf7d0;
+  border: 2px solid var(--green-mist);
 }
 
 .confirmation-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #dcfce7;
-  color: #15803d;
+  background: var(--green-mist);
+  color: var(--green);
   padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0;
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .matricule-info {
-  color: #374151;
+  color: var(--ink-soft);
   line-height: 1.6;
 }
 
 .matricule-info strong {
-  color: #16a34a;
+  color: var(--green);
   font-family: 'Courier New', monospace;
   font-size: 1.1em;
 }
@@ -924,13 +924,13 @@ onMounted(() => {
 /* Member Summary */
 .member-summary {
   padding: 2rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--line);
 }
 
 .member-summary h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--ink);
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -946,17 +946,17 @@ onMounted(() => {
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: #f9fafb;
-  border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
+  background: var(--surface);
+  border-radius: 0;
+  border: 1px solid var(--line);
 }
 
 .summary-icon {
   width: 2.5rem;
   height: 2.5rem;
-  background: #dcfce7;
-  color: #16a34a;
-  border-radius: 0.5rem;
+  background: var(--green-mist);
+  color: var(--green);
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -971,7 +971,7 @@ onMounted(() => {
 
 .summary-label {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--muted);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -979,7 +979,7 @@ onMounted(() => {
 
 .summary-value {
   font-size: 0.875rem;
-  color: #1f2937;
+  color: var(--ink);
   font-weight: 600;
 }
 
@@ -989,12 +989,12 @@ onMounted(() => {
   display: flex;
   gap: 1rem;
   justify-content: center;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--line);
 }
 
 .btn {
   padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -1013,38 +1013,38 @@ onMounted(() => {
 }
 
 .btn-primary {
-  background: #16a34a;
+  background: var(--green);
   color: #ffffff;
-  border-color: #16a34a;
+  border-color: var(--green);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #15803d;
-  border-color: #15803d;
+  background: var(--green);
+  border-color: var(--green);
   transform: translateY(-1px);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+  box-shadow: var(--shadow);
 }
 
 .btn-secondary {
   background: #ffffff;
-  color: #374151;
+  color: var(--ink-soft);
   border-color: #d1d5db;
 }
 
 .btn-secondary:hover {
-  background: #f9fafb;
-  border-color: #9ca3af;
+  background: var(--surface);
+  border-color: var(--muted);
   transform: translateY(-1px);
 }
 
 .btn-outline {
   background: transparent;
-  color: #16a34a;
-  border-color: #16a34a;
+  color: var(--green);
+  border-color: var(--green);
 }
 
 .btn-outline:hover {
-  background: #dcfce7;
+  background: var(--green-mist);
 }
 
 .btn:disabled {
@@ -1059,21 +1059,21 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--line);
 }
 
 .info-card {
   display: flex;
   gap: 1rem;
   padding: 1.5rem;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 0.75rem;
+  background: var(--green-mist);
+  border: 1px solid var(--green-mist);
+  border-radius: 0;
 }
 
 .info-card.sr-specific {
-  background: #fef3c7;
-  border-color: #fbbf24;
+  background: var(--gold-mist);
+  border-color: var(--gold);
 }
 
 .info-card.info-card-free {
@@ -1088,9 +1088,9 @@ onMounted(() => {
 .info-icon {
   width: 3rem;
   height: 3rem;
-  background: #16a34a;
+  background: var(--green);
   color: #ffffff;
-  border-radius: 0.5rem;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1100,13 +1100,13 @@ onMounted(() => {
 .info-content h4 {
   font-size: 1rem;
   font-weight: 600;
-  color: #15803d;
+  color: var(--green);
   margin-bottom: 0.5rem;
 }
 
 .info-content p {
   font-size: 0.875rem;
-  color: #166534;
+  color: var(--green);
   line-height: 1.5;
   margin-bottom: 0.25rem;
 }

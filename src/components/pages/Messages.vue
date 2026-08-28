@@ -602,31 +602,31 @@
   
   <style scoped>
   .bg-dark-green {
-    background-color: #22331D;
+    background-color: var(--green);
   }
   
   .bg-cream {
-    background-color: #EFEDE7;
+    background-color: var(--surface);
   }
   
   .bg-orange {
-    background-color: #F65A11;
+    background-color: var(--gold);
   }
   
   .text-orange {
-    color: #F65A11;
+    color: var(--gold);
   }
   
   .border-orange {
-    border-color: #F65A11;
+    border-color: var(--gold);
   }
   
   .border-l-orange {
-    border-left-color: #F65A11;
+    border-left-color: var(--gold);
   }
   
   .hover\:bg-orange-600:hover {
-    background-color: #e54a0a;
+    background-color: var(--gold);
   }
   
   .focus\:ring-orange:focus {
@@ -634,7 +634,7 @@
   }
   
   .focus\:border-orange:focus {
-    border-color: #F65A11;
+    border-color: var(--gold);
   }
   
   .focus\:ring-orange-300:focus {
@@ -654,11 +654,11 @@
   }
   
   .text-emerald-100 {
-    color: #D1FAE5;
+    color: var(--green-mist);
   }
   
   .text-emerald-200 {
-    color: #A7F3D0;
+    color: var(--green-mist);
   }
   
   /* Gradients personnalisés */
@@ -677,7 +677,7 @@
   
   /* Ombres personnalisées */
   .shadow-2xl {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow);
   }
   
   /* Transitions fluides */

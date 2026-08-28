@@ -101,7 +101,7 @@
   }
   
   .bg-orange {
-    background-color: #F65A11;
+    background-color: var(--gold);
   }
   </style>
   

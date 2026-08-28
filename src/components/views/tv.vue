@@ -334,21 +334,21 @@ const getScheduleForDay = (day) => {
 
 <style scoped>
 :root {
-  --primary: #006400;
-  --primary-dark: #004d00;
-  --primary-light: #008000;
+  --primary: var(--green);
+  --primary-dark: var(--green);
+  --primary-light: var(--green);
   --primary-lighter: #e6f0e6;
-  --secondary: #f8b400;
-  --secondary-dark: #d99b00;
-  --secondary-light: #ffc933;
-  --accent: #e67e22;
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --text-light: #999999;
+  --secondary: var(--gold);
+  --secondary-dark: var(--gold);
+  --secondary-light: var(--gold);
+  --accent: var(--gold);
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
+  --text-light: var(--muted);
   --background: #ffffff;
-  --background-alt: #f5f5f5;
-  --border: #e0e0e0;
-  --success: #28a745;
+  --background-alt: var(--surface);
+  --border: var(--line);
+  --success: var(--green);
   --danger: #dc3545;
   --warning: #ffc107;
   --info: #17a2b8;
@@ -361,7 +361,7 @@ const getScheduleForDay = (day) => {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--display);
   line-height: 1.6;
   color: var(--text-primary);
 }
@@ -398,7 +398,7 @@ body {
 /* Header Styles */
 .header {
   background-color: white;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -601,9 +601,9 @@ body {
 
 .program-card {
   background-color: white;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   transition: transform 0.3s ease;
 }
 
@@ -685,7 +685,7 @@ body {
   background: var(--primary-lighter);
   color: var(--primary);
   padding: 0.3rem 0.8rem;
-  border-radius: 20px;
+  border-radius: 0;
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -709,7 +709,7 @@ body {
   border: 2px solid var(--border);
   color: var(--text-secondary);
   padding: 0.8rem 1.5rem;
-  border-radius: 25px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
@@ -728,9 +728,9 @@ body {
 
 .schedule-content {
   background: white;
-  border-radius: 12px;
+  border-radius: 0;
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
 }
 
 .schedule-item {
@@ -748,7 +748,7 @@ body {
   background: var(--primary);
   color: white;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 0;
   font-weight: 600;
   min-width: 80px;
   text-align: center;
@@ -765,7 +765,7 @@ body {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 0;
   margin-right: 1rem;
 }
 
@@ -789,9 +789,9 @@ body {
 
 .member-card {
   background-color: white;
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   transition: transform 0.3s ease;
 }
 
@@ -856,13 +856,13 @@ body {
   align-items: flex-start;
   background-color: var(--background-alt);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 0;
   transition: all 0.3s ease;
 }
 
 .contact-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
 }
 
 .contact-icon {
@@ -874,8 +874,8 @@ body {
 .broadcast-info {
   background: white;
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  box-shadow: var(--shadow);
 }
 
 .broadcast-info h3 {
@@ -896,7 +896,7 @@ body {
   align-items: center;
   padding: 1rem;
   background: var(--primary-lighter);
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .broadcast-day {
@@ -911,7 +911,7 @@ body {
 
 /* Footer */
 .footer {
-  background-color: #333;
+  background-color: var(--ink);
   color: white;
   padding: 3rem 0 1rem;
   position: relative;
@@ -964,7 +964,7 @@ body {
   width: 30px;
   height: 2px;
   background-color: var(--primary);
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 .footer-links {
@@ -1002,7 +1002,7 @@ body {
 }
 
 .footer-bottom {
-  border-top: 1px solid #555;
+  border-top: 1px solid var(--muted);
   padding-top: 1rem;
   text-align: center;
   position: relative;
@@ -1044,7 +1044,7 @@ body {
     left: 0;
     right: 0;
     background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     display: none;
   }
 }

@@ -38,7 +38,7 @@ const handleCard = (type) => {
 
 <style scoped>
 .prayer-times {
-  background: #16a34a;
+  background: var(--green);
   color: white;
   padding: 2.5rem 0;
 }
@@ -63,10 +63,10 @@ const handleCard = (type) => {
 .prayer-item {
   background: rgba(255, 255, 255, 0.1);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow);
   text-align: center;
   border: none;
   width: 100%;
@@ -83,7 +83,7 @@ const handleCard = (type) => {
 /* ANIMATION DE CLIGNOTEMENT INTENSE POUR LE BOUTON INSCRIPTION */
 .blinking-button {
   animation: intenseBlink 0.8s infinite, glow 2s infinite alternate;
-  border: 3px solid #facc15;
+  border: 3px solid var(--gold);
   background: rgba(250, 204, 21, 0.3) !important;
   position: relative;
   overflow: hidden;
@@ -104,46 +104,46 @@ const handleCard = (type) => {
   animation-play-state: paused;
   background: rgba(250, 204, 21, 0.5) !important;
   transform: translateY(-5px) scale(1.08);
-  box-shadow: 0 8px 25px rgba(250, 204, 21, 0.6);
+  box-shadow: var(--shadow);
 }
 
 /* Animation principale de clignotement */
 @keyframes intenseBlink {
   0% {
     background: rgba(250, 204, 21, 0.1);
-    border-color: #facc15;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--gold);
+    box-shadow: var(--shadow);
   }
   25% {
     background: rgba(250, 204, 21, 0.6);
-    border-color: #fbbf24;
-    box-shadow: 0 4px 20px rgba(250, 204, 21, 0.4), 0 0 30px rgba(250, 204, 21, 0.3);
+    border-color: var(--gold);
+    box-shadow: var(--shadow);
   }
   50% {
     background: rgba(250, 204, 21, 0.8);
-    border-color: #f59e0b;
-    box-shadow: 0 6px 25px rgba(250, 204, 21, 0.6), 0 0 40px rgba(250, 204, 21, 0.5);
+    border-color: var(--gold);
+    box-shadow: var(--shadow);
     transform: scale(1.02);
   }
   75% {
     background: rgba(250, 204, 21, 0.6);
-    border-color: #fbbf24;
-    box-shadow: 0 4px 20px rgba(250, 204, 21, 0.4), 0 0 30px rgba(250, 204, 21, 0.3);
+    border-color: var(--gold);
+    box-shadow: var(--shadow);
   }
   100% {
     background: rgba(250, 204, 21, 0.1);
-    border-color: #facc15;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--gold);
+    box-shadow: var(--shadow);
   }
 }
 
 /* Animation de lueur */
 @keyframes glow {
   0% {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(250, 204, 21, 0.3);
+    box-shadow: var(--shadow);
   }
   100% {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 40px rgba(250, 204, 21, 0.7);
+    box-shadow: var(--shadow);
   }
 }
 
@@ -169,7 +169,7 @@ const handleCard = (type) => {
   }
   50% {
     transform: scale(1.2);
-    filter: brightness(1.5) drop-shadow(0 0 10px #facc15);
+    filter: brightness(1.5) drop-shadow(0 0 10px var(--gold));
   }
 }
 
@@ -184,15 +184,15 @@ const handleCard = (type) => {
     color: white;
   }
   50% {
-    text-shadow: 0 0 10px #facc15, 0 0 20px #facc15;
-    color: #facc15;
+    text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold);
+    color: var(--gold);
   }
 }
 
 .icon {
   font-size: 2.2rem;
   margin-bottom: 0.6rem;
-  color: #facc15;
+  color: var(--gold);
 }
 
 .prayer-name {

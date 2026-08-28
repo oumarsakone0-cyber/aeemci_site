@@ -12,6 +12,6 @@
   <style scoped>
   /* Styles optionnels */
   h1 {
-    color: #2c3e50;
+    color: var(--ink);
   }
   </style>

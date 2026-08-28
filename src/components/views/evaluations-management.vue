@@ -777,7 +777,7 @@
     name: 'EvaluationsManagement',
     data() {
       return {
-        API_BASE_URL: 'https://sogetrag.com/api/evaluations-api.php',
+        API_BASE_URL: 'https://api.aeemci-ce.ci/senafoi/evaluations-api.php',
         evaluations: [],
         loading: false,
         submitting: false,
@@ -1131,7 +1131,7 @@
       // Nouvelle méthode pour afficher le QR Code
       async showQRCode(evaluation) {
         this.selectedEvaluation = evaluation;
-        this.qrCodeData.url = `https://aeemci.sastock.com/evaluation_question/${evaluation.id}`;
+        this.qrCodeData.url = `https://www.aeemci-ce.ci/evaluation_question/${evaluation.id}`;
         this.showQRModal = true;
   
         // Attendre que le modal soit rendu avant de générer le QR code

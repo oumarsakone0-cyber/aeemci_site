@@ -147,7 +147,7 @@ onBeforeUnmount(() => {
 .arrow {
   font-size: 0.9rem;
   margin-left: 6px;
-  color: #666;
+  color: var(--muted);
   transition: transform 0.3s ease;
 }
 
@@ -163,14 +163,14 @@ onBeforeUnmount(() => {
 
 .header {
   background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .top-bar {
-  background-color: var(--primary, #0e5a5a);
+  background-color: var(--primary, var(--green));
   color: white;
   font-size: 0.9rem;
   padding: 0.5rem 0;
@@ -232,14 +232,14 @@ onBeforeUnmount(() => {
 }
 
 .brand-text h1 {
-  color: var(--primary, #0e5a5a);
+  color: var(--primary, var(--green));
   margin: 0;
   font-size: 1.6rem;
   font-weight: bold;
 }
 
 .brand-text p {
-  color: #555;
+  color: var(--muted);
   font-size: 0.85rem;
   margin: 0;
 }
@@ -254,17 +254,17 @@ onBeforeUnmount(() => {
 }
 
 .nav-menu a {
-  color: #222;
+  color: var(--ink);
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 0.8rem;
   transition: all 0.3s ease;
-  border-radius: 4px;
+  border-radius: 0;
   display: block;
 }
 
 .nav-menu a:hover {
-  color: var(--primary, #0e5a5a);
+  color: var(--primary, var(--green));
   background-color: rgba(14, 90, 90, 0.05);
 }
 
@@ -275,9 +275,9 @@ onBeforeUnmount(() => {
 .submenu {
   list-style: none;
   background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   padding: 0.5rem 0;
-  border-radius: 8px;
+  border-radius: 0;
   position: absolute;
   top: 100%;
   left: 0;
@@ -298,14 +298,14 @@ onBeforeUnmount(() => {
 .submenu a {
   font-size: 0.95rem;
   padding: 0.6rem 1rem;
-  color: #333;
+  color: var(--ink);
   transition: all 0.2s ease;
   border-radius: 0;
 }
 
 .submenu a:hover {
   background-color: rgba(14, 90, 90, 0.1);
-  color: var(--primary, #0e5a5a);
+  color: var(--primary, var(--green));
 }
 
 .nav-toggle {
@@ -314,7 +314,7 @@ onBeforeUnmount(() => {
   gap: 4px;
   cursor: pointer;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 0;
   transition: background-color 0.3s ease;
 }
 
@@ -325,9 +325,9 @@ onBeforeUnmount(() => {
 .nav-toggle span {
   width: 25px;
   height: 3px;
-  background: #333;
+  background: var(--ink);
   transition: all 0.3s ease;
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 .nav-toggle span.open:nth-child(1) {
@@ -389,7 +389,7 @@ onBeforeUnmount(() => {
     align-items: flex-start;
     background: white;
     padding: 120px 2rem 2rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     opacity: 0;
     visibility: hidden;
     transform: translateX(-100%);
@@ -413,7 +413,7 @@ onBeforeUnmount(() => {
   .nav-menu > li > a {
     font-size: 1.1rem;
     padding: 1rem 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--line);
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -423,13 +423,13 @@ onBeforeUnmount(() => {
   /* Sous-menu en version mobile - Version simplifiée */
   .has-submenu .submenu {
     position: static;
-    background: #f8f9fa;
+    background: var(--surface);
     box-shadow: none;
     padding: 0;
     border-radius: 0;
     margin: 0;
     width: 100%;
-    border-left: 3px solid var(--primary, #0e5a5a);
+    border-left: 3px solid var(--primary, var(--green));
     margin-top: 0.5rem;
     height: 0;
     overflow: hidden;
@@ -469,7 +469,7 @@ onBeforeUnmount(() => {
   .submenu a {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--surface);
   }
 
   .submenu a:hover {

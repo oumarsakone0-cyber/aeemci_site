@@ -127,11 +127,11 @@
   
   <style scoped>
   .bg-orange {
-    background-color: #F65A11;
+    background-color: var(--gold);
   }
   
   .hover\:bg-orange-600:hover {
-    background-color: #e54a0a;
+    background-color: var(--gold);
   }
   </style>
   

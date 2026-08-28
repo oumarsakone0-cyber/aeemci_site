@@ -191,7 +191,7 @@
   
   <style scoped>
   .fill-gray-600 {
-    fill: #4B5563;
+    fill: var(--ink-soft);
   }
   
   /* Animation pour les barres */

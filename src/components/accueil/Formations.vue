@@ -159,7 +159,7 @@
   <style scoped>
   .formations {
     padding: 80px 20px;
-    background: #f8f9fa;
+    background: var(--surface);
   }
   
   .container {
@@ -174,13 +174,13 @@
   
   .section-header h2 {
     font-size: 36px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 15px;
   }
   
   .section-header p {
     font-size: 18px;
-    color: #666;
+    color: var(--muted);
   }
   
   .formation-categories {
@@ -193,7 +193,7 @@
   .category {
     background: white;
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 0;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
@@ -201,18 +201,18 @@
   }
   
   .category:hover, .category.active {
-    border-color: #16a085;
+    border-color: var(--green);
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
   }
   
   .category h3 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 10px;
   }
   
   .category p {
-    color: #666;
+    color: var(--muted);
   }
   
   .formation-details {
@@ -220,7 +220,7 @@
   }
   
   .formation-level h3 {
-    color: #16a085;
+    color: var(--green);
     font-size: 28px;
     margin-bottom: 30px;
     text-align: center;
@@ -235,8 +235,8 @@
   .course-card {
     background: white;
     padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 0;
+    box-shadow: var(--shadow);
     transition: transform 0.3s;
   }
   
@@ -245,13 +245,13 @@
   }
   
   .course-card h4 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 15px;
     font-size: 20px;
   }
   
   .course-card p {
-    color: #666;
+    color: var(--muted);
     line-height: 1.6;
     margin-bottom: 20px;
   }
@@ -260,11 +260,11 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    color: #888;
+    color: var(--muted);
   }
   
   .inscription-info h3 {
-    color: #16a085;
+    color: var(--green);
     font-size: 28px;
     margin-bottom: 30px;
     text-align: center;
@@ -279,19 +279,19 @@
   .info-item {
     background: white;
     padding: 25px;
-    border-radius: 10px;
+    border-radius: 0;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
   }
   
   .info-item h4 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 10px;
     font-size: 18px;
   }
   
   .info-item p {
-    color: #666;
+    color: var(--muted);
     line-height: 1.5;
   }
   

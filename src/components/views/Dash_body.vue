@@ -572,11 +572,11 @@ const exportToPDF = (type) => {
 <style scoped>
 /* Professional CSS inspired by the reference design */
 .dashboard-body {
-  background: #f9fafb;
+  background: var(--surface);
   min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--display);
   padding: 32px;
 }
 
@@ -608,7 +608,7 @@ const exportToPDF = (type) => {
 .content-title {
   font-size: 20px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--ink);
   margin: 0;
 }
 
@@ -655,10 +655,10 @@ const exportToPDF = (type) => {
   width: 320px;
   padding: 10px 12px 10px 40px;
   border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 14px;
   background: white;
-  color: #374151;
+  color: var(--ink-soft);
   transition: all 0.2s;
 }
 
@@ -672,18 +672,18 @@ const exportToPDF = (type) => {
 
 .search-input:focus {
   outline: none;
-  border-color: #16a34a;
+  border-color: var(--green);
   box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }
 
 .search-input::placeholder {
-  color: #9ca3af;
+  color: var(--muted);
 }
 
 .search-icon {
   position: absolute;
   left: 12px;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 14px;
   pointer-events: none;
 }
@@ -701,13 +701,13 @@ const exportToPDF = (type) => {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: #6b7280;
+  color: var(--muted);
   transition: all 0.2s;
 }
 
 .clear-search:hover {
-  background: #e5e7eb;
-  color: #374151;
+  background: var(--line);
+  color: var(--ink-soft);
 }
 
 .nav-tabs {
@@ -716,7 +716,7 @@ const exportToPDF = (type) => {
   margin-bottom: 24px;
   background: #f3f4f6;
   padding: 4px;
-  border-radius: 8px;
+  border-radius: 0;
   width: fit-content;
 }
 
@@ -735,10 +735,10 @@ const exportToPDF = (type) => {
   padding: 12px 20px;
   border: none;
   background: transparent;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 14px;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -754,14 +754,14 @@ const exportToPDF = (type) => {
 }
 
 .tab-button:hover {
-  color: #374151;
+  color: var(--ink-soft);
   background: rgba(255, 255, 255, 0.5);
 }
 
 .tab-button.active {
   background: white;
-  color: #16a34a;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: var(--green);
+  box-shadow: var(--shadow);
 }
 
 .tab-icon {
@@ -778,8 +778,8 @@ const exportToPDF = (type) => {
 
 .tab-content {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
@@ -788,8 +788,8 @@ const exportToPDF = (type) => {
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  border-bottom: 1px solid #e5e7eb;
-  background: #f9fafb;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
 }
 
 /* Mobile toolbar layout */
@@ -808,7 +808,7 @@ const exportToPDF = (type) => {
 
 .results-count {
   font-size: 14px;
-  color: #6b7280;
+  color: var(--muted);
   font-weight: 500;
 }
 
@@ -833,7 +833,7 @@ const exportToPDF = (type) => {
   gap: 8px;
   padding: 8px 16px;
   border: none;
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -850,23 +850,23 @@ const exportToPDF = (type) => {
 }
 
 .action-btn.primary {
-  background: #16a34a;
+  background: var(--green);
   color: white;
 }
 
 .action-btn.primary:hover {
-  background: #15803d;
+  background: var(--green);
 }
 
 .action-btn.secondary {
   background: #f3f4f6;
-  color: #6b7280;
-  border: 1px solid #e5e7eb;
+  color: var(--muted);
+  border: 1px solid var(--line);
 }
 
 .action-btn.secondary:hover {
-  background: #e5e7eb;
-  color: #374151;
+  background: var(--line);
+  color: var(--ink-soft);
 }
 
 .action-btn svg {
@@ -900,11 +900,11 @@ const exportToPDF = (type) => {
   
   .member-card {
     background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    border: 1px solid var(--line);
+    border-radius: 0;
     padding: 16px;
     margin-bottom: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .card-header {
@@ -928,7 +928,7 @@ const exportToPDF = (type) => {
   
   .card-label {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--muted);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -936,7 +936,7 @@ const exportToPDF = (type) => {
   
   .card-value {
     font-size: 14px;
-    color: #374151;
+    color: var(--ink-soft);
     font-weight: 500;
   }
   
@@ -963,15 +963,15 @@ const exportToPDF = (type) => {
 }
 
 .data-table th {
-  background: #f9fafb;
+  background: var(--surface);
   padding: 16px;
   text-align: left;
   font-size: 12px;
   font-weight: 600;
-  color: #6b7280;
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--line);
 }
 
 .table-row {
@@ -980,13 +980,13 @@ const exportToPDF = (type) => {
 }
 
 .table-row:hover {
-  background: #f9fafb;
+  background: var(--surface);
 }
 
 .data-table td {
   padding: 16px;
   font-size: 14px;
-  color: #374151;
+  color: var(--ink-soft);
   vertical-align: middle;
 }
 
@@ -1006,7 +1006,7 @@ const exportToPDF = (type) => {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #16a34a;
+  background: var(--green);
   color: white;
   display: flex;
   align-items: center;
@@ -1027,7 +1027,7 @@ const exportToPDF = (type) => {
 
 .membre-nom {
   font-weight: 500;
-  color: #1f2937;
+  color: var(--ink);
 }
 
 .matricule-cell {
@@ -1038,7 +1038,7 @@ const exportToPDF = (type) => {
   background: #eff6ff;
   color: #1d4ed8;
   padding: 4px 8px;
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 12px;
   font-weight: 500;
 }
@@ -1049,12 +1049,12 @@ const exportToPDF = (type) => {
 
 .contact-phone {
   font-size: 14px;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .status-badge {
   padding: 4px 12px;
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 12px;
   font-weight: 500;
   text-align: center;
@@ -1063,8 +1063,8 @@ const exportToPDF = (type) => {
 }
 
 .status-badge.president {
-  background: #fef3c7;
-  color: #d97706;
+  background: var(--gold-mist);
+  color: var(--gold);
 }
 
 .status-badge.vice-president {
@@ -1073,8 +1073,8 @@ const exportToPDF = (type) => {
 }
 
 .status-badge.secretaire {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--green-mist);
+  color: var(--green);
 }
 
 .status-badge.tresorier {
@@ -1089,7 +1089,7 @@ const exportToPDF = (type) => {
 
 .status-badge.default {
   background: #f3f4f6;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .action-buttons {
@@ -1105,7 +1105,7 @@ const exportToPDF = (type) => {
   height: 32px;
   border: none;
   background: transparent;
-  border-radius: 4px;
+  border-radius: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1132,8 +1132,8 @@ const exportToPDF = (type) => {
 }
 
 .action-btn.edit:hover {
-  background: #fef3c7;
-  color: #d97706;
+  background: var(--gold-mist);
+  color: var(--gold);
 }
 
 .action-btn.delete:hover {
@@ -1157,7 +1157,7 @@ const exportToPDF = (type) => {
 
 .modal-container {
   background: white;
-  border-radius: 12px;
+  border-radius: 0;
   width: 90%;
   max-width: 600px;
   max-height: 90vh;
@@ -1181,7 +1181,7 @@ const exportToPDF = (type) => {
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--line);
 }
 
 /* Mobile modal header */
@@ -1194,7 +1194,7 @@ const exportToPDF = (type) => {
 .modal-title {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--ink);
   margin: 0;
 }
 
@@ -1203,13 +1203,13 @@ const exportToPDF = (type) => {
   height: 32px;
   border: none;
   background: transparent;
-  border-radius: 4px;
+  border-radius: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 /* Larger close button on mobile */
@@ -1267,7 +1267,7 @@ const exportToPDF = (type) => {
   display: block;
   font-size: 14px;
   font-weight: 500;
-  color: #374151;
+  color: var(--ink-soft);
   margin-bottom: 6px;
 }
 
@@ -1276,10 +1276,10 @@ const exportToPDF = (type) => {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 14px;
   background: white;
-  color: #374151;
+  color: var(--ink-soft);
   transition: all 0.2s;
 }
 
@@ -1296,7 +1296,7 @@ const exportToPDF = (type) => {
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #16a34a;
+  border-color: var(--green);
   box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }
 
@@ -1305,7 +1305,7 @@ const exportToPDF = (type) => {
   gap: 12px;
   justify-content: flex-end;
   padding-top: 20px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--line);
 }
 
 /* Mobile form actions */
@@ -1320,9 +1320,9 @@ const exportToPDF = (type) => {
 .cancel-btn {
   padding: 8px 16px;
   background: transparent;
-  color: #6b7280;
+  color: var(--muted);
   border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -1340,16 +1340,16 @@ const exportToPDF = (type) => {
 }
 
 .cancel-btn:hover {
-  background: #f9fafb;
-  color: #374151;
+  background: var(--surface);
+  color: var(--ink-soft);
 }
 
 .submit-btn {
   padding: 8px 16px;
-  background: #16a34a;
+  background: var(--green);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -1367,12 +1367,12 @@ const exportToPDF = (type) => {
 }
 
 .submit-btn:hover {
-  background: #15803d;
+  background: var(--green);
 }
 
 /* Utility classes for specific styling */
 .bg-blue-100 { background-color: #dbeafe; }
 .text-blue-600 { color: #2563eb; }
 .bg-gray-100 { background-color: #f3f4f6; }
-.text-gray-700 { color: #374151; }
+.text-gray-700 { color: var(--ink-soft); }
 </style>

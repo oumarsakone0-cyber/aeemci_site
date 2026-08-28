@@ -114,13 +114,13 @@
   
   .section-header h2 {
     font-size: 36px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 15px;
   }
   
   .section-header p {
     font-size: 18px;
-    color: #666;
+    color: var(--muted);
   }
   
   .library-content {
@@ -137,24 +137,24 @@
   
   .stat {
     padding: 30px;
-    background: #f8f9fa;
-    border-radius: 15px;
-    border-top: 4px solid #16a085;
+    background: var(--surface);
+    border-radius: 0;
+    border-top: 4px solid var(--green);
   }
   
   .stat h3 {
     font-size: 36px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 10px;
   }
   
   .stat p {
-    color: #666;
+    color: var(--muted);
     font-weight: 500;
   }
   
   .collections h3, .services h3 {
-    color: #16a085;
+    color: var(--green);
     font-size: 28px;
     margin-bottom: 30px;
     text-align: center;
@@ -168,19 +168,19 @@
   
   .collection-item {
     padding: 25px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border-left: 4px solid #16a085;
+    background: var(--surface);
+    border-radius: 0;
+    border-left: 4px solid var(--green);
   }
   
   .collection-item h4 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 10px;
     font-size: 18px;
   }
   
   .collection-item p {
-    color: #666;
+    color: var(--muted);
     line-height: 1.6;
   }
   
@@ -195,8 +195,8 @@
     align-items: center;
     gap: 20px;
     padding: 25px;
-    background: #f8f9fa;
-    border-radius: 10px;
+    background: var(--surface);
+    border-radius: 0;
   }
   
   .service-icon {
@@ -205,12 +205,12 @@
   }
   
   .service-item h4 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 5px;
   }
   
   .service-item p {
-    color: #666;
+    color: var(--muted);
     line-height: 1.5;
   }
   

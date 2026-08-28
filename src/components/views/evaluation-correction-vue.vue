@@ -200,7 +200,7 @@ export default {
           session_id: this.sessionId
         });
 
-        const response = await fetch('https://sogetrag.com/api/evaluations-api.php', {
+        const response = await fetch('https://api.aeemci-ce.ci/senafoi/evaluations-api.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -333,9 +333,9 @@ export default {
 }
 
 .container {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #f8f9fa;
-  color: #2c3e50;
+  font-family: var(--display);
+  background: var(--surface);
+  color: var(--ink);
   line-height: 1.6;
   max-width: 1000px;
   margin: 0 auto;
@@ -345,8 +345,8 @@ export default {
 
 .header {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   padding: 30px;
   margin-bottom: 20px;
   text-align: center;
@@ -367,12 +367,12 @@ export default {
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #3498db;
-  background: #ecf0f1;
+  background: var(--surface);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32px;
-  color: #7f8c8d;
+  color: var(--muted);
 }
 
 .candidate-photo img {
@@ -382,12 +382,12 @@ export default {
 }
 
 .candidate-details h2 {
-  color: #2c3e50;
+  color: var(--ink);
   margin-bottom: 5px;
 }
 
 .candidate-details p {
-  color: #7f8c8d;
+  color: var(--muted);
   font-family: monospace;
   font-size: 16px;
 }
@@ -400,9 +400,9 @@ export default {
 }
 
 .stat-item {
-  background: #f8f9fa;
+  background: var(--surface);
   padding: 15px;
-  border-radius: 6px;
+  border-radius: 0;
   text-align: center;
 }
 
@@ -414,18 +414,18 @@ export default {
 
 .stat-label {
   font-size: 12px;
-  color: #7f8c8d;
+  color: var(--muted);
   text-transform: uppercase;
 }
 
-.correct { color: #27ae60; }
+.correct { color: var(--green); }
 .incorrect { color: #e74c3c; }
-.unanswered { color: #f39c12; }
+.unanswered { color: var(--gold); }
 
 .navigation {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   padding: 20px;
   margin-bottom: 20px;
   display: flex;
@@ -444,17 +444,17 @@ export default {
 .nav-btn {
   width: 40px;
   height: 40px;
-  border: 2px solid #ecf0f1;
+  border: 2px solid var(--surface);
   background: white;
-  border-radius: 6px;
+  border-radius: 0;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.2s ease;
 }
 
 .nav-btn.correct {
-  border-color: #27ae60;
-  background: #27ae60;
+  border-color: var(--green);
+  background: var(--green);
   color: white;
 }
 
@@ -465,20 +465,20 @@ export default {
 }
 
 .nav-btn.unanswered {
-  border-color: #f39c12;
-  background: #f39c12;
+  border-color: var(--gold);
+  background: var(--gold);
   color: white;
 }
 
 .nav-btn.active {
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow);
 }
 
 .question-card {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   padding: 30px;
   margin-bottom: 20px;
 }
@@ -496,13 +496,13 @@ export default {
   background: #3498db;
   color: white;
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 0;
   font-weight: bold;
 }
 
 .question-status {
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 0;
   font-weight: bold;
   font-size: 14px;
 }
@@ -525,13 +525,13 @@ export default {
   align-items: flex-start;
   gap: 15px;
   padding: 15px;
-  border: 2px solid #ecf0f1;
-  border-radius: 8px;
+  border: 2px solid var(--surface);
+  border-radius: 0;
   transition: all 0.2s ease;
 }
 
 .option.correct-answer {
-  border-color: #27ae60;
+  border-color: var(--green);
   background: #d4edda;
 }
 
@@ -549,7 +549,7 @@ export default {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #ecf0f1;
+  background: var(--surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -558,7 +558,7 @@ export default {
 }
 
 .option.correct-answer .option-letter {
-  background: #27ae60;
+  background: var(--green);
   color: white;
 }
 
@@ -584,7 +584,7 @@ export default {
 }
 
 .option.correct-answer .option-label {
-  color: #27ae60;
+  color: var(--green);
 }
 
 .option.user-choice .option-label {
@@ -597,8 +597,8 @@ export default {
 
 .controls {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   padding: 20px;
   margin-bottom: 20px;
   display: flex;
@@ -610,8 +610,8 @@ export default {
 
 .back-section {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   padding: 20px;
   text-align: center;
 }
@@ -619,7 +619,7 @@ export default {
 .btn {
   padding: 12px 24px;
   border: none;
-  border-radius: 6px;
+  border-radius: 0;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -637,7 +637,7 @@ export default {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow);
 }
 
 .btn:disabled {
@@ -651,7 +651,7 @@ export default {
   text-align: center;
   padding: 60px;
   font-size: 18px;
-  color: #7f8c8d;
+  color: var(--muted);
 }
 
 .error {
@@ -659,7 +659,7 @@ export default {
   border: 1px solid #ffcdd2;
   color: #c62828;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 0;
   margin: 20px 0;
   text-align: center;
 }

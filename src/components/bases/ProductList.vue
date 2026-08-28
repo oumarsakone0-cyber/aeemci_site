@@ -156,7 +156,7 @@ export default {
 /* Product List Styles */
 .product-list {
   margin-bottom: 40px;
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-family: var(--display);
 }
 
 .product-grid {
@@ -168,7 +168,7 @@ export default {
 
 .product-card {
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
   transition: box-shadow 0.3s;
   display: flex;
@@ -177,14 +177,14 @@ export default {
 }
 
 .product-card:hover {
-  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow);
 }
 
 .product-image-container {
   position: relative;
   padding: 10px;
   background-color: #fff;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid var(--surface);
 }
 
 .product-image {
@@ -192,7 +192,7 @@ export default {
   aspect-ratio: 1;
   object-fit: contain;
   display: block;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .product-badges {
@@ -208,7 +208,7 @@ export default {
   color: white;
   font-size: 11px;
   padding: 3px 6px;
-  border-radius: 2px;
+  border-radius: 0;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -221,7 +221,7 @@ export default {
 }
 
 .badge-green {
-  background-color: #10b981; /* Vert émeraude */
+  background-color: var(--green-2); /* Vert émeraude */
   color: white;
 }
 
@@ -230,7 +230,7 @@ export default {
 }
 
 .badge-default {
-  background-color: #FF6A00;
+  background-color: var(--gold);
 }
 
 .badge-red {
@@ -242,7 +242,7 @@ export default {
 }
 
 .badge-orange {
-  background-color: #FF6A00;
+  background-color: var(--gold);
 }
 
 .product-content {
@@ -266,7 +266,7 @@ export default {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  color: #333;
+  color: var(--ink);
 }
 
 .product-price {
@@ -285,7 +285,7 @@ export default {
 .min-order {
   display: block;
   font-size: 12px;
-  color: #666;
+  color: var(--muted);
 }
 
 .supplier-info {
@@ -295,7 +295,7 @@ export default {
 .supplier-name {
   font-size: 13px;
   margin-bottom: 5px;
-  color: #666;
+  color: var(--muted);
 }
 
 .supplier-badges {
@@ -307,7 +307,7 @@ export default {
   display: inline-block;
   padding: 2px 6px;
   font-size: 11px;
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .verified {
@@ -336,7 +336,7 @@ export default {
   justify-content: center;
   gap: 5px;
   padding: 8px 0;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
@@ -346,8 +346,8 @@ export default {
 
 .chat-btn {
   background-color: white;
-  color: #FF6A00;
-  border-color: #FF6A00;
+  color: var(--gold);
+  border-color: var(--gold);
 }
 
 .chat-btn:hover {
@@ -379,28 +379,28 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--line);
   background-color: white;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 14px;
-  color: #333;
+  color: var(--ink);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .pagination-btn:hover:not(:disabled) {
-  color: #FF6A00;
-  border-color: #FF6A00;
+  color: var(--gold);
+  border-color: var(--gold);
 }
 
 .pagination-btn.active {
   color: white;
-  background-color: #FF6A00;
-  border-color: #FF6A00;
+  background-color: var(--gold);
+  border-color: var(--gold);
 }
 
 .pagination-btn:disabled {
-  color: #d9d9d9;
+  color: var(--line);
   cursor: not-allowed;
 }
 
@@ -408,7 +408,7 @@ export default {
   display: inline-block;
   vertical-align: middle;
   line-height: 32px;
-  color: #666;
+  color: var(--muted);
 }
 
 @media (max-width: 992px) {

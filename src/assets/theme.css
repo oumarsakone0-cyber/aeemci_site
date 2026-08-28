@@ -1,0 +1,308 @@
+/* ============================================================
+   AEEMCI — Système de design « Édition Blanche »
+   Blanc dominant · vert profond · or discret
+   Chargé une seule fois depuis src/style.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  /* — Fonds — */
+  --white:#FFFFFF;
+  --surface:#F6F8F5;
+  --surface-2:#EEF2ED;
+
+  /* — Encre — */
+  --ink:#0D1A14;
+  --ink-soft:#33443B;
+  --muted:#6A7A71;
+
+  /* — Marque — */
+  --green:#0A4B32;
+  --green-2:#0E6042;
+  --green-mist:#E8F0EA;
+  --gold:#A98529;
+  --gold-mist:#F5EEDC;
+
+  /* — Accents de contenu : teintes sourdes, réservées aux petits éléments
+       (pastilles, icônes, filets). Le blanc reste dominant. — */
+  --c-green:#0A4B32;  --c-green-m:#E7F0EA;
+  --c-gold:#96731F;   --c-gold-m:#F6EFDA;
+  --c-clay:#9C5236;   --c-clay-m:#F8EAE3;
+  --c-teal:#2A646C;   --c-teal-m:#E3EFF0;
+  --c-plum:#684770; --c-plum-m:#F1EAF3;
+
+  /* — Bandeaux volontairement sombres (identiques en clair et sombre) — */
+  --deep:#051E14;
+  --deep-fg:#EAF3EE;
+  --deep-fg-2:#9FBCAC;
+  --deep-gold:#E7CE93;
+
+  /* — Traits — */
+  --line:#E4EAE5;
+  --line-strong:#CBD6CE;
+
+  /* — Typographie — */
+  --display:"Marcellus","Times New Roman",Georgia,serif;
+  --sans:"Manrope",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+
+  /* — Rythme — */
+  --gut:clamp(20px,4vw,44px);
+  --section:clamp(84px,9vw,152px);
+  --maxw:1360px;
+
+  /* — Mouvement — */
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-soft:cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  font-weight:400;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  /* Marcellus n'a qu'une graisse : interdire le faux gras. */
+  font-synthesis-weight:none;
+  overflow-x:hidden;
+}
+
+#app{ max-width:100%; margin:0; }
+
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; cursor:pointer; }
+:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+h1,h2,h3,h4{
+  font-family:var(--display); font-weight:400; margin:0;
+  line-height:1.08; text-wrap:balance;
+}
+
+/* ------------------------------------------------------------
+   Compatibilité avec les pages existantes
+
+   Ces alias étaient déclarés dans des blocs `:root` de styles « scoped ».
+   Vue y ajoute l'attribut de portée (`:root[data-v-…]`), qui ne correspond
+   à rien : ils n'ont donc jamais été appliqués. Les définir ici les
+   raccorde à la charte pour toutes les pages d'un coup.
+   ------------------------------------------------------------ */
+:root{
+  --shadow:0 18px 44px -30px rgba(8,38,24,.34);
+
+  --primary:var(--green);        --primary-dark:var(--green-2);
+  --primary-light:var(--green-2); --primary-lighter:var(--green-mist);
+  --secondary:var(--gold);       --secondary-dark:var(--gold);
+  --secondary-light:var(--gold-mist);
+  --accent:var(--gold);          --accent-dark:var(--gold);
+  --accent-light:var(--gold-mist);
+
+  --text-primary:var(--ink);     --text-secondary:var(--ink-soft);
+  --text-light:var(--muted);
+  --background:var(--white);     --background-alt:var(--surface);
+  --border:var(--line);          --border-color:var(--line);
+
+  --success:var(--c-green);      --warning:var(--c-gold);
+  --info:var(--c-teal);          --danger:#B3261E;
+
+  --color-dark-green:var(--green); --color-cream:var(--surface);
+  --color-orange:var(--gold);      --color-gray-green:var(--muted);
+}
+
+/* ------------------------------------------------------------
+   Utilitaires partagés
+   ------------------------------------------------------------ */
+.wrap{ width:min(100% - 2*var(--gut), var(--maxw)); margin-inline:auto; }
+/* Un .wrap imbriqué occupe la colonne qui le contient. */
+.wrap .wrap{ width:100%; margin-inline:0; }
+.num{ font-variant-numeric:tabular-nums; }
+
+.lede{
+  font-size:clamp(1rem,1.3vw,1.15rem);
+  color:var(--ink-soft); line-height:1.78; max-width:60ch;
+}
+
+.eyebrow{
+  font-size:.66rem; font-weight:700; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--muted); display:flex; align-items:center; gap:.8rem;
+}
+.eyebrow::before{ content:""; width:28px; height:1px; background:var(--gold); flex:none; }
+
+/* Trame géométrique (étoile à huit branches) — injectée par useReveal */
+.khatam{
+  position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image:var(--khatam); background-size:126px 126px; opacity:.55;
+}
+/* Grain cinématographique */
+.grain{
+  position:absolute; inset:-50%; pointer-events:none; z-index:4;
+  background-image:var(--grain); opacity:.42; mix-blend-mode:overlay;
+}
+
+/* ------------------------------------------------------------
+   Boutons
+   ------------------------------------------------------------ */
+.btn{
+  position:relative; display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  padding:.8rem 1.6rem; border:1px solid var(--green); background:transparent; color:var(--green);
+  font-size:.81rem; font-weight:700; letter-spacing:.05em; overflow:hidden; white-space:nowrap;
+  border-radius:0; transition:color .5s var(--ease), border-color .5s;
+}
+.btn > span{ position:relative; z-index:1; }
+.btn::before{
+  content:""; position:absolute; inset:0; background:var(--green);
+  transform:translateY(101%); transition:transform .55s var(--ease);
+}
+.btn:hover{ color:var(--white); }
+.btn:hover::before{ transform:none; }
+
+.btn--solid{ background:var(--green); color:var(--white); }
+.btn--solid::before{ background:var(--ink); }
+.btn--solid:hover{ color:var(--white); border-color:var(--ink); }
+
+.btn--gold{ border-color:var(--gold); color:var(--gold); }
+.btn--gold::before{ background:var(--gold); }
+.btn--gold:hover{ color:#fff; }
+
+.btn--ghost{ border-color:var(--line-strong); color:var(--ink-soft); }
+.btn--ghost::before{ background:var(--ink); }
+.btn--ghost:hover{ color:var(--white); border-color:var(--ink); }
+
+.btn--light{ background:#fff; border-color:#fff; color:var(--deep); }
+.btn--light::before{ background:var(--deep-gold); }
+.btn--light:hover{ color:var(--deep); border-color:var(--deep-gold); }
+
+.btn--ghost-light{ border-color:rgba(255,255,255,.4); color:#fff; background:transparent; }
+.btn--ghost-light::before{ background:#fff; }
+.btn--ghost-light:hover{ color:var(--deep); border-color:#fff; }
+
+.btn--lg{ padding:1.1rem 2.2rem; font-size:.85rem; }
+
+/* Lien « voir tout » */
+.link-more{
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-size:.74rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--green); padding-bottom:.42rem; border-bottom:1px solid var(--line-strong);
+  transition:border-color .4s, gap .4s var(--ease);
+}
+.link-more:hover{ border-color:var(--gold); gap:1.1rem; }
+
+/* ------------------------------------------------------------
+   Sections
+   ------------------------------------------------------------ */
+.band{ padding:var(--section) 0; position:relative; }
+.band--tight{ padding-top:0; }
+
+.sec-head{
+  display:flex; justify-content:space-between; align-items:flex-end;
+  gap:2rem; flex-wrap:wrap; margin-bottom:3.4rem;
+}
+.sec-head h2{ font-size:clamp(1.95rem,3.6vw,3.1rem); margin-top:1.15rem; letter-spacing:-.018em; }
+
+.rule{ height:1px; background:var(--line); position:relative; overflow:hidden; }
+.rule::after{
+  content:""; position:absolute; inset:0; background:var(--gold);
+  transform:scaleX(0); transform-origin:left; transition:transform 1.4s var(--ease);
+}
+.rule.in::after{ transform:scaleX(1); }
+
+/* Pastille de catégorie — la couleur vient d'une classe de teinte */
+.pill{
+  display:inline-flex; align-items:center; gap:.45rem;
+  font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700;
+  padding:.36rem .72rem; color:var(--tone, var(--green)); background:var(--tone-m, var(--green-mist));
+}
+.tone-green{ --tone:var(--c-green); --tone-m:var(--c-green-m); }
+.tone-gold { --tone:var(--c-gold);  --tone-m:var(--c-gold-m); }
+.tone-clay { --tone:var(--c-clay);  --tone-m:var(--c-clay-m); }
+.tone-teal { --tone:var(--c-teal);  --tone-m:var(--c-teal-m); }
+.tone-plum { --tone:var(--c-plum);  --tone-m:var(--c-plum-m); }
+
+/* Carte à filet — surface blanche, bordure fine, remplissage teinté au survol */
+.tile{
+  position:relative; background:var(--white); border:1px solid var(--line);
+  overflow:hidden; transition:border-color .5s var(--ease);
+}
+.tile::before{
+  content:""; position:absolute; left:0; right:0; top:0; height:2px;
+  background:var(--tone, var(--green)); transform:scaleX(0); transform-origin:left;
+  transition:transform .6s var(--ease);
+}
+.tile:hover{ border-color:var(--line-strong); }
+.tile:hover::before{ transform:scaleX(1); }
+
+/* Cadre image commun */
+.frame{ position:relative; overflow:hidden; background:var(--surface); }
+.frame img{ width:100%; height:100%; object-fit:cover; transform:scale(1.03); transition:transform 1.5s var(--ease); }
+
+/* ------------------------------------------------------------
+   Révélations au défilement
+   ------------------------------------------------------------ */
+.rv{ opacity:0; transform:translateY(30px); transition:opacity 1s var(--ease), transform 1s var(--ease); }
+.rv.in{ opacity:1; transform:none; }
+
+.mask{ display:block; overflow:hidden; }
+.mask > span{ display:block; transform:translateY(108%); transition:transform 1.15s var(--ease); }
+.mask.in > span{ transform:none; }
+
+/* Rideau : porté par l'image, jamais par le conteneur observé —
+   un conteneur entièrement clippé n'intersecte plus et ne serait jamais révélé. */
+.wipe > img{ clip-path:inset(0 0 100% 0); transition:clip-path 1.3s var(--ease), transform 1.5s var(--ease); }
+.wipe.in > img{ clip-path:inset(0 0 0 0); }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .rv,.mask > span{ opacity:1 !important; transform:none !important; }
+  .wipe > img{ clip-path:none !important; }
+}
+
+/* ------------------------------------------------------------
+   Thème sombre
+   ------------------------------------------------------------ */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --c-green:#7FCBA4; --c-green-m:#14231B;
+    --c-gold:#D9B562;  --c-gold-m:#241E10;
+    --c-clay:#DB9975;  --c-clay-m:#251710;
+    --c-teal:#7FC3CB;  --c-teal-m:#10211F;
+    --c-plum:#C1A2CA;  --c-plum-m:#1D1622;
+    --white:#0A0E0C; --surface:#0F1512; --surface-2:#151D19;
+    --ink:#EEF3EF; --ink-soft:#C3D0C8; --muted:#8B9A92;
+    --green:#7FCBA4; --green-2:#9BDCBA; --green-mist:#15231C;
+    --gold:#D9B562; --gold-mist:#221D10;
+    --line:#1E2823; --line-strong:#2C3932;
+  }
+}
+:root[data-theme="dark"]{
+  --c-green:#7FCBA4; --c-green-m:#14231B;
+  --c-gold:#D9B562;  --c-gold-m:#241E10;
+  --c-clay:#DB9975;  --c-clay-m:#251710;
+  --c-teal:#7FC3CB;  --c-teal-m:#10211F;
+  --c-plum:#C1A2CA;  --c-plum-m:#1D1622;
+  --white:#0A0E0C; --surface:#0F1512; --surface-2:#151D19;
+  --ink:#EEF3EF; --ink-soft:#C3D0C8; --muted:#8B9A92;
+  --green:#7FCBA4; --green-2:#9BDCBA; --green-mist:#15231C;
+  --gold:#D9B562; --gold-mist:#221D10;
+  --line:#1E2823; --line-strong:#2C3932;
+}
+
+/* ------------------------------------------------------------
+   Responsive commun
+   ------------------------------------------------------------ */
+@media (max-width:640px){
+  .khatam{ background-size:160px 160px; opacity:.3; }
+  .sec-head{ margin-bottom:2.4rem; }
+}

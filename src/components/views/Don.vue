@@ -384,21 +384,21 @@ export default {
 
 <style>
 :root {
-  --primary: #006400;
-  --primary-dark: #004d00;
-  --primary-light: #008000;
+  --primary: var(--green);
+  --primary-dark: var(--green);
+  --primary-light: var(--green);
   --primary-lighter: #e6f0e6;
-  --secondary: #f8b400;
-  --secondary-dark: #d99b00;
-  --secondary-light: #ffc933;
-  --accent: #e67e22;
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --text-light: #999999;
+  --secondary: var(--gold);
+  --secondary-dark: var(--gold);
+  --secondary-light: var(--gold);
+  --accent: var(--gold);
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
+  --text-light: var(--muted);
   --background: #ffffff;
-  --background-alt: #f5f5f5;
-  --border: #e0e0e0;
-  --success: #28a745;
+  --background-alt: var(--surface);
+  --border: var(--line);
+  --success: var(--green);
   --danger: #dc3545;
   --warning: #ffc107;
   --info: #17a2b8;
@@ -411,7 +411,7 @@ export default {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--display);
   color: var(--text-primary);
   line-height: 1.6;
   background-color: var(--background);
@@ -443,7 +443,7 @@ img {
 .btn {
   display: inline-block;
   padding: 0.6rem 1.2rem;
-  border-radius: 4px;
+  border-radius: 0;
   font-weight: 600;
   text-align: center;
   cursor: pointer;
@@ -456,20 +456,20 @@ img {
 .btn-primary {
   background-color: var(--primary);
   color: white;
-  box-shadow: 0 2px 4px rgba(0, 100, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .btn-primary:hover {
   background-color: var(--primary-dark);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 3px 6px rgba(0, 100, 0, 0.15);
+  box-shadow: var(--shadow);
 }
 
 /* Header Styles */
 .header {
   background-color: white;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -547,7 +547,7 @@ img {
 
 .btn-donate, .btn-espace {
   padding: 0.3rem 0.7rem;
-  border-radius: 2px;
+  border-radius: 0;
   font-size: 0.75rem;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -569,7 +569,7 @@ img {
 }
 
 .btn-espace:hover {
-  background-color: #d35400;
+  background-color: var(--gold);
   transform: translateY(-2px);
 }
 
@@ -750,9 +750,9 @@ img {
   flex: 0 0 40%;
   background-color: var(--primary-lighter);
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 0;
   position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
 }
 
 .quote-mark {
@@ -810,7 +810,7 @@ blockquote {
   width: 80px;
   height: 3px;
   background-color: var(--primary);
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 /* Causes Section */
@@ -826,9 +826,9 @@ blockquote {
 
 .cause-card {
   background-color: white;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   transition: transform 0.3s ease;
 }
 
@@ -863,7 +863,7 @@ blockquote {
   width: 100%;
   height: 8px;
   background-color: var(--background-alt);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
   margin-bottom: 0.5rem;
 }
@@ -900,8 +900,8 @@ blockquote {
 .donation-form {
   background-color: white;
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  box-shadow: var(--shadow);
 }
 
 .donation-form h3 {
@@ -932,7 +932,7 @@ blockquote {
   padding: 1rem;
   border: 2px solid var(--border);
   background-color: white;
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
@@ -963,7 +963,7 @@ blockquote {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 1rem;
 }
 
@@ -994,7 +994,7 @@ blockquote {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 0;
   font-family: inherit;
   font-size: 0.9rem;
   transition: all 0.3s ease;
@@ -1034,7 +1034,7 @@ blockquote {
   align-items: center;
   padding: 1rem;
   border: 2px solid var(--border);
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -1082,7 +1082,7 @@ blockquote {
 .donation-summary {
   background-color: var(--primary-lighter);
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 0;
   height: fit-content;
 }
 
@@ -1137,7 +1137,7 @@ blockquote {
   justify-content: center;
   padding: 1rem;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 0;
   margin-top: 1rem;
 }
 
@@ -1159,9 +1159,9 @@ blockquote {
 
 .donor-card {
   background-color: white;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   transition: transform 0.3s ease;
 }
 
@@ -1219,12 +1219,12 @@ blockquote {
   text-align: center;
   background-color: var(--background-alt);
   padding: 0.8rem;
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 /* Footer */
 .footer {
-  background-color: #333;
+  background-color: var(--ink);
   color: white;
   padding: 3rem 0 1rem;
   position: relative;
@@ -1277,7 +1277,7 @@ blockquote {
   width: 30px;
   height: 2px;
   background-color: var(--primary);
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 .footer-links {
@@ -1390,7 +1390,7 @@ blockquote {
     left: 0;
     right: 0;
     background-color: white;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     padding: 1rem;
     display: none;
     flex-direction: column;

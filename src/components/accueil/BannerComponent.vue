@@ -131,11 +131,11 @@
   }
   
   .banner-cta {
-    background: #e67e22;
+    background: var(--gold);
     color: white;
     border: none;
     padding: 15px 30px;
-    border-radius: 25px;
+    border-radius: 0;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -143,7 +143,7 @@
   }
   
   .banner-cta:hover {
-    background: #d35400;
+    background: var(--gold);
   }
   
   .banner-image {
@@ -155,8 +155,8 @@
     max-width: 100%;
     height: 350px;
     object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-radius: 0;
+    box-shadow: var(--shadow);
   }
   
   .banner-indicators {

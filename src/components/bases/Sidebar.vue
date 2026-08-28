@@ -83,7 +83,7 @@
   
   .sidebar-section {
     background-color: #fff;
-    border-radius: 4px;
+    border-radius: 0;
     margin-bottom: 15px;
     padding: 15px;
   }
@@ -91,10 +91,10 @@
   .sidebar-title {
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: var(--ink);
     margin-bottom: 12px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--line);
   }
   
   .category-list, .filter-list {
@@ -106,7 +106,7 @@
   }
   
   .category-link {
-    color: #333;
+    color: var(--ink);
     text-decoration: none;
     font-size: 13px;
     display: block;
@@ -114,7 +114,7 @@
   }
   
   .category-link:hover {
-    color: #FF6A00;
+    color: var(--gold);
   }
   
   .checkbox-label {
@@ -130,7 +130,7 @@
   
   .count {
     margin-left: 4px;
-    color: #999;
+    color: var(--muted);
   }
   
   .price-filter {
@@ -148,8 +148,8 @@
   .price-input {
     width: 70px;
     padding: 6px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid var(--line);
+    border-radius: 0;
     font-size: 13px;
   }
   
@@ -158,10 +158,10 @@
   }
   
   .price-button {
-    background-color: #FF6A00;
+    background-color: var(--gold);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 0;
     padding: 6px 12px;
     font-size: 13px;
     cursor: pointer;
@@ -170,7 +170,7 @@
   .view-more-btn {
     background: none;
     border: none;
-    color: #FF6A00;
+    color: var(--gold);
     font-size: 13px;
     padding: 5px 0;
     cursor: pointer;

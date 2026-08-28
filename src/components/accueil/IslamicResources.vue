@@ -126,7 +126,7 @@
   <style scoped>
   .islamic-resources {
     padding: 80px 20px;
-    background: #f8f9fa;
+    background: var(--surface);
   }
   
   .container {
@@ -141,13 +141,13 @@
   
   .section-header h2 {
     font-size: 36px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 15px;
   }
   
   .section-header p {
     font-size: 18px;
-    color: #666;
+    color: var(--muted);
   }
   
   .resources-grid {
@@ -159,14 +159,14 @@
   .resource-card {
     background: white;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-radius: 0;
+    box-shadow: var(--shadow);
     transition: transform 0.3s, box-shadow 0.3s;
   }
   
   .resource-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow);
   }
   
   .resource-icon {
@@ -176,7 +176,7 @@
   }
   
   .resource-card h3 {
-    color: #16a085;
+    color: var(--green);
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
@@ -194,23 +194,23 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    background: #f8f9fa;
-    border-radius: 8px;
+    background: var(--surface);
+    border-radius: 0;
   }
   
   .prayer-name {
     font-weight: 500;
-    color: #333;
+    color: var(--ink);
   }
   
   .time {
     font-weight: bold;
-    color: #16a085;
+    color: var(--green);
   }
   
   .location {
     text-align: center;
-    color: #666;
+    color: var(--muted);
     font-size: 14px;
   }
   
@@ -220,22 +220,22 @@
   
   .arabic-text {
     font-size: 24px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 15px;
-    font-family: 'Amiri', serif;
+    font-family: var(--display);
     line-height: 1.8;
   }
   
   .translation {
     font-style: italic;
-    color: #666;
+    color: var(--muted);
     margin-bottom: 10px;
     line-height: 1.6;
   }
   
   .reference {
     font-size: 14px;
-    color: #888;
+    color: var(--muted);
     font-weight: 500;
   }
   
@@ -246,15 +246,15 @@
   }
   
   .dua-item h4 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 8px;
     font-size: 16px;
   }
   
   .arabic {
-    font-family: 'Amiri', serif;
+    font-family: var(--display);
     font-size: 18px;
-    color: #333;
+    color: var(--ink);
     line-height: 1.8;
     text-align: right;
   }
@@ -270,18 +270,18 @@
   .hijri-date {
     display: block;
     font-size: 24px;
-    color: #16a085;
+    color: var(--green);
     font-weight: bold;
     margin-bottom: 5px;
   }
   
   .gregorian-date {
-    color: #666;
+    color: var(--muted);
     font-size: 16px;
   }
   
   .upcoming-events h4 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 15px;
   }
   
@@ -292,8 +292,8 @@
   
   .upcoming-events li {
     padding: 8px 0;
-    color: #666;
-    border-bottom: 1px solid #eee;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
   }
   
   .upcoming-events li:last-child {
@@ -308,34 +308,34 @@
   
   .audio-item {
     padding: 15px;
-    background: #f8f9fa;
-    border-radius: 8px;
+    background: var(--surface);
+    border-radius: 0;
   }
   
   .audio-item h4 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 5px;
   }
   
   .audio-item p {
-    color: #666;
+    color: var(--muted);
     font-size: 14px;
     margin-bottom: 10px;
   }
   
   .play-btn {
-    background: #16a085;
+    background: var(--green);
     color: white;
     border: none;
     padding: 8px 15px;
-    border-radius: 5px;
+    border-radius: 0;
     cursor: pointer;
     font-size: 14px;
     transition: background 0.3s;
   }
   
   .play-btn:hover {
-    background: #138d75;
+    background: var(--green);
   }
   
   .daily-hadith {
@@ -344,14 +344,14 @@
   
   .hadith-text {
     font-size: 18px;
-    color: #333;
+    color: var(--ink);
     font-style: italic;
     margin-bottom: 15px;
     line-height: 1.6;
   }
   
   .hadith-source {
-    color: #16a085;
+    color: var(--green);
     font-weight: 500;
     margin-bottom: 20px;
   }
@@ -359,17 +359,17 @@
   .hadith-lesson {
     text-align: left;
     padding: 15px;
-    background: #f8f9fa;
-    border-radius: 8px;
+    background: var(--surface);
+    border-radius: 0;
   }
   
   .hadith-lesson h4 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 8px;
   }
   
   .hadith-lesson p {
-    color: #666;
+    color: var(--muted);
     line-height: 1.6;
   }
   

@@ -87,7 +87,7 @@
   }
   
   .carousel-control {
-    background-color: #16a34a;
+    background-color: var(--green);
     color: white;
     border: none;
     width: 25px;
@@ -108,17 +108,17 @@
   
   .news-card {
     border: none;
-    border-radius: 6px;
+    border-radius: 0;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
     background-color: white;
     height: 100%;
   }
   
   .news-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .news-card-img img {
@@ -139,7 +139,7 @@
   .news-card-content h4 {
     margin-bottom: 0.4rem;
     font-size: 0.9rem;
-    color: #16a34a;
+    color: var(--green);
   }
   
   .news-meta {
@@ -167,7 +167,7 @@
     margin-top: 0.6rem;
     font-weight: 600;
     font-size: 0.75rem;
-    color: #16a34a;
+    color: var(--green);
     text-decoration: none;
     transition: color 0.3s ease;
   }

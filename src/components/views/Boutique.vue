@@ -222,8 +222,8 @@ const products = ref([
   --accent: #8fbc8f;
   --background: #f8fdf8;
   --background-alt: #f0f8f0;
-  --text-primary: #2c3e50;
-  --text-secondary: #7f8c8d;
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
   --white: #ffffff;
   --shadow: rgba(0, 0, 0, 0.1);
 }
@@ -235,7 +235,7 @@ const products = ref([
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--display);
   line-height: 1.6;
   color: var(--text-primary);
   background-color: var(--background);
@@ -250,7 +250,7 @@ body {
 /* Header */
 .header {
   background-color: var(--white);
-  box-shadow: 0 2px 10px var(--shadow);
+  box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -294,7 +294,7 @@ body {
 
 /* Bannière */
 .page-banner {
-  background: linear-gradient(135deg, #16a34a 0%, #16a34a 100%);
+  background: linear-gradient(135deg, var(--green) 0%, var(--green) 100%);
   color: white;
   padding: 4rem 0;
   position: relative;
@@ -419,15 +419,15 @@ body {
 
 .product-card {
   background-color: var(--white);
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 20px var(--shadow);
+  box-shadow: var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow);
 }
 
 .product-image {
@@ -469,7 +469,7 @@ body {
 .contact-section {
   background-color: var(--background-alt);
   padding: 3rem 0;
-  border-radius: 20px;
+  border-radius: 0;
 }
 
 .contact-grid {
@@ -480,10 +480,10 @@ body {
 
 .contact-card {
   background-color: var(--white);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 2rem;
   text-align: center;
-  box-shadow: 0 4px 20px var(--shadow);
+  box-shadow: var(--shadow);
   transition: transform 0.3s ease;
 }
 
@@ -516,7 +516,7 @@ body {
 
 /* Footer */
 .footer {
-  background-color: #333;
+  background-color: var(--ink);
   color: white;
   padding: 3rem 0 1rem;
   position: relative;
@@ -572,7 +572,7 @@ body {
   width: 30px;
   height: 2px;
   background-color: var(--primary);
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 .footer-links {

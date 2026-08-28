@@ -617,35 +617,35 @@
   
   <style scoped>
   .bg-orange {
-    background-color: #F65A11;
+    background-color: var(--gold);
   }
   
   .hover\:bg-orange-600:hover {
-    background-color: #e54a0a;
+    background-color: var(--gold);
   }
   
   .border-orange {
-    border-color: #F65A11;
+    border-color: var(--gold);
   }
   
   .text-orange {
-    color: #F65A11;
+    color: var(--gold);
   }
   
   .ring-orange {
-    --tw-ring-color: #F65A11;
+    --tw-ring-color: var(--gold);
   }
   
   .from-orange {
-    --tw-gradient-from: #F65A11;
+    --tw-gradient-from: var(--gold);
   }
   
   .to-orange-600 {
-    --tw-gradient-to: #e54a0a;
+    --tw-gradient-to: var(--gold);
   }
   
   .hover\:from-orange-600:hover {
-    --tw-gradient-from: #e54a0a;
+    --tw-gradient-from: var(--gold);
   }
   
   .hover\:to-orange-700:hover {
@@ -682,17 +682,17 @@
   }
   
   .overflow-y-auto::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 3px;
+    background: var(--surface);
+    border-radius: 0;
   }
   
   .overflow-y-auto::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 3px;
+    background: var(--line);
+    border-radius: 0;
   }
   
   .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: var(--muted);
   }
   </style>
   

@@ -465,10 +465,10 @@ const getStatusClass = (status) => {
 
 @layer base {
   :root {
-    --color-dark-green: #22331D;
-    --color-cream: #EFEDE7;
-    --color-orange: #F65A11;
-    --color-gray-green: #616D69;
+    --color-dark-green: var(--green);
+    --color-cream: var(--surface);
+    --color-orange: var(--gold);
+    --color-gray-green: var(--muted);
   }
 }
 
@@ -522,7 +522,7 @@ const getStatusClass = (status) => {
   }
   
   .hover\:bg-orange-600:hover {
-    background-color: #e54a0a;
+    background-color: var(--gold);
   }
 }
 </style>

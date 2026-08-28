@@ -31,7 +31,7 @@ const emit = defineEmits(['update:activeNavItem'])
 <style scoped>
 .navigation-section {
   padding: 3rem 0;
-  background: linear-gradient(135deg, #f0fdf4, #e6fffa);
+  background: linear-gradient(135deg, var(--green-mist), var(--green-mist));
 }
 
 .nav-buttons {
@@ -49,24 +49,24 @@ const emit = defineEmits(['update:activeNavItem'])
   justify-content: center;
   padding: 2rem 1rem;
   background: white;
-  border: 2px solid #e2e8f0;
-  border-radius: 16px;
+  border: 2px solid var(--line);
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--ink-soft);
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow);
 }
 
 .nav-button:hover,
 .nav-button.active {
-  border-color: #16a34a;
-  background: linear-gradient(135deg, #dcfce7, #f0fdf4);
-  color: #16a34a;
+  border-color: var(--green);
+  background: linear-gradient(135deg, var(--green-mist), var(--green-mist));
+  color: var(--green);
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(22, 163, 74, 0.15);
+  box-shadow: var(--shadow);
 }
 
 .nav-icon { 
@@ -81,10 +81,10 @@ const emit = defineEmits(['update:activeNavItem'])
 
 .separator {
   height: 3px;
-  background: linear-gradient(90deg, transparent, #16a34a, transparent);
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
   margin: 2.5rem auto 0;
   max-width: 500px;
-  border-radius: 5px;
+  border-radius: 0;
 }
 
 /* Enhanced responsive design for better mobile adaptation */
@@ -128,7 +128,7 @@ const emit = defineEmits(['update:activeNavItem'])
   
   .nav-button {
     padding: 1.2rem 0.6rem;
-    border-radius: 12px;
+    border-radius: 0;
   }
   
   .nav-icon {
@@ -155,7 +155,7 @@ const emit = defineEmits(['update:activeNavItem'])
   
   .nav-button {
     padding: 1rem 0.5rem;
-    border-radius: 10px;
+    border-radius: 0;
   }
   
   .nav-icon {

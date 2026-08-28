@@ -205,7 +205,7 @@ onUnmounted(() => {
 .dashboard-header {
   background: var(--color-background);
   border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  box-shadow: var(--shadow);
 }
 
 .header-container {
@@ -230,7 +230,7 @@ onUnmounted(() => {
 }
 
 .secretariat-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--display);
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-foreground);
@@ -239,7 +239,7 @@ onUnmounted(() => {
 }
 
 .secretariat-subtitle {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--display);
   font-size: 0.875rem;
   color: var(--color-muted-foreground);
   margin: 0.25rem 0 0 0;
@@ -258,7 +258,7 @@ onUnmounted(() => {
 }
 
 .user-info:hover {
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  box-shadow: var(--shadow);
   transform: translateY(-1px);
 }
 
@@ -295,7 +295,7 @@ onUnmounted(() => {
   right: 2px;
   width: 12px;
   height: 12px;
-  background: #10b981;
+  background: var(--green-2);
   border: 2px solid var(--color-background);
   border-radius: 50%;
 }
@@ -305,7 +305,7 @@ onUnmounted(() => {
 }
 
 .user-name {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--display);
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-foreground);
@@ -314,7 +314,7 @@ onUnmounted(() => {
 }
 
 .user-position {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--display);
   font-size: 0.875rem;
   color: var(--color-secondary);
   margin: 0 0 0.125rem 0;
@@ -322,14 +322,14 @@ onUnmounted(() => {
 }
 
 .user-matricule {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--display);
   font-size: 0.75rem;
   color: var(--color-muted-foreground);
   margin: 0;
 }
 
 .last-login {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--display);
   font-size: 0.75rem;
   color: var(--color-muted-foreground);
   margin: 0.125rem 0 0 0;
@@ -354,7 +354,7 @@ onUnmounted(() => {
   text-align: center;
   min-width: 100px;
   border: 1px solid var(--color-border);
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  box-shadow: var(--shadow);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -363,7 +363,7 @@ onUnmounted(() => {
 
 .stat-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  box-shadow: var(--shadow);
 }
 
 .stat-card.members {
@@ -371,11 +371,11 @@ onUnmounted(() => {
 }
 
 .stat-card.activities {
-  border-left: 4px solid #10b981;
+  border-left: 4px solid var(--green-2);
 }
 
 .stat-card.committees {
-  border-left: 4px solid #f59e0b;
+  border-left: 4px solid var(--gold);
 }
 
 .stat-icon {
@@ -395,7 +395,7 @@ onUnmounted(() => {
 }
 
 .stat-number {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--display);
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-foreground);
@@ -403,7 +403,7 @@ onUnmounted(() => {
 }
 
 .stat-label {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--display);
   font-size: 0.75rem;
   color: var(--color-muted-foreground);
   margin-top: 0.25rem;
@@ -444,7 +444,7 @@ onUnmounted(() => {
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  box-shadow: var(--shadow);
   min-width: 180px;
   z-index: 50;
   overflow: hidden;
@@ -471,7 +471,7 @@ onUnmounted(() => {
   background: none;
   border: none;
   text-align: left;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--display);
   font-size: 0.875rem;
   color: var(--color-foreground);
   cursor: pointer;

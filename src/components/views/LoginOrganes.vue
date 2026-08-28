@@ -212,7 +212,7 @@ const handleLogin = async () => {
     formDataToSend.append('matricule', formData.matricule)
     formDataToSend.append('password', formData.password)
     
-    const response = await fetch('https://sogetrag.com/api/organes-api.php?action=login', {
+    const response = await fetch('https://api.aeemci-ce.ci/organes-api.php?action=login', {
       method: 'POST',
       body: formDataToSend
     })
@@ -286,7 +286,7 @@ const handleMatriculeKeydown = (event) => {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--display);
 }
 
 .login-wrapper {
@@ -303,13 +303,13 @@ const handleMatriculeKeydown = (event) => {
 .logo-circle {
   width: 4rem;
   height: 4rem;
-  background-color: #018404;
+  background-color: var(--green);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem;
-  box-shadow: 0 4px 12px rgba(1, 132, 0, 0.2);
+  box-shadow: var(--shadow);
 }
 
 .lock-icon {
@@ -321,12 +321,12 @@ const handleMatriculeKeydown = (event) => {
 .main-title {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--ink);
   margin: 0 0 0.5rem 0;
 }
 
 .subtitle {
-  color: #6b7280;
+  color: var(--muted);
   margin: 0;
   font-size: 1rem;
 }
@@ -334,8 +334,8 @@ const handleMatriculeKeydown = (event) => {
 /* Container du formulaire */
 .form-container {
   background: white;
-  border-radius: 1rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
+  box-shadow: var(--shadow);
   padding: 2rem;
 }
 
@@ -355,7 +355,7 @@ const handleMatriculeKeydown = (event) => {
   display: block;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: var(--ink-soft);
   margin-bottom: 0.5rem;
 }
 
@@ -367,7 +367,7 @@ const handleMatriculeKeydown = (event) => {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 2px solid #d1d5db;
-  border-radius: 0.5rem;
+  border-radius: 0;
   font-size: 1rem;
   transition: all 0.2s ease;
   box-sizing: border-box;
@@ -375,7 +375,7 @@ const handleMatriculeKeydown = (event) => {
 
 .form-input:focus {
   outline: none;
-  border-color: #018404;
+  border-color: var(--green);
   box-shadow: 0 0 0 3px rgba(1, 132, 0, 0.1);
 }
 
@@ -407,13 +407,13 @@ const handleMatriculeKeydown = (event) => {
   background: none;
   border: none;
   cursor: pointer;
-  color: #9ca3af;
+  color: var(--muted);
   transition: color 0.2s ease;
   padding: 0;
 }
 
 .password-toggle:hover {
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .icon {
@@ -431,7 +431,7 @@ const handleMatriculeKeydown = (event) => {
 .error-container {
   background-color: #fef2f2;
   border: 1px solid #fecaca;
-  border-radius: 0.5rem;
+  border-radius: 0;
   padding: 1rem;
 }
 
@@ -457,10 +457,10 @@ const handleMatriculeKeydown = (event) => {
 /* Bouton de soumission */
 .submit-button {
   width: 100%;
-  background-color: #018404;
+  background-color: var(--green);
   color: white;
   padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0;
   font-weight: 500;
   border: none;
   cursor: pointer;
@@ -471,7 +471,7 @@ const handleMatriculeKeydown = (event) => {
 .submit-button:hover:not(.button-disabled) {
   background-color: #016a33;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(1, 132, 0, 0.3);
+  box-shadow: var(--shadow);
 }
 
 .submit-button:focus {
@@ -523,12 +523,12 @@ const handleMatriculeKeydown = (event) => {
 
 .help-text {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--muted);
   margin: 0;
 }
 
 .help-link {
-  color: #018404;
+  color: var(--green);
   font-weight: 500;
   text-decoration: none;
   transition: color 0.2s ease;

@@ -1,57 +1,89 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from "vue-router"
 import Dashboard from "../components/views/Dashboard.vue"
-import Messages from "../components/pages/Messages.vue"
-import About from "../components/clients/Clients.vue"
-import Login from "../components/login/Login.vue"
-import Register from "../components/login/Register.vue"
-import Historique from "../components/views/Historique.vue"
-import Charte from "../components/views/Charte.vue"
-import Bureau from "../components/views/Bureau.vue"
-import Chauffeurs from "../components/views/Chauffeurs.vue"
-import Carburants from "../components/views/Carburants.vue"
 import axios from 'axios'
-import CarteMembre from "../components/views/CarteMembre.vue"
-import CartePaye from "../components/views/CartePaye.vue"
-import ListeMembre from "../components/views/ListeMembre.vue"
-import Seminariste from "../components/views/Seminariste.vue"
-import SeminairePaye from "../components/views/SeminairePaye.vue"
-import Contact from "../components/views/Contact.vue"
-import Organes from "../components/views/Organes.vue"
-import Formations from "../components/views/Formations.vue"
-import Images from "../components/views/Images.vue"
-import ActualiteDetail from "../components/views/actualite-detail.vue"
-import ListeSeminaire from "../components/views/ListeSeminaire.vue"
-import EvaluationsManagement from "../components/views/evaluations-management.vue"
-import EvaluationQuestionnaire from "../components/views/evaluation-questionnaire.vue"
-import EvaluationCorrectionVue from "../components/views/evaluation-correction-vue.vue"
-import CarteStatus from "../components/views/carteStatus.vue"
-import Commission from "../components/views/Commission.vue"
-import Bachelier from "../components/views/Bachelier.vue"
-import ListeBachelier from "../components/views/ListeBachelier.vue"
-import Retardataire from "../components/views/Retardataire.vue"
-import Secretariat from "../components/views/Secretariat.vue"
-import SrPaye from "../components/views/SrPaye.vue"
-import InscriptionStands from "../components/views/inscription-stands.vue"
-import StandConfirmation from "../components/views/stand-confirmation.vue"
-import Seminariste2 from "../components/views/Seminariste2.vue"
-import Seminariste3 from "../components/views/Seminariste3.vue"
-import Seminariste6 from "../components/views/Seminariste6.vue"
-import Seminariste4 from "../components/views/Seminariste4.vue"
-import MembreSenafoi from "../components/views/MembreSenafoi.vue"
-import Samedi from "../components/views/Samedi.vue"
-import Avis from "../components/views/Avis.vue"
-import ListeNiveau from "../components/views/ListeNiveau.vue"
-import Resultat_matricule from "../components/views/Resultat_matricule.vue"
-import EspaceOrganes from "../components/views/EspaceOrganes.vue"
-import LoginOrganes from "../components/views/LoginOrganes.vue"
-import DashboardOrgane from "../components/views/DashboardOrgane.vue"
-import Organigramme from "../components/views/Organigramme.vue"
-import Cellules from "../components/views/Cellules.vue"
-import Tv from "../components/views/tv.vue"
-import Don from "../components/views/Don.vue"
-import Boutique from "../components/views/Boutique.vue"
-import CV from "../components/views/CV.vue"
+
+const Messages = () => import("../components/pages/Messages.vue")
+const About = () => import("../components/clients/Clients.vue")
+const Login = () => import("../components/login/Login.vue")
+const Register = () => import("../components/login/Register.vue")
+const Historique = () => import("../components/views/Historique.vue")
+const Charte = () => import("../components/views/Charte.vue")
+const Bureau = () => import("../components/views/Bureau.vue")
+const Chauffeurs = () => import("../components/views/Chauffeurs.vue")
+const Carburants = () => import("../components/views/Carburants.vue")
+const CarteMembre = () => import("../components/views/CarteMembre.vue")
+const CartePaye = () => import("../components/views/CartePaye.vue")
+const ListeMembre = () => import("../components/views/ListeMembre.vue")
+const Seminariste = () => import("../components/views/Seminariste.vue")
+const SeminairePaye = () => import("../components/views/SeminairePaye.vue")
+const Contact = () => import("../components/views/Contact.vue")
+const Organes = () => import("../components/views/Organes.vue")
+const Formations = () => import("../components/views/Formations.vue")
+const Images = () => import("../components/views/Images.vue")
+const ActualiteDetail = () => import("../components/views/actualite-detail.vue")
+const Programmes = () => import("../components/views/Programmes.vue")
+const ProgrammeDetail = () => import("../components/views/ProgrammeDetail.vue")
+const ListeSeminaire = () => import("../components/views/ListeSeminaire.vue")
+const EvaluationsManagement = () => import("../components/views/evaluations-management.vue")
+const EvaluationQuestionnaire = () => import("../components/views/evaluation-questionnaire.vue")
+const TestSortie = () => import("../components/views/test-sortie.vue")
+const ConduiteSeminaristes = () => import("../components/views/ConduiteSeminaristes.vue")
+const MesDocuments = () => import("../components/views/MesDocuments.vue")
+const PresenceCamp = () => import("../components/views/PresenceCamp.vue")
+const RapportCommission = () => import("../components/views/RapportCommission.vue")
+const SortieCamp = () => import("../components/views/SortieCamp.vue")
+const CritiquesSenafoi = () => import("../components/views/CritiquesSenafoi.vue")
+const SenafoiVideo = () => import("../components/views/SenafoiVideo.vue")
+const GrandQuiz = () => import("../components/views/grand-quiz.vue")
+const ConcoursPhoto = () => import("../components/views/concours-photo.vue")
+const CritiqueAnonyme = () => import("../components/views/critique-anonyme.vue")
+const MonAffiche = () => import("../components/views/mon-affiche.vue")
+const EvaluationCorrectionVue = () => import("../components/views/evaluation-correction-vue.vue")
+const CarteStatus = () => import("../components/views/carteStatus.vue")
+const Commission = () => import("../components/views/Commission.vue")
+const Bachelier = () => import("../components/views/Bachelier.vue")
+const ListeBachelier = () => import("../components/views/ListeBachelier.vue")
+const Retardataire = () => import("../components/views/Retardataire.vue")
+const Secretariat = () => import("../components/views/Secretariat.vue")
+const SeminaristesSrMembres = () => import("../components/views/SeminaristesSrMembres.vue")
+const SeminaristesCcrMembres = () => import("../components/views/SeminaristesCcrMembres.vue")
+const CommissionSenafoiMembres = () => import("../components/views/CommissionSenafoiMembres.vue")
+const FormateursImamsSenafoi = () => import("../components/views/FormateursImamsSenafoi.vue")
+const ImaratSenafoi = () => import("../components/views/ImaratSenafoi.vue")
+const SrPaye = () => import("../components/views/SrPaye.vue")
+const InscriptionStands = () => import("../components/views/inscription-stands.vue")
+const StandConfirmation = () => import("../components/views/stand-confirmation.vue")
+const Seminariste2 = () => import("../components/views/Seminariste2.vue")
+const Seminariste3 = () => import("../components/views/Seminariste3.vue")
+const Seminariste6 = () => import("../components/views/Seminariste6.vue")
+const Seminariste4 = () => import("../components/views/Seminariste4.vue")
+const MembreSenafoi = () => import("../components/views/MembreSenafoi.vue")
+const Samedi = () => import("../components/views/Samedi.vue")
+const Avis = () => import("../components/views/Avis.vue")
+const ListeNiveau = () => import("../components/views/ListeNiveau.vue")
+const Resultat_matricule = () => import("../components/views/Resultat_matricule.vue")
+const EspaceOrganes = () => import("../components/views/EspaceOrganes.vue")
+const LoginOrganes = () => import("../components/views/LoginOrganes.vue")
+const DashboardOrgane = () => import("../components/views/DashboardOrgane.vue")
+const Organigramme = () => import("../components/views/Organigramme.vue")
+const Cellules = () => import("../components/views/Cellules.vue")
+const Tv = () => import("../components/views/tv.vue")
+const Don = () => import("../components/views/Don.vue")
+const Boutique = () => import("../components/views/Boutique.vue")
+const CV = () => import("../components/views/CV.vue")
+const ListeCima = () => import("../components/views/ListeCima.vue")
+const InscriptionCima = () => import("../components/views/InscriptionCima.vue")
+const VerifierCima = () => import("../components/views/VerifierCima.vue")
+const CarteAncien = () => import("../components/views/CarteAncien.vue")
+const ListeCImaCommission = () => import("../components/views/ListeCImaCommission.vue")
+const PolitiqueConf = () => import("../components/views/politiqueConf.vue")
+const Opportunites = () => import("../components/views/Opportunites.vue")
+const RuptureInscription = () => import("../components/views/RuptureInscription.vue")
+const BancoInscription = () => import("../components/views/BancoInscription.vue")
+const ConcoursApplicationsIslamiques = () => import("../components/views/ConcoursApplicationsIslamique.vue")
+const SeminaireStats = () => import("../components/views/SeminaireStats.vue")
+const RapportFinal = () => import("../components/views/RapportFinal.vue")
 
 const routes = [
   {
@@ -70,6 +102,15 @@ const routes = [
     meta: {
       requiresAuth: false,
       hideNavigation: false,
+    },
+  },
+  {
+    path: "/politique_confidentialite",
+    name: "politique_confidentialite",
+    component: PolitiqueConf,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: true,
     },
   },
   {
@@ -112,6 +153,24 @@ const routes = [
     path: "/organigramme",
     name: "organigramme",
     component: Organigramme,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/seminaire_stats",
+    name: "seminaire_stats",
+    component: SeminaireStats,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/seminaire_rapport_final",
+    name: "seminaire_rapport_final",
+    component: RapportFinal,
     meta: {
       requiresAuth: false,
       hideNavigation: false,
@@ -199,9 +258,45 @@ const routes = [
     },
   },
   {
+    path: "/opportunites",
+    name: "opportunites",
+    component: Opportunites,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/carte_ancien",
+    name: "carte_ancien",
+    component: CarteAncien,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
     path: "/seminaristes",
     name: "seminaristes",
     component: Seminariste,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/seminaristes_sr",
+    name: "seminaristes_sr",
+    component: SeminaristesSrMembres,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/seminaristes_ccr",
+    name: "seminaristes_ccr",
+    component: SeminaristesCcrMembres,
     meta: {
       requiresAuth: false,
       hideNavigation: false,
@@ -217,9 +312,45 @@ const routes = [
     },
   },
   {
+    path: "/liste_inscrits_cima",
+    name: "liste_inscrits_cima",
+    component: ListeCima,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/liste_inscrits_cima_commission",
+    name: "liste_inscrits_cima_commission",
+    component: ListeCImaCommission,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
     path: "/liste_inscrits_seminaire",
     name: "liste_inscrits_seminaire",
     component: ListeSeminaire,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/inscription_rupture",
+    name: "inscription_rupture",
+    component: RuptureInscription,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/inscription_banco",
+    name: "inscription_banco",
+    component: BancoInscription,
     meta: {
       requiresAuth: false,
       hideNavigation: false,
@@ -246,7 +377,17 @@ const routes = [
     },
   },
   {
-    path: "/seminaire_paye/:matricule",
+    path: "/verification_cima/:matricule",
+    name: "verification_cima",
+    component: VerifierCima,
+    props: true, // permet de passer le paramètre à ton composant
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/seminaire_paye/:matricule?",
     name: "seminaire_paye",
     component: SeminairePaye,
     props: true, // permet de passer le paramètre à ton composant
@@ -284,6 +425,42 @@ const routes = [
     },
   },
   {
+    path: "/concours_applications_islamique",
+    name: "concours_applications_islamique",
+    component: ConcoursApplicationsIslamiques,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/commission_senafoi",
+    name: "commission_senafoi",
+    component: CommissionSenafoiMembres,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/formateurs_senafoi",
+    name: "formateurs_senafoi",
+    component: FormateursImamsSenafoi,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/imarat_senafoi",
+    name: "imarat_senafoi",
+    component: ImaratSenafoi,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
     path: "/verification_carte",
     name: "verification_carte",
     component: CarteStatus,
@@ -305,6 +482,80 @@ const routes = [
     path: "/evaluation_question/:id",
     name: "evaluation_question",
     component: EvaluationQuestionnaire,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    // Lien unique du test de sortie : le niveau du séminariste route seul
+    // vers le bon test, aucun identifiant d'évaluation dans l'adresse.
+    path: "/test_sortie",
+    name: "test_sortie",
+    component: TestSortie,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: true,
+      sansCadre: true,
+    },
+  },
+  {
+    // Retrait public des documents : chacun saisit son matricule et récupère
+    // son diplôme, accompagné de son bulletin lorsqu'il en a un.
+    path: "/mes_documents",
+    name: "mes_documents",
+    component: MesDocuments,
+    meta: {
+      // Même cadre que la page d'inscription des séminaristes : la navigation
+      // du site reste visible au-dessus du bandeau SENAFOI.
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    // Poste de scan de la conduite : profil du séminariste + notation 12-16
+    path: "/conduite_seminaristes",
+    name: "conduite_seminaristes",
+    component: ConduiteSeminaristes,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: true,
+      sansCadre: true,
+    },
+  },
+  {
+    // Plateau de jeu : plein écran, sans en-tête ni pied de page du site
+    path: "/grand_quiz",
+    name: "grand_quiz",
+    component: GrandQuiz,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: true,
+      sansCadre: true,
+    },
+  },
+  {
+    path: "/concours_photo",
+    name: "concours_photo",
+    component: ConcoursPhoto,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/critique_anonyme",
+    name: "critique_anonyme",
+    component: CritiqueAnonyme,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/mon_affiche",
+    name: "mon_affiche",
+    component: MonAffiche,
     meta: {
       requiresAuth: false,
       hideNavigation: false,
@@ -341,8 +592,8 @@ const routes = [
     })
   },
   {
-    path: "/seminaristes_reduction_3007",
-    name: "seminaristes_reduction_3007",
+    path: "/seminaristes_reduction_26",
+    name: "seminaristes_reduction_26",
     component: Seminariste2,
     meta: {
       requiresAuth: false,
@@ -404,9 +655,20 @@ const routes = [
     },
   },
   {
-    path: '/retardataires123',
+    path: '/commission_cima_2025',
     name: 'retardataires123',
     component: Retardataire,
+    props: route => ({
+      evaluationId: route.query.evaluation_id,
+      matricule: route.query.matricule,
+      sessionId: route.query.session_id
+    })
+  },
+
+  {
+    path: '/participant_cima_2025',
+    name: 'retardataires1233',
+    component: InscriptionCima,
     props: route => ({
       evaluationId: route.query.evaluation_id,
       matricule: route.query.matricule,
@@ -417,6 +679,24 @@ const routes = [
     path: "/detail_actualite",
     name: "detail_actualite",
     component: ActualiteDetail,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/programmes",
+    name: "programmes",
+    component: Programmes,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: false,
+    },
+  },
+  {
+    path: "/programmes/:slug",
+    name: "programme-detail",
+    component: ProgrammeDetail,
     meta: {
       requiresAuth: false,
       hideNavigation: false,
@@ -521,6 +801,62 @@ const routes = [
       hideNavigation: true,
     },
   },
+  {
+    // Poste de scan tenu à l'entrée du camp : page nue, sans en-tête
+    // ni pied de page, pensée pour un téléphone ou une tablette.
+    path: "/presence_camp",
+    name: "presence_camp",
+    component: PresenceCamp,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: true,
+      sansCadre: true,
+    },
+  },
+  {
+    // Rapport journalier des commissions : un dépôt par commission et par jour
+    path: "/rapport_commission",
+    name: "rapport_commission",
+    component: RapportCommission,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: true,
+      sansCadre: true,
+    },
+  },
+  {
+    // Poste des sorties provisoires, tenu au portail du camp
+    path: "/sortie_camp",
+    name: "sortie_camp",
+    component: SortieCamp,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: true,
+      sansCadre: true,
+    },
+  },
+  {
+    // Mur public des critiques : page autonome, sans cadre du site
+    path: "/critiques_senafoi",
+    name: "critiques_senafoi",
+    component: CritiquesSenafoi,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: true,
+      sansCadre: true,
+    },
+  },
+  {
+    // Fil vidéo du séminaire : plein écran, réservé aux porteurs de matricule
+    path: "/senafoi_video",
+    name: "senafoi_video",
+    component: SenafoiVideo,
+    meta: {
+      requiresAuth: false,
+      hideNavigation: true,
+      sansCadre: true,
+    },
+  },
   // Route de redirection pour les chemins non trouvés
   {
     path: "/:pathMatch(.*)*",
@@ -534,7 +870,7 @@ const router = createRouter({
 })
 
 // Configuration de l'API
-const API_BASE_URL = 'https://sogetrag.com/api/auth.php'
+const API_BASE_URL = 'https://api.aeemci-ce.ci/auth.php'
 
 // Store simple pour l'état d'authentification
 const authStore = {

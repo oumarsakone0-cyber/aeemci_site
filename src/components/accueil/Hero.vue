@@ -24,7 +24,7 @@
   
   <style scoped>
   .hero {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface) 100%);
     padding: 80px 20px;
   }
   
@@ -39,14 +39,14 @@
   
   .hero-text h1 {
     font-size: 48px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 20px;
     line-height: 1.2;
   }
   
   .hero-text p {
     font-size: 18px;
-    color: #666;
+    color: var(--muted);
     margin-bottom: 30px;
     line-height: 1.6;
   }
@@ -57,11 +57,11 @@
   }
   
   .btn-primary {
-    background: #16a085;
+    background: var(--green);
     color: white;
     border: none;
     padding: 15px 30px;
-    border-radius: 8px;
+    border-radius: 0;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
@@ -69,15 +69,15 @@
   }
   
   .btn-primary:hover {
-    background: #138d75;
+    background: var(--green);
   }
   
   .btn-secondary {
     background: transparent;
-    color: #16a085;
-    border: 2px solid #16a085;
+    color: var(--green);
+    border: 2px solid var(--green);
     padding: 15px 30px;
-    border-radius: 8px;
+    border-radius: 0;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
@@ -85,7 +85,7 @@
   }
   
   .btn-secondary:hover {
-    background: #16a085;
+    background: var(--green);
     color: white;
   }
   
@@ -93,8 +93,8 @@
     width: 100%;
     height: 400px;
     object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 0;
+    box-shadow: var(--shadow);
   }
   
   @media (max-width: 768px) {

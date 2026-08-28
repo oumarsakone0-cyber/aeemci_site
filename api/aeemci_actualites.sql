@@ -1,0 +1,22 @@
+﻿CREATE TABLE IF NOT EXISTS aeemci_actualites (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  titre VARCHAR(255) NOT NULL,
+  slug VARCHAR(280) DEFAULT NULL,
+  type VARCHAR(60) NOT NULL DEFAULT 'AUTRE',
+  lieu VARCHAR(180) DEFAULT NULL,
+  texte_affichage TEXT DEFAULT NULL,
+  texte_detaille MEDIUMTEXT DEFAULT NULL,
+  photos JSON DEFAULT NULL,
+  statut VARCHAR(30) NOT NULL DEFAULT 'BROUILLON',
+  date_debut DATE DEFAULT NULL,
+  date_fin DATE DEFAULT NULL,
+  date_specifique DATE DEFAULT NULL,
+  auteur VARCHAR(160) DEFAULT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  published_at DATETIME DEFAULT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_aeemci_actualites_slug (slug),
+  KEY idx_aeemci_actualites_statut_date (statut, date_specifique, created_at),
+  KEY idx_aeemci_actualites_type (type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

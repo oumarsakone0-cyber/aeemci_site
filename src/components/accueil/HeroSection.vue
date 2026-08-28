@@ -57,7 +57,7 @@
     margin-bottom: 0.8rem;
     font-weight: 700;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    font-family: 'Times New Roman', serif;
+    font-family: var(--display);
   }
   
   .hero-content h2 {
@@ -82,7 +82,7 @@
   .btn {
     display: inline-block;
     padding: 0.5rem 1rem;
-    border-radius: 3px;
+    border-radius: 0;
     font-weight: 600;
     text-align: center;
     cursor: pointer;
@@ -95,14 +95,14 @@
   
   .btn-primary {
     background-color: var(--secondary);
-    color: #16a34a;
-    box-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
+    color: var(--green);
+    box-shadow: var(--shadow);
   }
   
   .btn-primary:hover {
-    background-color: #ffed4e;
+    background-color: var(--gold);
     transform: translateY(-2px);
-    box-shadow: 0 3px 6px rgba(255, 215, 0, 0.4);
+    box-shadow: var(--shadow);
   }
   
   .btn-outline {
@@ -113,7 +113,7 @@
   
   .btn-outline:hover {
     background-color: white;
-    color: #16a34a;
+    color: var(--green);
     transform: translateY(-2px);
   }
   

@@ -165,13 +165,13 @@
   
   .section-header h2 {
     font-size: 36px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 15px;
   }
   
   .section-header p {
     font-size: 18px;
-    color: #666;
+    color: var(--muted);
   }
   
   .events-content {
@@ -181,7 +181,7 @@
   }
   
   .upcoming-events h3, .event-calendar h3 {
-    color: #16a085;
+    color: var(--green);
     font-size: 28px;
     margin-bottom: 30px;
   }
@@ -194,8 +194,8 @@
   
   .event-card {
     display: flex;
-    background: #f8f9fa;
-    border-radius: 15px;
+    background: var(--surface);
+    border-radius: 0;
     padding: 25px;
     gap: 25px;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -203,11 +203,11 @@
   
   .event-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
   }
   
   .event-card.featured {
-    background: linear-gradient(135deg, #16a085, #27ae60);
+    background: linear-gradient(135deg, var(--green), var(--green));
     color: white;
   }
   
@@ -217,10 +217,10 @@
     align-items: center;
     justify-content: center;
     background: white;
-    border-radius: 10px;
+    border-radius: 0;
     padding: 15px;
     min-width: 80px;
-    color: #16a085;
+    color: var(--green);
   }
   
   .event-card.featured .event-date {
@@ -242,7 +242,7 @@
   }
   
   .event-info h4 {
-    color: #16a085;
+    color: var(--green);
     font-size: 20px;
     margin-bottom: 10px;
   }
@@ -252,7 +252,7 @@
   }
   
   .event-info p {
-    color: #666;
+    color: var(--muted);
     line-height: 1.6;
     margin-bottom: 15px;
   }
@@ -266,7 +266,7 @@
     flex-direction: column;
     gap: 5px;
     font-size: 14px;
-    color: #888;
+    color: var(--muted);
   }
   
   .event-card.featured .event-details {
@@ -280,7 +280,7 @@
   
   .status {
     padding: 8px 15px;
-    border-radius: 20px;
+    border-radius: 0;
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
@@ -292,12 +292,12 @@
   }
   
   .status.open {
-    background: #27ae60;
+    background: var(--green);
     color: white;
   }
   
   .status.soon {
-    background: #f39c12;
+    background: var(--gold);
     color: white;
   }
   
@@ -311,9 +311,9 @@
     display: flex;
     gap: 20px;
     padding: 20px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border-left: 4px solid #16a085;
+    background: var(--surface);
+    border-radius: 0;
+    border-left: 4px solid var(--green);
   }
   
   .calendar-date {
@@ -321,22 +321,22 @@
     flex-direction: column;
     align-items: center;
     min-width: 100px;
-    color: #16a085;
+    color: var(--green);
     font-weight: bold;
   }
   
   .hijri-date {
     font-size: 12px;
-    color: #888;
+    color: var(--muted);
   }
   
   .calendar-info h4 {
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 5px;
   }
   
   .calendar-info p {
-    color: #666;
+    color: var(--muted);
     font-size: 14px;
     line-height: 1.5;
   }

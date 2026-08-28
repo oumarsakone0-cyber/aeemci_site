@@ -271,7 +271,7 @@
   const generateQRCode = async () => {
     try {
       if (qrCodeContainer.value && props.membre?.matricule_gen) {
-        const qrUrl = `https://aeemci.sastock.com/carte_paye/${props.membre.matricule_gen}`
+        const qrUrl = `https://www.aeemci-ce.ci/carte_paye/${props.membre.matricule_gen}`
         
         // Utiliser l'API QR Server pour générer le QR code
         const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(qrUrl)}`
@@ -329,7 +329,7 @@
     width: 210mm;
     min-height: 297mm;
     background: #ffffff;
-    font-family: Arial, sans-serif;
+    font-family: var(--display);
     color: #000000;
     padding: 15mm;
     box-sizing: border-box;
@@ -359,7 +359,7 @@
   .logo-circle {
     width: 60px;
     height: 60px;
-    background: #16a34a;
+    background: var(--green);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -382,7 +382,7 @@
     font-size: 24px;
     font-weight: bold;
     margin: 0 0 5px 0;
-    color: #16a34a;
+    color: var(--green);
     letter-spacing: 1px;
   }
   
@@ -406,7 +406,7 @@
   .slogan {
     margin-top: 5px;
     font-style: italic;
-    color: #16a34a;
+    color: var(--green);
   }
   
   .header-right {
@@ -423,14 +423,14 @@
   
   .year-info {
     font-size: 12px;
-    color: #666666;
+    color: var(--muted);
     margin: 0;
   }
   
   /* Ligne de séparation */
   .separator-line {
     height: 4px;
-    background: #16a34a;
+    background: var(--green);
     margin: 20px 0;
   }
   
@@ -462,20 +462,20 @@
     width: 120px;
     height: 150px;
     object-fit: cover;
-    border: 4px solid #16a34a;
-    border-radius: 8px;
+    border: 4px solid var(--green);
+    border-radius: 0;
   }
   
   .photo-placeholder {
     width: 120px;
     height: 150px;
-    border: 4px solid #16a34a;
-    border-radius: 8px;
+    border: 4px solid var(--green);
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f5f5f5;
-    color: #999999;
+    background: var(--surface);
+    color: var(--muted);
   }
   
   .matricule-section {
@@ -483,16 +483,16 @@
   }
   
   .matricule-box {
-    background: #f0fdf4;
-    border: 2px solid #16a34a;
-    border-radius: 8px;
+    background: var(--green-mist);
+    border: 2px solid var(--green);
+    border-radius: 0;
     padding: 10px;
     text-align: center;
   }
   
   .matricule-label {
     font-size: 10px;
-    color: #15803d;
+    color: var(--green);
     font-weight: bold;
     margin: 0 0 5px 0;
     text-transform: uppercase;
@@ -502,7 +502,7 @@
   .matricule-value {
     font-size: 14px;
     font-weight: bold;
-    color: #15803d;
+    color: var(--green);
     margin: 0;
     font-family: 'Courier New', monospace;
   }
@@ -518,7 +518,7 @@
     color: #000000;
     margin: 0 0 15px 0;
     padding-bottom: 5px;
-    border-bottom: 2px solid #e5e7eb;
+    border-bottom: 2px solid var(--line);
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -549,7 +549,7 @@
   
   .info-label {
     font-size: 10px;
-    color: #666666;
+    color: var(--muted);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -568,8 +568,8 @@
   .militantisme-section,
   .status-section {
     background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    border: 1px solid var(--line);
+    border-radius: 0;
     padding: 15px;
   }
   
@@ -579,9 +579,9 @@
   }
   
   .inscription-box {
-    background: #f0fdf4;
-    border: 2px solid #16a34a;
-    border-radius: 8px;
+    background: var(--green-mist);
+    border: 2px solid var(--green);
+    border-radius: 0;
     padding: 15px;
   }
   
@@ -599,7 +599,7 @@
   
   .inscription-label {
     font-size: 10px;
-    color: #15803d;
+    color: var(--green);
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -607,7 +607,7 @@
   
   .inscription-value {
     font-size: 12px;
-    color: #15803d;
+    color: var(--green);
     font-weight: bold;
   }
   
@@ -645,7 +645,7 @@
     gap: 20px;
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 2px solid #16a34a;
+    border-top: 2px solid var(--green);
   }
   
   .qr-section {
@@ -676,13 +676,13 @@
   
   .footer-contact {
     font-size: 10px;
-    color: #666666;
+    color: var(--muted);
     margin: 0 0 10px 0;
   }
   
   .footer-validity {
     font-size: 10px;
-    color: #666666;
+    color: var(--muted);
     margin: 0;
     font-style: italic;
   }
@@ -713,7 +713,7 @@
   /* Améliorations visuelles pour l'écran */
   @media screen {
     .fiche-membre-aeemci {
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
       margin: 20px auto;
     }
   }

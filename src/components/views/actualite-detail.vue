@@ -272,43 +272,38 @@
           error.value = null
           
           const articleId = route.query.id || route.params.id
-          console.log('🔄 Chargement de l\'article ID:', articleId)
+          console.log("Chargement de l'article ID:", articleId)
           
           if (!articleId) {
-            throw new Error('ID de l\'article non fourni')
+            throw new Error("ID de l'article non fourni")
           }
           
-          // Charger tous les articles et trouver celui qui correspond à l'ID
-          const allArticles = await actualitesApi.getLatestActualites()
-          console.log('✅ Articles chargés:', allArticles.length)
-          
-          const articleData = allArticles.find(a => a.id == articleId)
+          const articleData = await actualitesApi.getActualiteById(articleId)
+          const photos = actualiteUtils.getPhotos(articleData)
           
           if (!articleData) {
             throw new Error('Article non trouvé')
           }
           
-          console.log('✅ Article trouvé:', articleData)
-          
-          // Formater les données de l'article
           article.value = {
             id: articleData.id,
             title: articleData.titre || articleData.title,
             date: actualiteUtils.formatDate(articleData.date_specifique || articleData.date_debut || articleData.date),
-            author: articleData.author || 'AEEMCI Communication',
+            author: articleData.author || articleData.auteur || 'AEEMCI Communication',
             category: articleData.type || articleData.category || 'Actualité',
-            image: articleData.image || '',
+            image: articleData.image || photos[0] || '',
             imageCaption: articleData.titre || articleData.title,
             content: articleData.texte_detaille || articleData.content || '',
             excerpt: articleData.texte_affichage || articleData.excerpt || '',
             location: articleData.lieu || articleData.location || '',
             type: articleData.type || 'Actualité',
             date_start: articleData.date_debut,
-            date_end: articleData.date_fin
+            date_end: articleData.date_fin,
+            gallery: photos.map((url, index) => ({ url, thumbnail: url, caption: (articleData.titre || 'Actualité') + ' - photo ' + (index + 1) })),
           }
           
-          // Utiliser les autres articles comme articles similaires
-          relatedArticles.value = allArticles
+          const latest = await actualitesApi.getLatestActualites(4)
+          relatedArticles.value = latest
             .filter(a => a.id != articleId)
             .slice(0, 3)
             .map(a => actualiteUtils.formatActualite(a))
@@ -428,21 +423,21 @@
   
   <style>
   :root {
-    --primary: #006400;
-    --primary-dark: #004d00;
-    --primary-light: #008000;
+    --primary: var(--green);
+    --primary-dark: var(--green);
+    --primary-light: var(--green);
     --primary-lighter: #e6f0e6;
-    --secondary: #f8b400;
-    --secondary-dark: #d99b00;
-    --secondary-light: #ffc933;
-    --accent: #e67e22;
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --text-light: #999999;
+    --secondary: var(--gold);
+    --secondary-dark: var(--gold);
+    --secondary-light: var(--gold);
+    --accent: var(--gold);
+    --text-primary: var(--ink);
+    --text-secondary: var(--muted);
+    --text-light: var(--muted);
     --background: #ffffff;
-    --background-alt: #f5f5f5;
-    --border: #e0e0e0;
-    --success: #28a745;
+    --background-alt: var(--surface);
+    --border: var(--line);
+    --success: var(--green);
     --danger: #dc3545;
     --warning: #ffc107;
     --info: #17a2b8;
@@ -455,7 +450,7 @@
   }
   
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--display);
     color: var(--text-primary);
     line-height: 1.6;
     background-color: var(--background);
@@ -488,14 +483,14 @@
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 0;
     transition: transform 0.5s ease;
   }
   
   .btn {
     display: inline-block;
     padding: 0.6rem 1.2rem;
-    border-radius: 4px;
+    border-radius: 0;
     font-weight: 600;
     text-align: center;
     cursor: pointer;
@@ -509,14 +504,14 @@
   .btn-primary {
     background-color: var(--primary);
     color: white;
-    box-shadow: 0 2px 4px rgba(0, 100, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .btn-primary:hover {
     background-color: var(--primary-dark);
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 3px 6px rgba(0, 100, 0, 0.15);
+    box-shadow: var(--shadow);
   }
   
   .btn-outline {
@@ -534,7 +529,7 @@
   .btn-sm {
     padding: 0.3rem 0.7rem;
     font-size: 0.75rem;
-    border-radius: 2px;
+    border-radius: 0;
   }
   
   /* Page Banner */
@@ -706,9 +701,9 @@
   /* Article Detail */
   .article-detail {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 2rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
     margin-bottom: 3rem;
   }
   
@@ -756,7 +751,7 @@
   .event-details {
     background-color: var(--primary-lighter);
     padding: 1.5rem;
-    border-radius: 6px;
+    border-radius: 0;
     margin-bottom: 2rem;
     border-left: 4px solid var(--primary);
   }
@@ -823,7 +818,7 @@
   
   .gallery-item {
     position: relative;
-    border-radius: 6px;
+    border-radius: 0;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -868,7 +863,7 @@
     text-align: center;
     padding: 1.5rem;
     background: linear-gradient(135deg, var(--primary-lighter), var(--background-alt));
-    border-radius: 8px;
+    border-radius: 0;
     border: 2px solid var(--primary);
     position: relative;
   }
@@ -881,14 +876,14 @@
     right: -2px;
     bottom: -2px;
     background: linear-gradient(45deg, var(--primary), var(--secondary));
-    border-radius: 8px;
+    border-radius: 0;
     z-index: -1;
   }
   
   .conclusion-content {
     background: white;
     padding: 1rem;
-    border-radius: 6px;
+    border-radius: 0;
     position: relative;
     z-index: 1;
   }
@@ -923,7 +918,7 @@
     background-color: var(--primary-lighter);
     color: var(--primary);
     padding: 0.3rem 0.8rem;
-    border-radius: 15px;
+    border-radius: 0;
     font-size: 0.8rem;
     font-weight: 500;
   }
@@ -948,7 +943,7 @@
   .share-btn {
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 0;
     cursor: pointer;
     font-size: 0.8rem;
     font-weight: 500;
@@ -983,9 +978,9 @@
   /* Related Articles */
   .related-articles {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 2rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
   }
   
   .section-header {
@@ -1017,7 +1012,7 @@
     display: flex;
     gap: 1rem;
     padding: 1rem;
-    border-radius: 6px;
+    border-radius: 0;
     background-color: var(--background-alt);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1025,14 +1020,14 @@
   
   .related-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .related-image {
     flex-shrink: 0;
     width: 100px;
     height: 80px;
-    border-radius: 4px;
+    border-radius: 0;
     overflow: hidden;
   }
   
@@ -1117,7 +1112,7 @@
     color: white;
     padding: 1rem;
     margin-top: 1rem;
-    border-radius: 4px;
+    border-radius: 0;
     text-align: center;
   }
   
@@ -1151,8 +1146,8 @@
     text-align: center;
     padding: 3rem 2rem;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 0;
+    box-shadow: var(--shadow);
   }
   
   .loading-spinner {

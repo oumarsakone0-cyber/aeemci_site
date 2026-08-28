@@ -816,7 +816,7 @@
   import { sendSMS } from '../../services/smsService.js'
   
   // Données réactives
-  const API_BASE_URL = 'https://sogetrag.com/api/seminaire_list_api.php'
+  const API_BASE_URL = 'https://api.aeemci-ce.ci/seminaire_list_api.php'
   const seminairistes = ref([])
   const loading = ref(false)
   const submitting = ref(false)

@@ -12,7 +12,7 @@
               </div>
               <div class="logo-text">
                 <h1>AEEMCI</h1>
-                <p>Inscription des Membres de Commissions</p>
+                <p>Inscription des Membres des Commissions</p>
               </div>
             </div>
           </div>
@@ -37,12 +37,12 @@
               <svg class="heading-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
-              Inscription Commission AEEMCI
+              Inscription Commission CIMA AEEMCI
             </h2>
             
             <div class="choice-section">
               <div class="choice-container">
-                <h3>Rejoignez une Commission AEEMCI</h3>
+                <h3>Rejoignez une Commission pour le CIMA</h3>
                 <p class="choice-subtitle">Contribuez au développement de l'organisation</p>
                 
                 <div class="choice-buttons">
@@ -371,26 +371,6 @@
                     </div>
                   </div>
   
-                  <div class="form-group">
-                    <label class="form-label">
-                      <svg class="label-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-                      </svg>
-                      Date de naissance <span class="required">*</span>
-                    </label>
-                    <div class="input-container">
-                      <input
-                        v-model="formData.dateNaissance"
-                        @change="calculateAge"
-                        type="date"
-                        required
-                        class="form-input"
-                      />
-                    </div>
-                    <small v-if="formData.age" class="form-help">
-                      Âge calculé : {{ formData.age }} ans
-                    </small>
-                  </div>
   
                   <div class="form-group">
                     <label class="form-label">
@@ -499,24 +479,6 @@
                         placeholder="07 XX XX XX XX (optionnel)"
                         maxlength="14"
                       />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">
-                      <svg class="label-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 3l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 3z"/>
-                      </svg>
-                      Lieu de départ <span class="required">*</span>
-                    </label>
-                    <div class="input-container">
-                      <select
-                        v-model="formData.depart"
-                        required
-                        class="form-input"
-                      >
-                        <option value="Abidjan">ABIDJAN</option>
-                        <option value="Interieur">L'INTERIEUR</option>
-                      </select>
                     </div>
                   </div>
 
@@ -717,7 +679,7 @@
   import { jsPDF } from "jspdf"
   
   // Configuration API
-  const API_BASE_URL = 'https://sogetrag.com/api/'
+  const API_BASE_URL = 'https://api.aeemci-ce.ci/'
   
   // Configuration Cloudinary
   const cloudinaryConfig = {
@@ -763,7 +725,6 @@
     'FINANCE',
     'FORMATION',
     'INFORMATIQUE',
-    'PEPINIERE',
     'PROTOCOLE',
     'RESTAURATION',
     'SANTE',
@@ -780,7 +741,6 @@
     nom: '',
     prenom: '',
     sexe: '',
-    dateNaissance: '',
     age: null,
     niveauEtude: '',
     depart: '',
@@ -793,11 +753,10 @@
   })
   
   // Computed properties
-  const totalSteps = computed(() => 3) // Au lieu de 4
+  const totalSteps = computed(() => 2) // Au lieu de 4
   const steps = computed(() => [
     { title: 'Informations personnelles' },
-    { title: 'Commission' },
-    { title: 'Photo' }
+    { title: 'Commission' }
   ])
   
   const showProgressSteps = computed(() => 
@@ -863,46 +822,34 @@
   })
   
   // Fonction pour calculer l'âge
-  const calculateAge = () => {
-    if (!formData.value.dateNaissance) {
-      formData.value.age = null
-      return
-    }
-  
-    const today = new Date()
-    const birthDate = new Date(formData.value.dateNaissance)
-    let age = today.getFullYear() - birthDate.getFullYear()
-    const monthDiff = today.getMonth() - birthDate.getMonth()
-  
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      age--
-    }
-  
-    formData.value.age = age
-  }
   
   // Fonction pour récupérer les membres des commissions
-  const fetchMembresCommissions = async () => {
-    isLoadingResults.value = true
-    resultError.value = ''
-  
-    try {
-      const response = await axios.get(`${API_BASE_URL}/commission_api.php?action=membres`)
-  
-      if (response.data.success) {
-        membresCommissions.value = response.data.data || []
-        totalItems.value = membresCommissions.value.length
-      } else {
-        throw new Error(response.data.message || 'Erreur lors de la récupération des données')
-      }
-    } catch (error) {
-      console.error('Erreur lors de la récupération des membres:', error)
-      resultError.value = 'Erreur lors du chargement des membres. Veuillez réessayer.'
-      membresCommissions.value = []
-    } finally {
-      isLoadingResults.value = false
+ const fetchMembresCommissions = async () => {
+  isLoadingResults.value = true
+  resultError.value = ''
+
+  try {
+    const random = Math.random()
+
+    const response = await axios.get(
+      `${API_BASE_URL}/commission_api.php?action=membres&_=${random}`
+    )
+
+    if (response.data.success) {
+      membresCommissions.value = response.data.data || []
+      totalItems.value = membresCommissions.value.length
+    } else {
+      throw new Error(response.data.message || 'Erreur lors de la récupération des données')
     }
+  } catch (error) {
+    console.error('Erreur lors de la récupération des membres:', error)
+    resultError.value = 'Erreur lors du chargement des membres. Veuillez réessayer.'
+    membresCommissions.value = []
+  } finally {
+    isLoadingResults.value = false
   }
+}
+
   
   // Fonctions de pagination
   const goToPage = (page) => {
@@ -939,8 +886,8 @@
     switch (currentStep.value) {
       case 1:
         return formData.value.nom && formData.value.prenom &&
-               formData.value.sexe && formData.value.dateNaissance &&
-               formData.value.age && formData.value.niveauEtude &&
+               formData.value.sexe &&
+               formData.value.niveauEtude &&
                formData.value.contact
       case 2:
         return formData.value.commission
@@ -1176,7 +1123,7 @@
     }
 
     // Fonction pour générer le contenu du PDF
-    const generatePDFContent = (doc) => {
+    const generatePDFContentd = (doc) => {
     const margin = 20;
     let startY = 80;
 
@@ -1213,10 +1160,6 @@
     startY += 7;
     doc.text(`Sexe:`, margin, startY);
     doc.text(`${formData.value.sexe || 'Non renseigné'}`, margin + 40, startY);
-
-    startY += 7;
-    doc.text(`Date de naissance:`, margin, startY);
-    doc.text(`${formData.value.dateNaissance || 'Non renseignée'}`, margin + 40, startY);
 
     startY += 7;
     doc.text(`Âge:`, margin, startY);
@@ -1286,6 +1229,208 @@
     doc.save(filename);
 };
 
+const generatePDFContent = () => {
+    const doc = new jsPDF('p', 'mm', 'a4')
+    const pageWidth = 210
+    const pageHeight = 297
+    const margin = 20
+    let yPos = 20
+  
+    // Couleurs
+    const primaryColor = [22, 163, 74] // Vert AEEMCI
+    const secondaryColor = [21, 128, 61] // Vert foncé
+    const grayColor = [107, 114, 128]
+    const lightGrayColor = [243, 244, 246]
+  
+    // === EN-TÊTE AVEC LOGO ===
+    try {
+      // Logo à gauche
+      doc.addImage('https://upload.wikimedia.org/wikipedia/fr/4/42/Logo_AEEMCI.jpeg', 'JPEG', margin, yPos, 35, 30)
+    } catch (e) {
+      console.log('Logo non chargé')
+    }
+  
+    // Informations organisation à droite du logo
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(18)
+    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.text('AEEMCI', margin + 45, yPos + 10)
+    
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(10)
+    doc.setTextColor(grayColor[0], grayColor[1], grayColor[2])
+    doc.text('Association des Élèves et Étudiants', margin + 45, yPos + 17)
+    doc.text('Musulmans de Côte d\'Ivoire', margin + 45, yPos + 23)
+  
+    yPos += 40
+  
+    // Ligne de séparation décorative
+    doc.setDrawColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.setLineWidth(1.5)
+    doc.line(margin, yPos, pageWidth - margin, yPos)
+    
+    yPos += 15
+  
+    // === TITRE PRINCIPAL ===
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(20)
+    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+    doc.text('FICHE D\'INSCRIPTION', pageWidth / 2, yPos, { align: 'center' })
+    
+    yPos += 8
+    doc.setFontSize(16)
+    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.text('Commission CIMA ' + new Date().getFullYear(), pageWidth / 2, yPos, { align: 'center' })
+    
+    yPos += 15
+  
+    // Fonction helper pour créer une section
+    const createSection = (title, yPosition) => {
+      // Fond coloré pour le titre de section
+      doc.setFillColor(lightGrayColor[0], lightGrayColor[1], lightGrayColor[2])
+      doc.rect(margin, yPosition, pageWidth - 2 * margin, 10, 'F')
+      
+      // Barre de couleur à gauche
+      doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2])
+      doc.rect(margin, yPosition, 4, 10, 'F')
+      
+      // Texte du titre
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(13)
+      doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2])
+      doc.text(title, margin + 8, yPosition + 7)
+      
+      return yPosition + 15
+    }
+  
+    // Fonction helper pour ajouter un champ
+    const addField = (label, value, yPosition, fullWidth = false) => {
+      const labelWidth = 60
+      const valueStartX = margin + labelWidth
+      
+      // Label
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(11)
+      doc.setTextColor(grayColor[0], grayColor[1], grayColor[2])
+      doc.text(label + ' :', margin + 5, yPosition)
+      
+      // Valeur
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(11)
+      doc.setTextColor(0, 0, 0)
+      
+      if (fullWidth) {
+        doc.text(value, margin + 5, yPosition + 6)
+        return yPosition + 12
+      } else {
+        doc.text(value, valueStartX, yPosition)
+        return yPosition + 8
+      }
+    }
+  
+    // === SECTION 1 : INFORMATIONS PERSONNELLES ===
+    yPos = createSection('INFORMATIONS PERSONNELLES', yPos)
+    
+    yPos = addField('Nom', formData.value.nom || 'Non renseigné', yPos)
+    yPos = addField('Prénom(s)', formData.value.prenom || 'Non renseigné', yPos)
+    yPos = addField('Sexe', formData.value.sexe === 'M' ? 'Masculin' : formData.value.sexe === 'F' ? 'Féminin' : 'Non renseigné', yPos)
+    yPos = addField('Niveau d\'étude', formData.value.niveauEtude || 'Non renseigné', yPos)
+    yPos = addField('Contact personnel', formData.value.contact || 'Non renseigné', yPos)
+    
+    if (formData.value.contactParent) {
+      yPos = addField('Contact parent/tuteur', formData.value.contactParent, yPos)
+    }
+    
+    yPos += 10
+  
+    // === SECTION 2 : COMMISSION ===
+    yPos = createSection('COMMISSION', yPos)
+    
+    // Commission avec badge coloré
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(11)
+    doc.setTextColor(grayColor[0], grayColor[1], grayColor[2])
+    doc.text('Commission affectée :', margin + 5, yPos)
+    
+    // Badge de commission
+    const commissionText = formData.value.commission || 'Non renseignée'
+    doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    const badgeWidth = doc.getTextWidth(commissionText) + 12
+    doc.roundedRect(margin + 5, yPos + 3, badgeWidth, 9, 3, 3, 'F')
+    
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(10)
+    doc.setTextColor(255, 255, 255)
+    doc.text(commissionText, margin + 11, yPos + 9)
+    
+    yPos += 20
+  
+    // === SECTION 3 : INSCRIPTION ===
+    yPos = createSection('DÉTAILS D\'INSCRIPTION', yPos)
+    
+    yPos = addField('Matricule', inscriptionData.value.matricule || 'Non renseigné', yPos)
+    yPos = addField('Date d\'inscription', new Date().toLocaleDateString('fr-FR', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    }), yPos, true)
+    
+    yPos += 15
+  
+    // === SECTION SIGNATURE ===
+    yPos = createSection('SIGNATURES', yPos)
+    
+    // Deux colonnes pour les signatures
+    const col1X = margin + 10
+    const col2X = pageWidth / 2 + 10
+    const signatureY = yPos + 5
+    
+    // Signature du membre
+    doc.setFont('helvetica', 'italic')
+    doc.setFontSize(10)
+    doc.setTextColor(grayColor[0], grayColor[1], grayColor[2])
+    doc.text('Signature du membre', col1X, signatureY)
+    doc.setDrawColor(200, 200, 200)
+    doc.line(col1X, signatureY + 18, col1X + 65, signatureY + 18)
+    
+    // Signature du responsable
+    doc.text('Signature du responsable', col2X, signatureY)
+    doc.line(col2X, signatureY + 18, col2X + 65, signatureY + 18)
+    
+    yPos = signatureY + 25
+  
+    // === PIED DE PAGE ===
+    const footerY = pageHeight - 25
+    
+    // Ligne décorative
+    doc.setDrawColor(primaryColor[0], primaryColor[1], primaryColor[2])
+    doc.setLineWidth(0.5)
+    doc.line(margin, footerY, pageWidth - margin, footerY)
+    
+    // Informations de contact
+    doc.setFont('helvetica', 'italic')
+    doc.setFontSize(9)
+    doc.setTextColor(grayColor[0], grayColor[1], grayColor[2])
+    doc.text('AEEMCI - Association des Élèves et Étudiants Musulmans de Côte d\'Ivoire', pageWidth / 2, footerY + 5, { align: 'center' })
+    
+    // Numéro de page et date de génération
+    doc.setFontSize(8)
+    doc.text('Document généré le ' + new Date().toLocaleString('fr-FR'), margin, footerY + 15)
+    doc.text('Page 1/1', pageWidth - margin, footerY + 15, { align: 'right' })
+  
+    // Filigrane "OFFICIEL" en diagonal (optionnel)
+   
+  
+    // Sauvegarde du fichier
+    const nom = formData.value.nom || 'fiche'
+    const prenom = formData.value.prenom || 'membre'
+    const date = new Date().toISOString().split('T')[0]
+    const filename = `AEEMCI_Fiche_${nom}_${prenom}_${date}.pdf`
+  
+    doc.save(filename)
+  }
+
 };
 
   
@@ -1325,8 +1470,8 @@
   
   .app-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #dcfce7 0%, #f9fafb 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--green-mist) 0%, var(--surface) 100%);
+    font-family: var(--display);
   }
   
   /* Header */
@@ -1334,8 +1479,8 @@
     max-width: 1200px;
     margin: 0 auto;
     background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
   }
   
   .header-content {
@@ -1361,7 +1506,7 @@
   .logo-icon {
     width: 2.5rem;
     height: 2.5rem;
-    background: #16a34a;
+    background: var(--green);
     color: #ffffff;
     border-radius: 50%;
     display: flex;
@@ -1374,13 +1519,13 @@
   .logo-text h1 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #16a34a;
+    color: var(--green);
     margin: 0;
   }
   
   .logo-text p {
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin: 0;
   }
   
@@ -1390,21 +1535,21 @@
   
   .step-info {
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin-bottom: 0.25rem;
   }
   
   .progress-bar {
     width: 8rem;
     height: 0.5rem;
-    background: #e5e7eb;
-    border-radius: 0.25rem;
+    background: var(--line);
+    border-radius: 0;
     overflow: hidden;
   }
   
   .progress-fill {
     height: 100%;
-    background: #16a34a;
+    background: var(--green);
     transition: width 0.3s ease;
   }
   
@@ -1417,8 +1562,8 @@
   
   .form-container {
     background: #ffffff;
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-radius: 0;
+    box-shadow: var(--shadow);
     overflow: hidden;
   }
   
@@ -1432,9 +1577,9 @@
   }
   
   .choice-container {
-    background: #f0fdf4;
-    border: 2px solid #16a34a;
-    border-radius: 1rem;
+    background: var(--green-mist);
+    border: 2px solid var(--green);
+    border-radius: 0;
     padding: 3rem;
     text-align: center;
     max-width: 800px;
@@ -1444,13 +1589,13 @@
   .choice-container h3 {
     font-size: 2rem;
     font-weight: bold;
-    color: #15803d;
+    color: var(--green);
     margin-bottom: 1rem;
   }
   
   .choice-subtitle {
     font-size: 1.125rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin-bottom: 3rem;
   }
   
@@ -1468,7 +1613,7 @@
     gap: 1.5rem;
     padding: 2rem;
     border: 2px solid;
-    border-radius: 1rem;
+    border-radius: 0;
     background: #ffffff;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1479,14 +1624,14 @@
   }
   
   .choice-btn-primary {
-    border-color: #16a34a;
-    color: #15803d;
+    border-color: var(--green);
+    color: var(--green);
   }
   
   .choice-btn-primary:hover {
-    background: #f0fdf4;
+    background: var(--green-mist);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.2);
+    box-shadow: var(--shadow);
   }
   
   .choice-btn-secondary {
@@ -1497,7 +1642,7 @@
   .choice-btn-secondary:hover {
     background: #eff6ff;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
+    box-shadow: var(--shadow);
   }
   
   .choice-btn svg {
@@ -1546,23 +1691,23 @@
     align-items: center;
     gap: 0.75rem;
     padding: 1.5rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 0.75rem;
+    border: 2px solid var(--line);
+    border-radius: 0;
     background: #ffffff;
     transition: all 0.2s ease;
     text-align: center;
   }
   
   .commission-item:hover .commission-card {
-    border-color: #16a34a;
-    background: #f0fdf4;
+    border-color: var(--green);
+    background: var(--green);
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .commission-selected .commission-card {
-    border-color: #16a34a;
-    background: #16a34a;
+    border-color: var(--green);
+    background: var(--green);
     color: #ffffff;
   }
   
@@ -1574,7 +1719,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #16a34a;
+    color: var(--green);
     transition: all 0.2s ease;
   }
   
@@ -1586,7 +1731,7 @@
   .commission-name {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #374151;
+    color: var(--ink-soft);
     transition: color 0.2s ease;
   }
   
@@ -1615,14 +1760,14 @@
     justify-content: center;
     padding: 3rem;
     text-align: center;
-    color: #6b7280;
+    color: var(--muted);
   }
   
   .loading-spinner-large {
     width: 48px;
     height: 48px;
-    border: 4px solid #e5e7eb;
-    border-top: 4px solid #16a34a;
+    border: 4px solid var(--line);
+    border-top: 4px solid var(--green);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 1rem;
@@ -1642,7 +1787,7 @@
   .no-results {
     padding: 3rem;
     text-align: center;
-    color: #6b7280;
+    color: var(--muted);
   }
   
   .no-results svg {
@@ -1665,14 +1810,14 @@
     width: 100%;
     padding: 0.75rem 2.5rem 0.75rem 1rem;
     border: 2px solid #d1d5db;
-    border-radius: 0.5rem;
+    border-radius: 0;
     font-size: 0.875rem;
     transition: all 0.2s ease;
   }
   
   .search-input:focus {
     outline: none;
-    border-color: #16a34a;
+    border-color: var(--green);
     box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
   }
   
@@ -1681,7 +1826,7 @@
     right: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #9ca3af;
+    color: var(--muted);
     pointer-events: none;
   }
   
@@ -1701,7 +1846,7 @@
   
   .results-header p {
     font-size: 1.125rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin: 0;
   }
   
@@ -1714,23 +1859,23 @@
   .pagination-info {
     margin-bottom: 1rem;
     padding: 0.75rem 1rem;
-    background: #f8fafc;
-    border-radius: 0.5rem;
-    border: 1px solid #e5e7eb;
+    background: var(--surface);
+    border-radius: 0;
+    border: 1px solid var(--line);
   }
   
   .pagination-info p {
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin: 0;
   }
   
   .table-container {
     background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow);
   }
   
   .results-table {
@@ -1739,15 +1884,15 @@
   }
   
   .results-table thead {
-    background: #f8fafc;
+    background: var(--surface);
   }
   
   .results-table th {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
-    color: #374151;
-    border-bottom: 2px solid #e5e7eb;
+    color: var(--ink-soft);
+    border-bottom: 2px solid var(--line);
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1758,11 +1903,11 @@
   }
   
   .table-row:hover {
-    background: #f9fafb;
+    background: var(--surface);
   }
   
   .table-row:nth-child(even) {
-    background: #f8fafc;
+    background: var(--surface);
   }
   
   .table-row:nth-child(even):hover {
@@ -1771,8 +1916,8 @@
   
   .table-cell {
     padding: 1rem;
-    border-bottom: 1px solid #e5e7eb;
-    color: #374151;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-soft);
     font-size: 0.875rem;
   }
   
@@ -1782,9 +1927,9 @@
     align-items: center;
     margin-top: 1.5rem;
     padding: 1rem;
-    background: #f8fafc;
-    border-radius: 0.75rem;
-    border: 1px solid #e5e7eb;
+    background: var(--surface);
+    border-radius: 0;
+    border: 1px solid var(--line);
     flex-wrap: wrap;
     gap: 1rem;
   }
@@ -1805,8 +1950,8 @@
     padding: 0.5rem 0.75rem;
     border: 1px solid #d1d5db;
     background: #ffffff;
-    color: #374151;
-    border-radius: 0.375rem;
+    color: var(--ink-soft);
+    border-radius: 0;
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
@@ -1818,8 +1963,8 @@
   }
   
   .pagination-btn:hover:not(:disabled) {
-    background: #f9fafb;
-    border-color: #9ca3af;
+    background: var(--surface);
+    border-color: var(--muted);
   }
   
   .pagination-btn:disabled {
@@ -1829,14 +1974,14 @@
   }
   
   .pagination-btn-active {
-    background: #16a34a;
+    background: var(--green);
     color: #ffffff;
-    border-color: #16a34a;
+    border-color: var(--green);
   }
   
   .pagination-btn-active:hover {
-    background: #15803d;
-    border-color: #15803d;
+    background: var(--green);
+    border-color: var(--green);
   }
   
   .pagination-btn-nav {
@@ -1845,7 +1990,7 @@
   
   .pagination-ellipsis {
     padding: 0.5rem;
-    color: #6b7280;
+    color: var(--muted);
     font-weight: 500;
   }
   
@@ -1857,16 +2002,16 @@
   
   .items-per-page label {
     font-size: 0.875rem;
-    color: #374151;
+    color: var(--ink-soft);
     font-weight: 500;
   }
   
   .items-select {
     padding: 0.375rem 0.75rem;
     border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
+    border-radius: 0;
     background: #ffffff;
-    color: #374151;
+    color: var(--ink-soft);
     font-size: 0.875rem;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -1874,7 +2019,7 @@
   
   .items-select:focus {
     outline: none;
-    border-color: #16a34a;
+    border-color: var(--green);
     box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
   }
   
@@ -1884,12 +2029,12 @@
     align-items: center;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 2px solid #e5e7eb;
+    border-top: 2px solid var(--line);
   }
   
   /* Steps Header */
   .steps-header {
-    background: #dcfce7;
+    background: var(--green-mist);
     padding: 1.5rem 2rem;
   }
   
@@ -1921,25 +2066,25 @@
     transition: all 0.3s ease;
     border: 2px solid #d1d5db;
     background: #ffffff;
-    color: #4b5563;
+    color: var(--ink-soft);
   }
   
   .step-item.step-active .step-number {
-    background: #16a34a;
+    background: var(--green);
     color: #ffffff;
-    border-color: #16a34a;
+    border-color: var(--green);
   }
   
   .step-item.step-completed .step-number {
-    background: #15803d;
+    background: var(--green);
     color: #ffffff;
-    border-color: #15803d;
+    border-color: var(--green);
   }
   
   .step-title {
     font-size: 0.75rem;
     font-weight: 500;
-    color: #374151;
+    color: var(--ink-soft);
     text-align: center;
   }
   
@@ -1954,7 +2099,7 @@
   }
   
   .step-connector.connector-active {
-    background: #16a34a;
+    background: var(--green);
   }
   
   /* Form Content */
@@ -1969,7 +2114,7 @@
   .step-heading {
     font-size: 1.75rem;
     font-weight: bold;
-    color: #1f2937;
+    color: var(--ink);
     margin-bottom: 2rem;
     text-align: center;
     display: flex;
@@ -1979,7 +2124,7 @@
   }
   
   .heading-icon {
-    color: #16a34a;
+    color: var(--green);
   }
   
   /* Form Elements */
@@ -2001,7 +2146,7 @@
   .form-label {
     font-size: 0.875rem;
     font-weight: 500;
-    color: #374151;
+    color: var(--ink-soft);
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
@@ -2009,7 +2154,7 @@
   }
   
   .label-icon {
-    color: #16a34a;
+    color: var(--green);
   }
   
   .required {
@@ -2024,7 +2169,7 @@
     width: 100%;
     padding: 0.75rem;
     border: 2px solid #d1d5db;
-    border-radius: 0.5rem;
+    border-radius: 0;
     font-size: 1rem;
     transition: all 0.2s ease;
     background: #ffffff;
@@ -2032,13 +2177,13 @@
   
   .form-input:focus {
     outline: none;
-    border-color: #16a34a;
+    border-color: var(--green);
     box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
   }
   
   .form-help {
     font-size: 0.75rem;
-    color: #6b7280;
+    color: var(--muted);
     margin-top: 0.25rem;
   }
   
@@ -2058,8 +2203,8 @@
     display: flex;
     align-items: center;
     padding: 0.75rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 0.5rem;
+    border: 2px solid var(--line);
+    border-radius: 0;
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
@@ -2072,8 +2217,8 @@
   }
   
   .radio-item:hover {
-    background: #f9fafb;
-    border-color: #16a34a;
+    background: var(--surface);
+    border-color: var(--green);
   }
   
   .radio-input {
@@ -2094,8 +2239,8 @@
   }
   
   .radio-input:checked + .radio-custom {
-    border-color: #16a34a;
-    background: #16a34a;
+    border-color: var(--green);
+    background: var(--green);
   }
   
   .radio-input:checked + .radio-custom::after {
@@ -2112,7 +2257,7 @@
   
   .radio-label {
     font-weight: 500;
-    color: #374151;
+    color: var(--ink-soft);
   }
   
   /* Photo Section */
@@ -2136,7 +2281,7 @@
     width: 100%;
     height: 100%;
     border: 2px dashed #d1d5db;
-    border-radius: 0.75rem;
+    border-radius: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2144,30 +2289,30 @@
     padding: 1.5rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    background: #f9fafb;
+    background: var(--surface);
   }
   
   .photo-placeholder:hover {
-    border-color: #16a34a;
-    background: #f0fdf4;
+    border-color: var(--green);
+    background: var(--green-mist);
   }
   
   .upload-icon {
-    color: #9ca3af;
+    color: var(--muted);
     margin-bottom: 1rem;
   }
   
   .photo-placeholder p {
     font-size: 0.875rem;
     font-weight: 500;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin-bottom: 0.5rem;
     text-align: center;
   }
   
   .photo-placeholder small {
     font-size: 0.75rem;
-    color: #6b7280;
+    color: var(--muted);
     text-align: center;
   }
   
@@ -2175,13 +2320,13 @@
     width: 100%;
     height: 100%;
     border: 2px solid #d1d5db;
-    border-radius: 0.75rem;
+    border-radius: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    background: #f9fafb;
+    background: var(--surface);
   }
   
   .upload-progress-container {
@@ -2207,12 +2352,12 @@
     position: absolute;
     font-size: 0.875rem;
     font-weight: 600;
-    color: #16a34a;
+    color: var(--green);
   }
   
   .upload-loading p {
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin-bottom: 0.5rem;
   }
   
@@ -2227,9 +2372,9 @@
     width: 100%;
     height: 100%;
     position: relative;
-    border-radius: 0.75rem;
+    border-radius: 0;
     overflow: hidden;
-    border: 2px solid #16a34a;
+    border: 2px solid var(--green);
   }
   
   .preview-image {
@@ -2265,8 +2410,8 @@
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 2rem;
-    border-top: 1px solid #e5e7eb;
-    background: #f8fafc;
+    border-top: 1px solid var(--line);
+    background: var(--surface);
   }
   
   .btn {
@@ -2275,7 +2420,7 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
@@ -2284,12 +2429,12 @@
   }
   
   .btn-primary {
-    background: #16a34a;
+    background: var(--green);
     color: #ffffff;
   }
   
   .btn-primary:hover:not(:disabled) {
-    background: #15803d;
+    background: var(--green);
   }
   
   .btn-primary:disabled {
@@ -2299,11 +2444,11 @@
   
   .btn-secondary {
     background: #f3f4f6;
-    color: #374151;
+    color: var(--ink-soft);
   }
   
   .btn-secondary:hover {
-    background: #e5e7eb;
+    background: var(--line);
   }
   
   .loading-spinner {
@@ -2337,11 +2482,11 @@
   
   .modal-content {
     background: #ffffff;
-    border-radius: 1rem;
+    border-radius: 0;
     padding: 2rem;
     max-width: 500px;
     width: 100%;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow);
   }
   
   .modal-header {
@@ -2352,8 +2497,8 @@
   .success-icon {
     width: 4rem;
     height: 4rem;
-    background: #dcfce7;
-    color: #16a34a;
+    background: var(--green-mist);
+    color: var(--green);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2364,23 +2509,23 @@
   .modal-header h3 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #1f2937;
+    color: var(--ink);
     margin-bottom: 1rem;
   }
   
   .modal-header p {
     font-size: 1rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin-bottom: 0.5rem;
   }
   
   .matricule-info, .commission-info {
     padding: 0.75rem;
-    background: #f0fdf4;
-    border-radius: 0.5rem;
+    background: var(--green-mist);
+    border-radius: 0;
     margin-top: 1rem;
     font-size: 1rem;
-    color: #15803d;
+    color: var(--green);
   }
   
   .modal-actions {
@@ -2467,7 +2612,7 @@
     }
   
     .form-container {
-      border-radius: 0.5rem;
+      border-radius: 0;
     }
   
     .choice-container {

@@ -1084,23 +1084,23 @@
   
   <style>
   :root {
-    --primary: #006400;
-    --primary-dark: #004d00;
-    --primary-light: #008000;
+    --primary: var(--green);
+    --primary-dark: var(--green);
+    --primary-light: var(--green);
     --primary-lighter: #e6f0e6;
-    --secondary: #f8b400;
-    --secondary-dark: #d99b00;
-    --secondary-light: #ffc933;
-    --accent: #e67e22;
-    --accent-dark: #d35400;
-    --accent-light: #f39c12;
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --text-light: #999999;
+    --secondary: var(--gold);
+    --secondary-dark: var(--gold);
+    --secondary-light: var(--gold);
+    --accent: var(--gold);
+    --accent-dark: var(--gold);
+    --accent-light: var(--gold);
+    --text-primary: var(--ink);
+    --text-secondary: var(--muted);
+    --text-light: var(--muted);
     --background: #ffffff;
-    --background-alt: #f5f5f5;
-    --border: #e0e0e0;
-    --success: #28a745;
+    --background-alt: var(--surface);
+    --border: var(--line);
+    --success: var(--green);
     --danger: #dc3545;
     --warning: #ffc107;
     --info: #17a2b8;
@@ -1113,7 +1113,7 @@
   }
   
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--display);
     color: var(--text-primary);
     line-height: 1.6;
     background-color: var(--background);
@@ -1150,7 +1150,7 @@
   /* Header Styles */
   .header {
     background-color: white;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -1232,8 +1232,8 @@
     left: 0;
     background-color: white;
     min-width: 160px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-    border-radius: 3px;
+    box-shadow: var(--shadow);
+    border-radius: 0;
     padding: 0.4rem 0;
     z-index: 100;
     list-style: none;
@@ -1281,7 +1281,7 @@
   
   .btn-donate, .btn-espace {
     padding: 0.3rem 0.7rem;
-    border-radius: 2px;
+    border-radius: 0;
     font-size: 0.75rem;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -1401,9 +1401,9 @@
     flex: 0 0 40%;
     background-color: var(--primary-lighter);
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 0;
     position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
   }
   
   .quote-mark {
@@ -1461,7 +1461,7 @@
     width: 80px;
     height: 3px;
     background-color: var(--primary);
-    border-radius: 3px;
+    border-radius: 0;
   }
   
   /* Formations Tabs */
@@ -1471,9 +1471,9 @@
   
   .formations-tabs {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
   }
   
   .tabs-header {
@@ -1556,15 +1556,15 @@
   
   .formation-card {
     background-color: var(--background-alt);
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
     transition: all 0.3s ease;
   }
   
   .formation-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .formation-header {
@@ -1612,9 +1612,9 @@
   
   .calendar-container {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
   }
   
   .calendar-header {
@@ -1675,7 +1675,7 @@
   
   .date-cell {
     height: 60px;
-    border-radius: 8px;
+    border-radius: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1722,7 +1722,7 @@
   
   .events-list {
     background-color: var(--background-alt);
-    border-radius: 8px;
+    border-radius: 0;
     padding: 1.5rem;
     margin-top: 1.5rem;
   }
@@ -1737,10 +1737,10 @@
     display: flex;
     align-items: center;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 1rem;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
   }
   
   .event-time {
@@ -1767,7 +1767,7 @@
     padding: 0.5rem 1rem;
     background-color: var(--primary);
     color: white;
-    border-radius: 4px;
+    border-radius: 0;
     font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -1808,7 +1808,7 @@
   
   .formateur-photo {
     height: 200px;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
     margin-bottom: 1rem;
   }
@@ -1822,8 +1822,8 @@
   .formateur-info {
     padding: 1rem;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 0;
+    box-shadow: var(--shadow);
   }
   
   .formateur-name {
@@ -1855,7 +1855,7 @@
     background-color: var(--primary-lighter);
     color: var(--primary);
     padding: 0.3rem 0.6rem;
-    border-radius: 4px;
+    border-radius: 0;
     font-size: 0.8rem;
     font-weight: 600;
   }
@@ -1933,10 +1933,10 @@
   
   .testimonial-content {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 2rem;
     position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
   }
   
   .testimonial-quote {
@@ -2052,8 +2052,8 @@
   .inscription-form {
     background-color: white;
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 0;
+    box-shadow: var(--shadow);
   }
   
   .inscription-form h3 {
@@ -2080,7 +2080,7 @@
     width: 100%;
     padding: 0.8rem;
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 0;
     font-family: inherit;
     font-size: 0.9rem;
     transition: all 0.3s ease;
@@ -2097,7 +2097,7 @@
   .btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    border-radius: 4px;
+    border-radius: 0;
     font-weight: 600;
     text-align: center;
     cursor: pointer;
@@ -2109,13 +2109,13 @@
   .btn-primary {
     background-color: var(--primary);
     color: white;
-    box-shadow: 0 2px 4px rgba(0, 100, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .btn-primary:hover {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 3px 6px rgba(0, 100, 0, 0.15);
+    box-shadow: var(--shadow);
   }
   
   /* Gallery Section */
@@ -2130,17 +2130,17 @@
   }
   
   .gallery-item {
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
     position: relative;
     cursor: pointer;
     transition: transform 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
   }
   
   .gallery-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .gallery-image {
@@ -2194,7 +2194,7 @@
   .lightbox-img {
     max-width: 100%;
     max-height: 80vh;
-    border-radius: 4px;
+    border-radius: 0;
   }
   
   .lightbox-caption {
@@ -2247,7 +2247,7 @@
   
   /* Footer */
   .footer {
-    background-color: #333;
+    background-color: var(--ink);
     color: white;
     padding: 3rem 0 1rem;
     position: relative;
@@ -2300,7 +2300,7 @@
     width: 30px;
     height: 2px;
     background-color: var(--primary);
-    border-radius: 2px;
+    border-radius: 0;
   }
   
   .footer-links {
@@ -2417,7 +2417,7 @@
       left: 0;
       right: 0;
       background-color: white;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
       padding: 1rem;
       display: none;
       flex-direction: column;
@@ -2565,7 +2565,7 @@
     padding: 0.6rem 1.2rem;
     background-color: var(--background-alt);
     border: none;
-    border-radius: 4px;
+    border-radius: 0;
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-secondary);
@@ -2587,9 +2587,9 @@
   .formation-list-item {
     display: flex;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
     position: relative;
   }
   
@@ -2598,7 +2598,7 @@
     top: 1rem;
     right: 1rem;
     padding: 0.3rem 0.8rem;
-    border-radius: 20px;
+    border-radius: 0;
     font-size: 0.8rem;
     font-weight: 600;
     color: white;
@@ -2684,7 +2684,7 @@
     display: flex;
     align-items: center;
     padding: 0.6rem 1rem;
-    border-radius: 4px;
+    border-radius: 0;
     font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -2721,7 +2721,7 @@
     text-align: center;
     padding: 3rem;
     background-color: var(--background-alt);
-    border-radius: 8px;
+    border-radius: 0;
     color: var(--text-secondary);
   }
   
@@ -2741,12 +2741,12 @@
   
   .modal-content {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 2rem;
     width: 90%;
     max-width: 500px;
     position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow);
   }
   
   .modal-close {
@@ -2793,10 +2793,10 @@
     background-color: var(--success);
     color: white;
     padding: 1rem 1.5rem;
-    border-radius: 4px;
+    border-radius: 0;
     display: flex;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
   
   .notification-icon {

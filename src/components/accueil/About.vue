@@ -71,13 +71,13 @@
   
   .section-header h2 {
     font-size: 36px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 15px;
   }
   
   .section-header p {
     font-size: 18px;
-    color: #666;
+    color: var(--muted);
   }
   
   .about-content {
@@ -92,13 +92,13 @@
   }
   
   .mission h3, .values h3 {
-    color: #16a085;
+    color: var(--green);
     font-size: 24px;
     margin-bottom: 15px;
   }
   
   .mission p, .values li {
-    color: #666;
+    color: var(--muted);
     line-height: 1.8;
     font-size: 16px;
   }
@@ -116,7 +116,7 @@
   
   .values li::before {
     content: "✓";
-    color: #16a085;
+    color: var(--green);
     font-weight: bold;
     position: absolute;
     left: 0;
@@ -131,19 +131,19 @@
   .stat-item {
     text-align: center;
     padding: 30px 20px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border-left: 4px solid #16a085;
+    background: var(--surface);
+    border-radius: 0;
+    border-left: 4px solid var(--green);
   }
   
   .stat-item h4 {
     font-size: 36px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 10px;
   }
   
   .stat-item p {
-    color: #666;
+    color: var(--muted);
     font-weight: 500;
   }
   

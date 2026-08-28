@@ -742,7 +742,7 @@
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
   
   // Données réactives
-  const API_BASE_URL = 'https://sogetrag.com/api/bachelier-api.php' // REMPLACEZ PAR VOTRE VRAIE URL API
+  const API_BASE_URL = 'https://api.aeemci-ce.ci/bachelier-api.php' // REMPLACEZ PAR VOTRE VRAIE URL API
   const bacheliers = ref([])
   const serieBacs = ref(['A', 'C', 'D', 'E', 'F', 'G', 'Autre'])
   
@@ -1364,12 +1364,12 @@
   
   .overflow-y-auto::-webkit-scrollbar-track {
     background: #f1f1f1;
-    border-radius: 3px;
+    border-radius: 0;
   }
   
   .overflow-y-auto::-webkit-scrollbar-thumb {
     background: #c1c1c1;
-    border-radius: 3px;
+    border-radius: 0;
   }
   
   .overflow-y-auto::-webkit-scrollbar-thumb:hover {

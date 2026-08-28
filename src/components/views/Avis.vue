@@ -462,7 +462,7 @@
     isSubmitting.value = true
     try {
       // REMPLACEZ 'http://localhost/api/submit_questionnaire.php' par l'URL réelle de votre backend PHP
-      const response = await axios.post('https://sogetrag.com/api/submit_questionnaire.php', formData.value);
+      const response = await axios.post('https://api.aeemci-ce.ci/submit_questionnaire.php', formData.value);
   
       if (response.data.success) {
         console.log('Questionnaire soumis avec succès !', response.data);
@@ -499,8 +499,8 @@
   
   .app-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #dcfce7 0%, #f9fafb 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--green-mist) 0%, var(--surface) 100%);
+    font-family: var(--display);
   }
   
   /* Header */
@@ -508,8 +508,8 @@
     max-width: 1200px;
     margin: 0 auto;
     background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
   }
   
   .header-content {
@@ -535,7 +535,7 @@
   .logo-icon {
     width: 2.5rem;
     height: 2.5rem;
-    background: #16a34a;
+    background: var(--green);
     color: #ffffff;
     border-radius: 50%;
     display: flex;
@@ -548,13 +548,13 @@
   .logo-text h1 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #16a34a;
+    color: var(--green);
     margin: 0;
   }
   
   .logo-text p {
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin: 0;
   }
   
@@ -564,21 +564,21 @@
   
   .step-info {
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin-bottom: 0.25rem;
   }
   
   .progress-bar {
     width: 8rem;
     height: 0.5rem;
-    background: #e5e7eb;
-    border-radius: 0.25rem;
+    background: var(--line);
+    border-radius: 0;
     overflow: hidden;
   }
   
   .progress-fill {
     height: 100%;
-    background: #16a34a;
+    background: var(--green);
     transition: width 0.3s ease;
   }
   
@@ -591,8 +591,8 @@
   
   .form-container {
     background: #ffffff;
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-radius: 0;
+    box-shadow: var(--shadow);
     overflow: hidden;
   }
   
@@ -606,9 +606,9 @@
   }
   
   .choice-container {
-    background: #f0fdf4;
-    border: 2px solid #16a34a;
-    border-radius: 1rem;
+    background: var(--green-mist);
+    border: 2px solid var(--green);
+    border-radius: 0;
     padding: 3rem;
     text-align: center;
     max-width: 800px;
@@ -618,13 +618,13 @@
   .choice-container h2 {
     font-size: 2rem;
     font-weight: bold;
-    color: #15803d;
+    color: var(--green);
     margin-bottom: 1rem;
   }
   
   .subtitle {
     font-size: 1.125rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin-bottom: 3rem;
   }
   
@@ -642,7 +642,7 @@
     gap: 1.5rem;
     padding: 2rem;
     border: 2px solid;
-    border-radius: 1rem;
+    border-radius: 0;
     background: #ffffff;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -653,14 +653,14 @@
   }
   
   .choice-btn-primary {
-    border-color: #16a34a;
-    color: #15803d;
+    border-color: var(--green);
+    color: var(--green);
   }
   
   .choice-btn-primary:hover {
-    background: #f0fdf4;
+    background: var(--green-mist);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.2);
+    box-shadow: var(--shadow);
   }
   
   .choice-btn svg {
@@ -688,7 +688,7 @@
   
   /* Steps Header */
   .steps-header {
-    background: #dcfce7;
+    background: var(--green-mist);
     padding: 1.5rem 2rem;
   }
   
@@ -720,25 +720,25 @@
     transition: all 0.3s ease;
     border: 2px solid #d1d5db;
     background: #ffffff;
-    color: #4b5563;
+    color: var(--ink-soft);
   }
   
   .step-item.step-active .step-number {
-    background: #16a34a;
+    background: var(--green);
     color: #ffffff;
-    border-color: #16a34a;
+    border-color: var(--green);
   }
   
   .step-item.step-completed .step-number {
-    background: #15803d;
+    background: var(--green);
     color: #ffffff;
-    border-color: #15803d;
+    border-color: var(--green);
   }
   
   .step-title {
     font-size: 0.75rem;
     font-weight: 500;
-    color: #374151;
+    color: var(--ink-soft);
     text-align: center;
   }
   
@@ -753,7 +753,7 @@
   }
   
   .step-connector.connector-active {
-    background: #16a34a;
+    background: var(--green);
   }
   
   /* Form Content */
@@ -768,7 +768,7 @@
   .step-heading {
     font-size: 1.75rem;
     font-weight: bold;
-    color: #1f2937;
+    color: var(--ink);
     margin-bottom: 2rem;
     text-align: center;
     display: flex;
@@ -778,7 +778,7 @@
   }
   
   .heading-icon {
-    color: #16a34a;
+    color: var(--green);
   }
   
   /* Form Elements */
@@ -795,7 +795,7 @@
   .form-label {
     font-size: 0.875rem;
     font-weight: 500;
-    color: #374151;
+    color: var(--ink-soft);
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
@@ -814,7 +814,7 @@
     width: 100%;
     padding: 0.75rem;
     border: 2px solid #d1d5db;
-    border-radius: 0.5rem;
+    border-radius: 0;
     font-size: 1rem;
     transition: all 0.2s ease;
     background: #ffffff;
@@ -822,7 +822,7 @@
   
   .form-input:focus {
     outline: none;
-    border-color: #16a34a;
+    border-color: var(--green);
     box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
   }
   
@@ -843,8 +843,8 @@
     display: flex;
     align-items: center;
     padding: 0.75rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 0.5rem;
+    border: 2px solid var(--line);
+    border-radius: 0;
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
@@ -857,8 +857,8 @@
   }
   
   .radio-item:hover {
-    background: #f9fafb;
-    border-color: #16a34a;
+    background: var(--surface);
+    border-color: var(--green);
   }
   
   .radio-input {
@@ -879,8 +879,8 @@
   }
   
   .radio-input:checked + .radio-custom {
-    border-color: #16a34a;
-    background: #16a34a;
+    border-color: var(--green);
+    background: var(--green);
   }
   
   .radio-input:checked + .radio-custom::after {
@@ -897,7 +897,7 @@
   
   .radio-label {
     font-weight: 500;
-    color: #374151;
+    color: var(--ink-soft);
   }
   
   /* Navigation Buttons */
@@ -905,8 +905,8 @@
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 2rem;
-    border-top: 1px solid #e5e7eb;
-    background: #f8fafc;
+    border-top: 1px solid var(--line);
+    background: var(--surface);
   }
   
   .btn {
@@ -915,7 +915,7 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
@@ -924,12 +924,12 @@
   }
   
   .btn-primary {
-    background: #16a34a;
+    background: var(--green);
     color: #ffffff;
   }
   
   .btn-primary:hover:not(:disabled) {
-    background: #15803d;
+    background: var(--green);
   }
   
   .btn-primary:disabled {
@@ -939,11 +939,11 @@
   
   .btn-secondary {
     background: #f3f4f6;
-    color: #374151;
+    color: var(--ink-soft);
   }
   
   .btn-secondary:hover {
-    background: #e5e7eb;
+    background: var(--line);
   }
   
   .loading-spinner {
@@ -977,11 +977,11 @@
   
   .modal-content {
     background: #ffffff;
-    border-radius: 1rem;
+    border-radius: 0;
     padding: 2rem;
     max-width: 500px;
     width: 100%;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow);
   }
   
   .modal-header {
@@ -992,8 +992,8 @@
   .success-icon {
     width: 4rem;
     height: 4rem;
-    background: #dcfce7;
-    color: #16a34a;
+    background: var(--green-mist);
+    color: var(--green);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1004,13 +1004,13 @@
   .modal-header h3 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #1f2937;
+    color: var(--ink);
     margin-bottom: 1rem;
   }
   
   .modal-header p {
     font-size: 1rem;
-    color: #4b5563;
+    color: var(--ink-soft);
     margin-bottom: 0.5rem;
   }
   
@@ -1082,7 +1082,7 @@
     }
   
     .form-container {
-      border-radius: 0.5rem;
+      border-radius: 0;
     }
   
     .step-content {

@@ -51,7 +51,7 @@
   
   <style scoped>
   .announcement-banner {
-    background: linear-gradient(135deg, #16a085, #138d75);
+    background: linear-gradient(135deg, var(--green), var(--green));
     color: white;
     padding: 12px 0;
     text-align: center;
@@ -100,7 +100,7 @@
   
   .header {
     background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -124,13 +124,13 @@
   
   .logo-icon {
     font-size: 32px;
-    color: #16a085;
+    color: var(--green);
   }
   
   .logo-text {
     font-size: 28px;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--ink);
   }
   
   .nav-menu {
@@ -140,7 +140,7 @@
   
   .nav-link {
     text-decoration: none;
-    color: #2c3e50;
+    color: var(--ink);
     font-weight: 500;
     padding: 10px 0;
     position: relative;
@@ -149,7 +149,7 @@
   
   .nav-link:hover,
   .nav-link.active {
-    color: #16a085;
+    color: var(--green);
   }
   
   .nav-link.active::after {
@@ -159,22 +159,22 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: #16a085;
+    background: var(--green);
   }
   
   .join-btn {
-    background: #16a085;
+    background: var(--green);
     color: white;
     border: none;
     padding: 12px 24px;
-    border-radius: 25px;
+    border-radius: 0;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
   }
   
   .join-btn:hover {
-    background: #138d75;
+    background: var(--green);
   }
   
   @media (max-width: 768px) {

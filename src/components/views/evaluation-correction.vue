@@ -243,7 +243,7 @@
         if (this.error) return;
         
         try {
-          const response = await fetch('https://sogetrag.com/api/evaluations-api.php', {
+          const response = await fetch('https://api.aeemci-ce.ci/senafoi/evaluations-api.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

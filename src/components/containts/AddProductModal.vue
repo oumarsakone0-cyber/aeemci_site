@@ -1190,7 +1190,7 @@ onMounted(() => {
 /* Styles pour l'éditeur WYSIWYG */
 [contenteditable="true"]:empty:before {
   content: attr(placeholder);
-  color: #9CA3AF;
+  color: var(--muted);
   font-style: italic;
 }
 

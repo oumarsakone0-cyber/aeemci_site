@@ -493,7 +493,7 @@ function uploadImage($pdo) {
         
         // Déplacer le fichier
         if (move_uploaded_file($file['tmp_name'], $filepath)) {
-            $url = 'http://sogetrag.com/apistage/' . $filepath;
+            $url = 'https://api.aeemci-ce.cistage/' . $filepath;
             
             // Si un ID d'actualité est fourni, associer l'image
             if ($actualiteId) {

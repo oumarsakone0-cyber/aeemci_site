@@ -86,7 +86,7 @@
   <style scoped>
   .activities {
     padding: 80px 20px;
-    background: #f8f9fa;
+    background: var(--surface);
   }
   
   .container {
@@ -101,13 +101,13 @@
   
   .section-header h2 {
     font-size: 36px;
-    color: #16a085;
+    color: var(--green);
     margin-bottom: 15px;
   }
   
   .section-header p {
     font-size: 18px;
-    color: #666;
+    color: var(--muted);
   }
   
   .activities-grid {
@@ -119,14 +119,14 @@
   .activity-card {
     background: white;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-radius: 0;
+    box-shadow: var(--shadow);
     transition: transform 0.3s, box-shadow 0.3s;
   }
   
   .activity-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow);
   }
   
   .activity-icon {
@@ -135,13 +135,13 @@
   }
   
   .activity-card h3 {
-    color: #16a085;
+    color: var(--green);
     font-size: 24px;
     margin-bottom: 15px;
   }
   
   .activity-card p {
-    color: #666;
+    color: var(--muted);
     line-height: 1.6;
     margin-bottom: 20px;
   }
@@ -152,7 +152,7 @@
   }
   
   .activity-card li {
-    color: #666;
+    color: var(--muted);
     margin-bottom: 8px;
     padding-left: 20px;
     position: relative;
@@ -160,7 +160,7 @@
   
   .activity-card li::before {
     content: "•";
-    color: #16a085;
+    color: var(--green);
     font-weight: bold;
     position: absolute;
     left: 0;

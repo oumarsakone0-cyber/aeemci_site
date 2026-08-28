@@ -110,8 +110,8 @@ onMounted(() => {
 
 <style scoped>
 .organes-page {
-  background: #f9fafb;
+  background: var(--surface);
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--display);
 }
 </style>

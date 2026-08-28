@@ -268,15 +268,15 @@
   
   <style scoped>
   .bg-orange {
-    background-color: #F65A11;
+    background-color: var(--gold);
   }
   
   .text-orange {
-    color: #F65A11;
+    color: var(--gold);
   }
   
   .hover\:bg-orange-600:hover {
-    background-color: #e54a0a;
+    background-color: var(--gold);
   }
   
   .focus\:ring-orange:focus {
@@ -284,7 +284,7 @@
   }
   
   .focus\:border-orange:focus {
-    border-color: #F65A11;
+    border-color: var(--gold);
   }
   
   .bg-orange-100 {
@@ -292,15 +292,15 @@
   }
   
   .text-orange-800 {
-    color: #9a3412;
+    color: var(--gold);
   }
   
   .text-orange-600 {
-    color: #ea580c;
+    color: var(--gold);
   }
   
   .hover\:text-orange-800:hover {
-    color: #9a3412;
+    color: var(--gold);
   }
   </style>
   

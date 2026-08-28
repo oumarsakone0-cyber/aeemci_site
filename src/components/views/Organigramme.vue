@@ -141,15 +141,15 @@ onUnmounted(() => {
 <style scoped>
 /* Variables CSS */
 :root {
-  --primary: #006400;
-  --primary-dark: #004d00;
+  --primary: var(--green);
+  --primary-dark: var(--green);
   --primary-light: #228B22;
   --primary-lighter: #f0f8f0;
   --secondary: #FFD700;
-  --background: #fafafa;
+  --background: var(--surface);
   --background-alt: #ffffff;
-  --text-primary: #2c3e50;
-  --text-secondary: #7f8c8d;
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
   --border-color: #e1e8ed;
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -162,7 +162,7 @@ onUnmounted(() => {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--display);
   color: var(--text-primary);
   line-height: 1.6;
   background-color: var(--background);
@@ -299,7 +299,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .nav-track {
@@ -321,7 +321,7 @@ body {
   padding: 0.8rem 1.2rem;
   border: none;
   background-color: transparent;
-  border-radius: 25px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
@@ -337,7 +337,7 @@ body {
 .nav-item.active {
   background-color: var(--primary);
   color: white;
-  box-shadow: 0 2px 8px rgba(0, 100, 0, 0.3);
+  box-shadow: var(--shadow);
 }
 
 .nav-icon {
@@ -364,9 +364,9 @@ body {
   flex: 0 0 40%;
   background-color: var(--primary-lighter);
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 0;
   position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
 }
 
 .quote-mark {
@@ -410,9 +410,9 @@ blockquote {
 .period-card {
   margin-bottom: 4rem;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -433,7 +433,7 @@ blockquote {
   line-height: 1;
   padding: 0.8rem 1.2rem;
   background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .period-title {
@@ -457,14 +457,14 @@ blockquote {
   align-items: flex-start;
   background-color: var(--background-alt);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
 .leader-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .leader-card.president {
@@ -548,14 +548,14 @@ blockquote {
   align-items: center;
   background-color: var(--background-alt);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
 .commission-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .commission-icon {
@@ -580,7 +580,7 @@ blockquote {
   background-color: var(--primary-lighter);
   color: var(--primary);
   padding: 0.3rem 0.8rem;
-  border-radius: 15px;
+  border-radius: 0;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -595,14 +595,14 @@ blockquote {
 .region-card {
   background-color: var(--background-alt);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
 .region-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .region-header {
@@ -619,7 +619,7 @@ blockquote {
 
 .region-status {
   padding: 0.3rem 0.8rem;
-  border-radius: 15px;
+  border-radius: 0;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -651,14 +651,14 @@ blockquote {
   align-items: center;
   background-color: var(--background-alt);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
 .organ-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .organ-icon {
@@ -683,7 +683,7 @@ blockquote {
   background-color: var(--primary-lighter);
   color: var(--primary);
   padding: 0.3rem 0.8rem;
-  border-radius: 15px;
+  border-radius: 0;
   font-size: 0.8rem;
   font-weight: 600;
   display: inline-block;
@@ -725,7 +725,7 @@ blockquote {
   align-items: center;
   background-color: var(--background-alt);
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
 }
 

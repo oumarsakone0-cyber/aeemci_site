@@ -15,7 +15,7 @@
           </div>
           
           <div class="footer-section">
-            <h4>Liens Rapides</h4>
+            <h4>Liens Rapidesg</h4>
             <ul>
               <li><a href="#about">À propos</a></li>
               <li><a href="#activities">Activités</a></li>
@@ -69,7 +69,7 @@
   
   <style scoped>
   .footer {
-    background: #2c3e50;
+    background: var(--ink);
     color: white;
     padding: 60px 20px 0;
   }
@@ -87,19 +87,19 @@
   }
   
   .footer-section h3 {
-    color: #16a085;
+    color: var(--green);
     font-size: 24px;
     margin-bottom: 20px;
   }
   
   .footer-section h4 {
-    color: #16a085;
+    color: var(--green);
     font-size: 18px;
     margin-bottom: 20px;
   }
   
   .footer-section p {
-    color: #bdc3c7;
+    color: var(--line);
     line-height: 1.6;
     margin-bottom: 20px;
   }
@@ -111,13 +111,13 @@
   }
   
   .social-link {
-    color: #bdc3c7;
+    color: var(--line);
     text-decoration: none;
     transition: color 0.3s;
   }
   
   .social-link:hover {
-    color: #16a085;
+    color: var(--green);
   }
   
   .footer-section ul {
@@ -130,22 +130,22 @@
   }
   
   .footer-section a {
-    color: #bdc3c7;
+    color: var(--line);
     text-decoration: none;
     transition: color 0.3s;
   }
   
   .footer-section a:hover {
-    color: #16a085;
+    color: var(--green);
   }
   
   .contact-info p {
     margin-bottom: 10px;
-    color: #bdc3c7;
+    color: var(--line);
   }
   
   .footer-bottom {
-    border-top: 1px solid #34495e;
+    border-top: 1px solid var(--ink);
     padding: 20px 0;
   }
   
@@ -158,7 +158,7 @@
   }
   
   .footer-bottom p {
-    color: #bdc3c7;
+    color: var(--line);
     margin: 0;
   }
   
@@ -168,14 +168,14 @@
   }
   
   .footer-links a {
-    color: #bdc3c7;
+    color: var(--line);
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s;
   }
   
   .footer-links a:hover {
-    color: #16a085;
+    color: var(--green);
   }
   
   @media (max-width: 768px) {

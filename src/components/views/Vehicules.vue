@@ -655,31 +655,31 @@ onMounted(() => {
 .app-container {
   display: flex;
   min-height: 100vh;
-  background-color: #f8fafc;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--surface);
+  font-family: var(--display);
 }
 
 /* Sidebar Styles (identique au dashboard) */
 .sidebar {
   width: 280px;
-  background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(180deg, #1e293b 0%, var(--ink-soft) 100%);
   color: white;
   position: fixed;
   height: 100vh;
   overflow-y: auto;
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .sidebar-header {
   padding: 24px 20px;
-  border-bottom: 1px solid #475569;
+  border-bottom: 1px solid var(--ink-soft);
   text-align: center;
 }
 
 .sidebar-header h1 {
   font-size: 24px;
   font-weight: bold;
-  color: #f1f5f9;
+  color: var(--surface);
 }
 
 .sidebar-nav {
@@ -690,14 +690,14 @@ onMounted(() => {
   display: flex;
   align-items: center;
   padding: 16px 24px;
-  color: #cbd5e1;
+  color: var(--line);
   text-decoration: none;
   transition: all 0.3s ease;
   border-left: 4px solid transparent;
 }
 
 .nav-item:hover {
-  background-color: #475569;
+  background-color: var(--ink-soft);
   color: white;
   border-left-color: #3b82f6;
 }
@@ -729,8 +729,8 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid #e2e8f0;
+  box-shadow: var(--shadow);
+  border-bottom: 1px solid var(--line);
 }
 
 .header-left h2 {
@@ -741,7 +741,7 @@ onMounted(() => {
 }
 
 .header-left p {
-  color: #64748b;
+  color: var(--muted);
   font-size: 14px;
 }
 
@@ -756,7 +756,7 @@ onMounted(() => {
   color: white;
   border: none;
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 0;
   font-weight: 600;
   cursor: pointer;
   display: flex;
@@ -768,7 +768,7 @@ onMounted(() => {
 .btn-primary:hover {
   background: linear-gradient(135deg, #2563eb, #1e40af);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  box-shadow: var(--shadow);
 }
 
 .btn-icon {
@@ -787,9 +787,9 @@ onMounted(() => {
 .filters-section {
   background: white;
   padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #f1f5f9;
+  border-radius: 0;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--surface);
   margin-bottom: 32px;
   display: flex;
   justify-content: space-between;
@@ -810,14 +810,14 @@ onMounted(() => {
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  color: #64748b;
+  color: var(--muted);
 }
 
 .search-input {
   width: 100%;
   padding: 12px 16px 12px 48px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  border: 2px solid var(--line);
+  border-radius: 0;
   font-size: 16px;
   transition: border-color 0.3s;
 }
@@ -834,8 +834,8 @@ onMounted(() => {
 
 .filter-select {
   padding: 12px 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  border: 2px solid var(--line);
+  border-radius: 0;
   background: white;
   cursor: pointer;
   font-size: 14px;
@@ -856,20 +856,20 @@ onMounted(() => {
 
 .vehicle-card {
   background: white;
-  border-radius: 16px;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 2px solid #f1f5f9;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--surface);
   transition: all 0.3s;
 }
 
 .vehicle-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .vehicle-card.active {
-  border-color: #dcfce7;
+  border-color: var(--green-mist);
 }
 
 .vehicle-card.inactive {
@@ -878,7 +878,7 @@ onMounted(() => {
 }
 
 .vehicle-card.maintenance {
-  border-color: #fef3c7;
+  border-color: var(--gold-mist);
 }
 
 .vehicle-header {
@@ -886,7 +886,7 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--surface);
 }
 
 .vehicle-status-indicator {
@@ -897,7 +897,7 @@ onMounted(() => {
 }
 
 .vehicle-status-indicator.active {
-  background: #10b981;
+  background: var(--green-2);
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
@@ -907,7 +907,7 @@ onMounted(() => {
 }
 
 .vehicle-status-indicator.maintenance {
-  background: #f59e0b;
+  background: var(--gold);
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
 }
 
@@ -924,17 +924,17 @@ onMounted(() => {
 }
 
 .action-btn {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--surface);
+  border: 1px solid var(--line);
   padding: 8px;
-  border-radius: 6px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .action-btn:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
+  background: var(--surface);
+  border-color: var(--line);
 }
 
 .action-btn.danger:hover {
@@ -945,7 +945,7 @@ onMounted(() => {
 .action-icon {
   width: 16px;
   height: 16px;
-  color: #64748b;
+  color: var(--muted);
 }
 
 .action-btn.danger .action-icon {
@@ -956,11 +956,11 @@ onMounted(() => {
 .vehicle-image {
   height: 200px;
   overflow: hidden;
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  background: linear-gradient(135deg, var(--gold-mist), #fde68a);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--surface);
 }
 
 .vehicle-image img {
@@ -988,7 +988,7 @@ onMounted(() => {
 }
 
 .vehicle-year {
-  color: #64748b;
+  color: var(--muted);
   font-weight: 500;
 }
 
@@ -1005,7 +1005,7 @@ onMounted(() => {
 
 .detail-label {
   font-size: 14px;
-  color: #64748b;
+  color: var(--muted);
   font-weight: 500;
 }
 
@@ -1020,11 +1020,11 @@ onMounted(() => {
 }
 
 .detail-value.warning {
-  color: #f59e0b;
+  color: var(--gold);
 }
 
 .detail-value.valid {
-  color: #10b981;
+  color: var(--green-2);
 }
 
 .drivers-list {
@@ -1037,7 +1037,7 @@ onMounted(() => {
   background: #e0f2fe;
   color: #0369a1;
   padding: 4px 8px;
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 12px;
   font-weight: 500;
 }
@@ -1047,7 +1047,7 @@ onMounted(() => {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   padding-top: 16px;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--surface);
 }
 
 .stat {
@@ -1057,7 +1057,7 @@ onMounted(() => {
 .stat-label {
   display: block;
   font-size: 12px;
-  color: #64748b;
+  color: var(--muted);
   margin-bottom: 4px;
 }
 
@@ -1071,14 +1071,14 @@ onMounted(() => {
 .empty-state {
   text-align: center;
   padding: 80px 20px;
-  color: #64748b;
+  color: var(--muted);
 }
 
 .empty-icon {
   width: 64px;
   height: 64px;
   margin: 0 auto 24px;
-  color: #cbd5e1;
+  color: var(--line);
 }
 
 .empty-state h3 {
@@ -1110,12 +1110,12 @@ onMounted(() => {
 
 .modal {
   background: white;
-  border-radius: 20px;
+  border-radius: 0;
   max-width: 800px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow);
   position: relative;
   transform: scale(1);
   animation: modalAppear 0.3s ease-out;
@@ -1134,12 +1134,12 @@ onMounted(() => {
 
 .modal-header {
   padding: 24px 32px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f8fafc;
-  border-radius: 16px 16px 0 0;
+  background: var(--surface);
+  border-radius: 0;
 }
 
 .modal-header h3 {
@@ -1153,18 +1153,18 @@ onMounted(() => {
   border: none;
   padding: 8px;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 0;
   transition: background-color 0.3s;
 }
 
 .modal-close:hover {
-  background: #f1f5f9;
+  background: var(--surface);
 }
 
 .close-icon {
   width: 20px;
   height: 20px;
-  color: #64748b;
+  color: var(--muted);
 }
 
 .modal-form {
@@ -1190,14 +1190,14 @@ onMounted(() => {
 .form-group label {
   font-size: 14px;
   font-weight: 600;
-  color: #374151;
+  color: var(--ink-soft);
   margin-bottom: 8px;
 }
 
 .form-input, .form-textarea {
   padding: 12px 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  border: 2px solid var(--line);
+  border-radius: 0;
   font-size: 16px;
   transition: border-color 0.3s;
 }
@@ -1231,8 +1231,8 @@ onMounted(() => {
 }
 
 .file-upload-area {
-  border: 2px dashed #cbd5e1;
-  border-radius: 8px;
+  border: 2px dashed var(--line);
+  border-radius: 0;
   padding: 32px;
   text-align: center;
   transition: border-color 0.3s;
@@ -1252,7 +1252,7 @@ onMounted(() => {
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  color: #64748b;
+  color: var(--muted);
 }
 
 .upload-icon {
@@ -1273,9 +1273,9 @@ onMounted(() => {
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  background: var(--surface);
+  border-radius: 0;
+  border: 1px solid var(--line);
 }
 
 .file-icon {
@@ -1289,7 +1289,7 @@ onMounted(() => {
   border: none;
   padding: 4px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0;
   margin-left: auto;
 }
 
@@ -1309,23 +1309,23 @@ onMounted(() => {
   gap: 16px;
   margin-top: 32px;
   padding-top: 24px;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--line);
 }
 
 .btn-secondary {
-  background: #f8fafc;
-  color: #64748b;
-  border: 2px solid #e2e8f0;
+  background: var(--surface);
+  color: var(--muted);
+  border: 2px solid var(--line);
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 0;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .btn-secondary:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
+  background: var(--surface);
+  border-color: var(--line);
 }
 
 /* Documents Modal */
@@ -1349,9 +1349,9 @@ onMounted(() => {
   align-items: center;
   gap: 16px;
   padding: 16px;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  background: var(--surface);
+  border-radius: 0;
+  border: 1px solid var(--line);
 }
 
 .document-icon {
@@ -1371,13 +1371,13 @@ onMounted(() => {
 
 .document-info p {
   font-size: 14px;
-  color: #64748b;
+  color: var(--muted);
   margin-bottom: 2px;
 }
 
 .document-info small {
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--muted);
 }
 
 .document-actions {
@@ -1388,8 +1388,8 @@ onMounted(() => {
 .add-document {
   text-align: center;
   padding: 24px;
-  border: 2px dashed #cbd5e1;
-  border-radius: 8px;
+  border: 2px dashed var(--line);
+  border-radius: 0;
 }
 
 /* Responsive */

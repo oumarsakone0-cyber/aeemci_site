@@ -305,15 +305,15 @@
   
   <style scoped>
   .bg-orange {
-    background-color: #F65A11;
+    background-color: var(--gold);
   }
   
   .text-orange {
-    color: #F65A11;
+    color: var(--gold);
   }
   
   .hover\:bg-orange-600:hover {
-    background-color: #e54a0a;
+    background-color: var(--gold);
   }
   
   .focus\:ring-orange:focus {
@@ -321,7 +321,7 @@
   }
   
   .focus\:border-orange:focus {
-    border-color: #F65A11;
+    border-color: var(--gold);
   }
   </style>
   
