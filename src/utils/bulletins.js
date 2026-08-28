@@ -11,11 +11,14 @@ import { jsPDF } from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import logoAeemci from '../assets/logos/aeemci.jpg'
 import logoSenafoi from '../assets/logos/senafoi.jpeg'
+// Signature officielle du Président National, la même que celle des diplômes.
+// PNG à fond transparent : elle se pose sur le bulletin sans y coller un
+// rectangle blanc. Ne pas repasser au JPEG, qui n'a pas de couche alpha.
+import signatureOfficielle from '../assets/logos/signature.png'
 
-// Le bulletin garde la signature d'origine, celle servie par l'API — la même
-// que celle des bulletins déjà imprimés depuis SENAFOI26. Ne pas la remplacer
-// par celle des diplômes : deux versions du même bulletin circuleraient.
-const URL_SIGNATURE = 'https://api.aeemci-ce.ci/senafoi/signature.jpeg'
+// Proportions réelles du fichier : la signature garde sa forme quelle que
+// soit la largeur d'impression.
+const RAPPORT_SIGNATURE = 720 / 307
 
 const VERT = [15, 81, 50]
 const VERT_CLAIR = [220, 252, 231]
@@ -74,9 +77,9 @@ async function photoCarree(url, cote = 200) {
   }
 }
 
-/** Charge une image distante et la convertit en data URL base64. Retourne
- *  null en cas d'échec : la signature devient alors simplement absente. */
-async function chargerImageDistante(url) {
+/** Charge une image et la convertit en data URL base64. Retourne null en cas
+ *  d'échec : la signature devient alors simplement absente. */
+async function chargerImage(url) {
   try {
     const reponse = await fetch(url)
     if (!reponse.ok) return null
@@ -249,12 +252,13 @@ function dessinerBulletin(doc, b, { titreTest, niveau, total, image, signature }
   doc.line(pW - 75, ySign + 12, pW - 15, ySign + 12)
 
   if (signature) {
-    const largeurSignature = 36, hauteurSignature = 14
-    doc.addImage(signature, 'JPEG', pW - 45 - largeurSignature / 2,
+    const largeurSignature = 36
+    const hauteurSignature = largeurSignature / RAPPORT_SIGNATURE
+    doc.addImage(signature, 'PNG', pW - 45 - largeurSignature / 2,
                  ySign + 12 - hauteurSignature - 1, largeurSignature, hauteurSignature)
   }
 
-  doc.text('Le Responsable de la Formation', pW - 45, ySign + 17, { align: 'center' })
+  doc.text("L'Amir Youssouf BAMBA", pW - 45, ySign + 17, { align: 'center' })
 
   doc.setFontSize(7.5)
   doc.setTextColor(...OR)
@@ -269,7 +273,7 @@ function dessinerBulletin(doc, b, { titreTest, niveau, total, image, signature }
 export async function telechargerBulletin(b, nomFichier) {
   const [image, signature] = await Promise.all([
     photoCarree(b.photo, 200),
-    chargerImageDistante(URL_SIGNATURE),
+    chargerImage(signatureOfficielle),
   ])
   const doc = new jsPDF('p', 'mm', 'a4')
   dessinerBulletin(doc, b, {

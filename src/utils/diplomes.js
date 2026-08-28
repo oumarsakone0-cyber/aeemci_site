@@ -58,7 +58,7 @@ const SIGNATURE = {
   cx: 238,        // centre horizontal, en miroir de la date à gauche
   bas: 176,       // le bas de l'image repose juste au-dessus du trait
   largeur: 46,
-  rapport: 447 / 205,
+  rapport: 720 / 307,   // dimensions réelles du PNG : la signature n'est pas déformée
 }
 
 // ── Fonds téléversés ──────────────────────────────────────────────────────
